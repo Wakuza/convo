@@ -267,7 +267,7 @@
 							Last Name
 						</th>
 						<th class="text-center">
-							Date of Birth <br/>(YYYY-MM-DD)
+							Date of Birth <br/>(MM-DD-YYYY)
 						</th>
                         <th class="text-center">
 							Gender
@@ -287,7 +287,7 @@
 						    <input type="text" name='lastname0' placeholder='Last Name' class="form-control" value="<?php if(isset($_POST["button"])){echo $_POST['lastname0'];} ?>"/>
 						</td>
 						<td data-name="dob">
-						    <input type="text" name="dob0" class="datepicker" placeholder="YYYY-MM-DD" value="<?php if(isset($_POST["button"])){echo $_POST['dob0'];} ?>"/>
+						    <input type="text" name="dob0" class="datepicker" placeholder="MM-DD-YYYY" value="<?php if(isset($_POST["button"])){echo $_POST['dob0'];} ?>"/>
 						</td>                
 						<td data-name="gender">
 						    <select name="gender0">
@@ -316,7 +316,7 @@
 						    <input type="text" name='lastname1' placeholder='Last Name' class="form-control" value="<?php if(isset($_POST["button"])){echo $_POST['lastname1'];} ?>"/>
 						</td>
 						<td data-name="dob">
-						    <input type="text" name="dob1" class="datepicker" placeholder="YYYY-MM-DD" value="<?php if(isset($_POST["button"])){echo $_POST['dob1'];} ?>"/>
+						    <input type="text" name="dob1" class="datepicker" placeholder="MM-DD-YYYY" value="<?php if(isset($_POST["button"])){echo $_POST['dob1'];} ?>"/>
 						</td>
 						<td data-name="gender">
 						    <select name="gender1">
@@ -345,7 +345,7 @@
 						    <input type="text" name='lastname2' placeholder='Last Name' class="form-control" value="<?php if(isset($_POST["button"])){echo $_POST['lastname2'];} ?>"/>
 						</td>
 						<td data-name="dob">
-						    <input type="text" name="dob2" class="datepicker" placeholder="YYYY-MM-DD" value="<?php if(isset($_POST["button"])){echo $_POST['dob2'];} ?>"/>
+						    <input type="text" name="dob2" class="datepicker" placeholder="MM-DD-YYYY" value="<?php if(isset($_POST["button"])){echo $_POST['dob2'];} ?>"/>
 						</td>
 						<td data-name="gender">
 						    <select name="gender2">
@@ -374,7 +374,7 @@
 						    <input type="text" name='lastname3' placeholder='Last Name' class="form-control" value="<?php if(isset($_POST["button"])){echo $_POST['lastname3'];} ?>"/>
 						</td>
 						<td data-name="dob">
-						    <input type="text" name="dob3" class="datepicker" placeholder="YYYY-MM-DD" value="<?php if(isset($_POST["button"])){echo $_POST['dob3'];} ?>"/>
+						    <input type="text" name="dob3" class="datepicker" placeholder="MM-DD-YYYY" value="<?php if(isset($_POST["button"])){echo $_POST['dob3'];} ?>"/>
 						</td>
 						<td data-name="gender">
 						    <select name="gender3">
@@ -403,7 +403,7 @@
 						    <input type="text" name='lastname4' placeholder='Last Name' class="form-control" value="<?php if(isset($_POST["button"])){echo $_POST['lastname4'];} ?>"/>
 						</td>
 						<td data-name="dob">
-						    <input type="text" name="dob4" class="datepicker" placeholder="YYYY-MM-DD" value="<?php if(isset($_POST["button"])){echo $_POST['dob4'];} ?>"/>
+						    <input type="text" name="dob4" class="datepicker" placeholder="MM-DD-YYYY" value="<?php if(isset($_POST["button"])){echo $_POST['dob4'];} ?>"/>
 						</td>
 						<td data-name="gender">
 						    <select name="gender4">

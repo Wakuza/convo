@@ -44,7 +44,7 @@ $('.active_terminate').change(function(){
         }
     }
     
-    $("#employeeName").change(function() {
+    $("#employerName").change(function() {
         var empID = $(this).val().split("|")[0];
         var pos = $(this).val().split("|")[1];
         var payrollStatus = $(this).val().split("|")[2];
@@ -62,7 +62,7 @@ $('.active_terminate').change(function(){
         var zipCode = $(this).val().split("|")[14];
         
         // Employee Information
-        $("input[name='employeeID']").val(empID);
+        $("input[name='employerID']").val(empID);
         $("select[name='change_position_name']").val(pos);
         $("input[name='current_position_name']").val(pos);
         $("input[name='current_payroll_status']").val(payrollStatus);

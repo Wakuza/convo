@@ -106,6 +106,15 @@
                 $manager_privileges = "0";
             }
             
+            $hireDateInput = explode("-", $hire_date);
+            $hireDate = $hireDateInput[2] . "-" . $hireDateInput[0] . "-" . $hireDateInput[1];
+            
+            $dobInput = explode("-", $dob);
+            $date_of_birth = $dobInput[2] . "-" . $dobInput[0] . "-" . $dobInput[1];
+            
+            /*
+            echo $hireDate;
+            echo $date_of_birth;
             echo "employeeID: " . $employeeID;
             echo "FirstName: " . $firstname;
             echo "Last Name: " . $lastname;
@@ -124,8 +133,10 @@
             echo "Date of Birth: " . $dob;
             echo "SSN: " . $ssn;
             echo "Gender: " . $gender;
+            die();
+            */
            
-            mysql_query("INSERT INTO employee (employeeID, firstname, lastname, position_name, department_name, street_address, city, res_state, zipcode, convo_location, supervisorID, payroll_status, hire_date, updated_at, review_date, termination_date, employment_status, manager_privileges, admin_privileges, active, password_recover, date_of_birth, ssn, gender) VALUES ('$employeeID', '$firstname', '$lastname', '$jobTitle', '$department', '$street_address', '$city', '$state', '$zipcode', '$location', '$supervisor', '$payrollStatus', '$hire_date', CURRENT_TIMESTAMP, '1901-01-01', '1901-01-01', 'Active', '$manager_privileges', '$admin_privileges', '1', '0', '$dob', '$ssn', '$gender');");
+            mysql_query("INSERT INTO employee (employeeID, firstname, lastname, position_name, department_name, street_address, city, res_state, zipcode, convo_location, supervisorID, payroll_status, hire_date, updated_at, review_date, termination_date, employment_status, manager_privileges, admin_privileges, active, password_recover, date_of_birth, ssn, gender) VALUES ('$employeeID', '$firstname', '$lastname', '$jobTitle', '$department', '$street_address', '$city', '$state', '$zipcode', '$location', '$supervisor', '$payrollStatus', '$hireDate', CURRENT_TIMESTAMP, '1901-01-01', '1901-01-01', 'Active', '$manager_privileges', '$admin_privileges', '1', '0', '$date_of_birth', '$ssn', '$gender');");
             
             echo "<h2 class='headerPages'>You added new employee to database successfully!</h2>";
             die();      
@@ -169,8 +180,8 @@
             
         <!-- Date of Birth -->
         <span class="spanHeader">Date of Birth:</span>
-        <input type="text" class="datepicker" placeholder="YYYY-MM-DD" name="dob" value=<?php if(isset($_POST["submit"])){echo $_POST['dob'];} ?>>
-        <?php echo $errorDOB; ?><br/><br/>
+        <input type="text" class="datepicker" placeholder="MM-DD-YYYY" name="dob" value=<?php if(isset($_POST["submit"])){echo $_POST['dob'];} ?>>
+        <?php echo $errorDOB; ?><br/><em class="note">MM-DD-YYYY</em><br/><br/>
 
         <!-- SSN -->
         <span class="spanHeader">SSN:</span>
@@ -274,7 +285,7 @@
 
         <!-- Hire Date -->
         <span class="spanHeader">Hire Date:</span>
-        <input type="text" class="datepicker" placeholder="YYYY-MM-DD" name="hire_date" value=<?php if(isset($_POST["submit"])){echo $_POST['hire_date'];} ?>><?php echo $errorDate; ?><br/><br/>
+        <input type="text" class="datepicker" placeholder="MM-DD-YYYY" name="hire_date" value=<?php if(isset($_POST["submit"])){echo $_POST['hire_date'];} ?>><?php echo $errorDate; ?><br/><em class="note">MM-DD-YYYY</em><br/><br/>
 
         <!-- Admin Privileges -->
         <span class="spanHeader">Admin Privilege:</span>

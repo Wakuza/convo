@@ -71,9 +71,11 @@
                 $termination_checked = sanitize($_POST["termination"]);
                 $termination_date = sanitize($_POST["termination_date"]);
                 $termination_reason = sanitize($_POST["termination_reason"]);
+                $terminationDateInput = explode("-", termination_date);
+                $terminationDate = $terminationDateInput[2] . "-" . $terminationDateInput[0] . "-" . $terminationDateInput[1];
             
-                //echo "UPDATE employee SET termination_date = '$termination_date', termination_reason = '$termination_reason', employment_status = 'Terminated' WHERE employeeID = '$employeeID'";
-                mysql_query("UPDATE employee SET termination_date = '$termination_date', termination_reason = '$termination_reason', employment_status = 'Terminated', active='0' WHERE employeeID = '$employeeID'");
+                //echo "UPDATE employee SET termination_date = '$terminationDate', termination_reason = '$termination_reason', employment_status = 'Terminated' WHERE employeeID = '$employeeID'";
+                mysql_query("UPDATE employee SET termination_date = '$terminationDate', termination_reason = '$termination_reason', employment_status = 'Terminated', active='0' WHERE employeeID = '$employeeID'");
             
                 echo "<h2 class='headerPages'>You terminated an employee successfully!</h2>";
                 die();
@@ -215,7 +217,7 @@
         <span class="spanHeader">Terminate Employee?</span>
         <input type="checkbox" id = "termination" name="termination" value="terminate"><br/><br/><br/>
         <div id="termination_box">
-            <span class="spanHeader">Termination Date: </span><input type="text" class="datepicker" value="YYYY-MM-DD" name="termination_date"><br/><br/>
+            <span class="spanHeader">Termination Date: </span><input type="text" class="datepicker" value="MM-DD-YYYY" name="termination_date"><br/><em class="note">MM-DD-YYYY</em><br/>
             <span class="spanHeader">Termination Reason:</span><br/><?php echo $errorTerm; ?>
 
             <input onblur="textCounter(this.form.recipients,this,1024);" disabled  onfocus="this.blur();" tabindex="999" maxlength="3" size="3" value="1024" name="counter"> characters remaining<br/>

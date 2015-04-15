@@ -2,7 +2,7 @@
 * Datepicker
 */
   $(function() {
-    $( ".datepicker" ).datepicker({ dateFormat: 'yy-dd-mm' });
+    $( ".datepicker" ).datepicker({ dateFormat: 'mm-dd-yy' });
   });
 
 /*
