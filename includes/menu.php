@@ -5,12 +5,12 @@
                         if(logged_in()) {
                             if(has_access_census($session_user_id) == true){
                     ?>
-                                    <li><a href="census.php">Census</a></li>
+                                  <li><a href="census.php">Census</a></li>
                     <?php
                             }
                         }
                     ?>
-                    <!-- <li><a href="resources.php">Resources</a></li> -->
+                        <!--<li><a href="resources.php">Resources</a></li>-->
                     <?php
                         if(logged_in()) {
                             if(has_access_manager($session_user_id) == true) {
@@ -28,6 +28,7 @@
                         <ul>
                             <li><a href="hire.php">Add new employees</a></li>
                             <li><a href="termination.php">Changes</a></li>
+                            <li><a href="announcements.php">Announcements</a></li>
                         </ul>
                     </li>
                     <?php
