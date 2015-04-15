@@ -3,7 +3,7 @@
     include("core/init.php");
     include("includes/overall/header.php");
 ?>
-<br/><br/><br/><br/>hyh
+<br/><br/><br/><br/>
 
 <?php
     // Announcements
