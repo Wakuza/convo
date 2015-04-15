@@ -79,7 +79,7 @@
                 die();
         }
         else {   
-            mysql_query("UPDATE employee SET position_name = '$jobTitle', department_name ='$department', convo_location = '$location', payroll_status = '$payrollStatus', employment_status = '$employmentStatus', supervisorID='$supervisor', admin_privileges='$admin_privileges', manager_privileges='$manager_privileges', firstname='$firstname', lastname='$lastname', street_address='$street_address', city ='$city', res_state='$res_state', zipcode='$zipcode' WHERE employeeID = '$employeeID'");
+            mysql_query("UPDATE employee SET position_name = '$jobTitle', department_name ='$department', convo_location = '$location', payroll_status = '$payrollStatus', employment_status = '$employmentStatus', supervisorID='$supervisor', updated_at = CURRENT_TIMESTAMP, admin_privileges='$admin_privileges', manager_privileges='$manager_privileges', firstname='$firstname', lastname='$lastname', street_address='$street_address', city ='$city', res_state='$res_state', zipcode='$zipcode' WHERE employeeID = '$employeeID'");
             
             echo "<h2 class='headerPages'>You updated an employee's information successfully!</h2>";
             die();
