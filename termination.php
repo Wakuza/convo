@@ -68,11 +68,13 @@
             if(empty($_POST["termination_reason"])) {
                 $errorTerm = "Please type reason.";   
             }
-                $termination_checked = sanitize($_POST["termination"]);
-                $termination_date = sanitize($_POST["termination_date"]);
-                $termination_reason = sanitize($_POST["termination_reason"]);
-                $terminationDateInput = explode("-", termination_date);
-                $terminationDate = $terminationDateInput[2] . "-" . $terminationDateInput[0] . "-" . $terminationDateInput[1];
+            
+            $termination_checked = sanitize($_POST["termination"]);
+            $termination_date = sanitize($_POST["termination_date"]);
+            $termination_reason = sanitize($_POST["termination_reason"]);
+
+            $terminationDateInput = explode("-", $termination_date);
+            $terminationDate = $terminationDateInput[2] . "-" . $terminationDateInput[0] . "-" . $terminationDateInput[1];
             
                 //echo "UPDATE employee SET termination_date = '$terminationDate', termination_reason = '$termination_reason', employment_status = 'Terminated' WHERE employeeID = '$employeeID'";
                 mysql_query("UPDATE employee SET termination_date = '$terminationDate', termination_reason = '$termination_reason', employment_status = 'Terminated', active='0' WHERE employeeID = '$employeeID'");

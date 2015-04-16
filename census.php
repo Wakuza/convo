@@ -207,7 +207,11 @@
                 if(isset($_POST["submit"])){
                     for ($i = 1; $i <= 5; $i++){
                         if($firstname[$i] != "NULL" && $lastname[$i] != "NULL" && $dob[$i] != "NULL" && $relationship[$i] != "NULL" && $gender[$i] != "NULL"){
-                            mysql_query("INSERT INTO census (employeeID, firstname, lastname, date_of_birth, gender, relationship) VALUES ('$employeeID', '$firstname[$i]', '$lastname[$i]', '$dob[$i]', '$gender[$i]', '$relationship[$i]')");
+                            
+                            $dobInput = explode("-", $dob[$i]);
+                            $date_of_birth[$i] = $dobInput[2] . "-" . $dobInput[0] . "-" . $dobInput[1];
+                            
+                            mysql_query("INSERT INTO census (employerID, firstname, lastname, date_of_birth, gender, relationship) VALUES ('$employeeID', '$firstname[$i]', '$lastname[$i]', '$date_of_birth[$i]', '$gender[$i]', '$relationship[$i]')");
                         }
                     }
                     $displaySuccess = "style = 'display: none'";
@@ -430,7 +434,7 @@
 </div>
     <button class="btn-success" name="button"<?php echo $displayFirstSubmit; ?>>Review</button>
     <button class="btn-success" name="Edit" <?php echo $displaySecondSubmit; ?> onclick="goBack();">Edit</button>
-    <input type="submit" class="btn-success" value = "submit" name="submit" <?php echo $displaySecondSubmit; ?>>
+    <input type="submit" class="btn-success" value = "Submit" name="submit" <?php echo $displaySecondSubmit; ?>>
 </form>
 
 <script>
