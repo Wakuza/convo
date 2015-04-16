@@ -1,3 +1,15 @@
+.contact, .contact_info  {
+    margin-left: -30px; 
+    display: inline-block;
+}
+
+.contact_info {
+
+}
+
+.contact_info address {
+
+}
 #menu li > ul {
 	visibility: hidden;
 	opacity: 0;
