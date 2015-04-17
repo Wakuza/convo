@@ -13,24 +13,25 @@
                     <!-- <li><a href="resources.php">Resources</a></li> -->
                     <?php
                         if(logged_in()) {
-                            if(has_access_manager($session_user_id) == true) {
+                            if(has_access($session_user_id) == true) {
 ?>
-                   <!-- <li><a href="employee.php">Employees</a></li> -->
+                                <li>
+                                    <a href="#">Admin</a>
+                                        <ul>
+                                            <li><a href="hire.php">Add new employees</a></li>
+                                            <li><a href="termination.php">Changes</a></li>
+                                            <li><a href="announcements.php">Announcements</a></li>
+                                        </ul>
+                                </li>
                     <?php
                             }
                         }
 
                         if(logged_in()) {
-                            if(has_access($session_user_id) == true) {
+                            if(has_access_manager($session_user_id) == true) {
                     ?>
-                    <li>
-                        <a href="#">Admin</a>
-                        <ul>
-                            <li><a href="hire.php">Add new employees</a></li>
-                            <li><a href="termination.php">Changes</a></li>
-                            <li><a href="announcements.php">Announcements</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="employee.php">Employees</a></li>
+                    
                     <?php
                             }
                         }
