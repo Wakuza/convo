@@ -1,5 +1,5 @@
-CREATE TABLE employer (
-    employerID VARCHAR(4) NOT NULL,
+CREATE TABLE employee (
+    employeeID VARCHAR(4) NOT NULL,
     firstname VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
     position_name VARCHAR(255) NOT NULL,
@@ -21,7 +21,8 @@ CREATE TABLE employer (
     password_recover INT DEFAULT 0,
     date_of_birth DATE,
     ssn CHAR(4) NOT NULL,
-    CONSTRAINT employerID_pk PRIMARY KEY(employerID),
+    gender CHAR(1),
+    CONSTRAINT employeeID_pk PRIMARY KEY(employeeID),
     CONSTRAINT position_name_fk FOREIGN KEY(position_name) REFERENCES position_type(position_name),
     CONSTRAINT department_name_fk FOREIGN KEY(department_name) REFERENCES department(department_name),
     CONSTRAINT convo_location_fk FOREIGN KEY(convo_Location) REFERENCES location(convo_location)
@@ -50,12 +51,12 @@ CREATE TABLE location (
 
 CREATE TABLE census (
     dependentID INT NOT NULL AUTO_INCREMENT,
-    employerID VARCHAR(4) NOT NULL,
+    employeeID VARCHAR(4) NOT NULL,
     firstname VARCHAR(60),
     lastname VARCHAR(60),
     date_of_birth DATE,
     gender VARCHAR(10),
     relationship VARCHAR(60),
     CONSTRAINT dependentID_pk PRIMARY KEY(dependentID),
-    CONSTRAINT employerID_fk FOREIGN KEY(employerID) REFERENCES employer(employerID)
+    CONSTRAINT employeeID_fk FOREIGN KEY(employeeID) REFERENCES employee(employeeID)
 );
