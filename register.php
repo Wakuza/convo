@@ -1,7 +1,6 @@
 <?php 
     $title = "Convo Portal | Register";
     include("core/init.php");
-    //admin_protect();
     logged_in_redirect();
     include("includes/overall/header.php");
 
@@ -12,6 +11,7 @@
     if(isset($_POST["submit"])) {
         $ssn = sanitize($_POST["ssn_digits"]);
         $dob = sanitize($_POST["dob"]);
+        
         if(empty($_POST["ssn_digits"]) || empty($_POST["dob"])) {
             $errorId = "Please enter your SSN and Date of Birth.";
         }
@@ -25,8 +25,6 @@
             $errorId = "Sorry, the username \"" . $_POST["username"] . "\" is already taken.";   
         }
         else if(preg_match("/\\s/", $_POST["username"]) == true) {
-           // $regular_expression = preg_match("/\\s/", $_POST["username"]);
-           // var_dump($regular_expression);
             $errorId = "Your username must not contain any spaces.";   
         }
 
@@ -43,7 +41,6 @@
         }
     }
 ?>
-
     <h1 class="headerPages">Employee Registration</h1>
 
 <?php 
@@ -82,7 +79,8 @@
         <input type="text" name="username"><br/><br/>
         
         <span class="spanHeader">Password: </span>
-        <input type="password" name="password">&nbsp;&nbsp;<em>The password must be between 6 and 30 characters.</em><br/><br/>
+        <input type="password" name="password">&nbsp;&nbsp;<em>The password must be between 6 and 30 characters.</em
+        <br/><br/>
         
         <span class="spanHeader">Repeat Password: </span>
         <input type="password" name="password_again"><br/><br/>
