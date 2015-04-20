@@ -14,7 +14,7 @@
     echo "<a class='hireOrTerm' href='hire.php'>Add</a><a class='hireOrTerm' href='termination.php'>Edit</a><br/><br/><br/>";
     echo "</div>";
     }
-    */
+*/
 ?>
 
 <div id="active_terminate_radio">
