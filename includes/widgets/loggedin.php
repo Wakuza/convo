@@ -7,18 +7,15 @@
             <ul id = "status_logout">
                 <li><a href="logout.php">Log out</a></li>
                 <li><a href="changepassword.php">Change password</a></li>
-                <li><a href="settings.php">Settings</a></li>
+                <!-- <li><a href="settings.php">Settings</a></li> -->
             </ul>
         </div>  <!-- Div class of statusBox ends -->
         
         <ul id="statusList">    <!-- ul id of statusList starts -->
             <li><strong>Role:</strong> <?php echo $user_data['position_name']; ?></li>
             <li><strong>Employment Status:</strong> <?php echo $user_data['payroll_status']; ?></li>
-            <li>
-                <?php 
-                echo "<strong>Convo Location: </strong>" . $user_data['convo_location'] ."<br/><strong>Resident State: </strong> " .  $user_data['res_state']; 
-                ?>
-            </li>
+            <li><strong>Convo Location:</strong> <?php echo $user_data["convo_location"]; ?></li>
+            <li><strong>Resident State:</strong> <?php echo $user_data["res_state"]; ?></li>
             <li>
                 <?php
                     if(supervisor_name($session_user_id, "0") == false) {
