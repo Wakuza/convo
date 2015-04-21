@@ -1,4 +1,6 @@
 <?php
+    // This page is to protect the page when the users are not logged in.
+
     $title = "Convo Portal | Protected";
     include ("core/init.php");
     include("includes/overall/header.php");

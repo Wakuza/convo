@@ -46,6 +46,5 @@
             echo $row["firstname"] . " " . $row["lastname"] . "<br/>";    
         }
     }
-
     include("includes/overall/footer.php"); 
 ?>

@@ -34,8 +34,6 @@
                 $errors[] = "That username/password combination is incorrect";   
             }
             else {
-                // echo "OK!";
-                //die($login);
                 if(isset($_POST["remBox"])){
                     //Store username and password into the cookies 
                     setcookie("username", $username, time() + 7200);
@@ -53,16 +51,16 @@
     }   // End If
     else {
         $errors[] = "No data received";
-    
     }
 
     $title = "Convo Portal | Login";
     include("includes/overall/header.php");
 
     if(empty($errors) === false) {
-        ?>
+?>
         <h2 class="headerPages">Incorrect Login</h2>
-        <?php echo output_errors($errors);
+<?php 
+        echo output_errors($errors);
     }
 
     include("includes/overall/footer.php");
