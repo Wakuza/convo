@@ -5,6 +5,10 @@
     include("includes/overall/header.php");
     include("includes/includes_functions.php");
 
+    echo "['EmployeeID'] FROM URL: " . $_GET["employeeID"];
+    //$url = $_SERVER['QUERY_STRING'];    // ?employeeID=3
+   // echo "<br/>URL QUERY STRING: " . $url;
+
     $resultSupervisor = mysql_query("SELECT DISTINCT e.employeeID, CONCAT(s.lastname, ', ', s.firstname) AS supervisor FROM employee s INNER JOIN employee e ON e.employeeID = s.employeeID ORDER by s.lastname ASC");
 
     $errorName = $errorPosition = $errorDepartment = $errorEmpStatus = $errorPayroll = $errorLocation = $errorTerm = "";
