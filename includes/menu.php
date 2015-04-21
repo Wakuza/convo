@@ -19,7 +19,7 @@
                                     <a href="#">Admin</a>
                                         <ul>
                                             <li><a href="hire.php">Add new employees</a></li>
-                                            <li><a href="termination.php">Changes</a></li>
+                                            <li><a href="edit.php">Changes</a></li>
                                             <li><a href="announcements.php">Announcements</a></li>
                                         </ul>
                                 </li>
