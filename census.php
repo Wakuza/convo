@@ -10,7 +10,6 @@
     $displayNone = $displaySuccess = "";
     $displayFirstSubmit = "style='display:inline'";
     $displaySecondSubmit = "style='display:none'";
-    $i = 1;
     $firstname[] = $lastname[] = $dob[] = $relationship[] = $gender[] = "";
 
     if(isset($_POST["button"]) || isset($_POST["submit"])) {
@@ -23,7 +22,6 @@
 
         if(!empty($_POST["firstname1"])){
             $firstname[2] = $_POST["firstname1"];
-            //echo $firstname[2];
         }
         else{
             $firstname[2] = "NULL";   
@@ -31,14 +29,12 @@
 
         if(!empty($_POST["firstname2"])){
             $firstname[3] = $_POST["firstname2"];
-            //echo $firstname[3];
         }
         else{
             $firstname[3] = "NULL";   
         }
         if(!empty($_POST["firstname3"])){
             $firstname[4] = $_POST["firstname3"];
-            //echo $firstname[4];
         }
         else{
             $firstname[4] = "NULL";   
