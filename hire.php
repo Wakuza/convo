@@ -106,6 +106,7 @@
                 $manager_privileges = "0";
             }
             
+            // Convert from MM-DD-YYYY to YYYY-MM-DD to follow the MySQL Date Format
             $hireDateInput = explode("-", $hire_date);
             $hireDate = $hireDateInput[2] . "-" . $hireDateInput[0] . "-" . $hireDateInput[1];
             
@@ -143,7 +144,6 @@
         }
     }
 ?>
-
     <h1 class="headerPages">Add employee</h1>
 
     <div id="hireOrTerm">
