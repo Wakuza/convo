@@ -5,9 +5,14 @@
     include("includes/overall/header.php");
     include("includes/includes_functions.php");
 
-    echo "['EmployeeID'] FROM URL: " . $_GET["employeeID"];
+    $url_empID = $_GET["employeeID"];
+    echo $url_empID;
+    //echo "['EmployeeID'] FROM URL: " . $_GET["employeeID"];
     //$url = $_SERVER['QUERY_STRING'];    // ?employeeID=3
-   // echo "<br/>URL QUERY STRING: " . $url;
+    // echo "<br/>URL QUERY STRING: " . $url;
+
+    $url_query = mysql_query("SELECT * FROM employee WHERE employeeID = '$url_empID'");
+    echo $url_query;
 
     $resultSupervisor = mysql_query("SELECT DISTINCT e.employeeID, CONCAT(s.lastname, ', ', s.firstname) AS supervisor FROM employee s INNER JOIN employee e ON e.employeeID = s.employeeID ORDER by s.lastname ASC");
 
@@ -106,7 +111,13 @@
         <?php
             echo "<select id='employeeName' name='employeeName'><option value=''>Select an employee</option>";
             while($row = mysql_fetch_assoc($resultemployee)) {
-                echo "<option value = '" . $row['employeeID'] . "|" . $row['position_name'] . "|" . $row['payroll_status'] . "|" . $row['department_name'] . "|" . $row["convo_location"] . "|" . $row["employment_status"] . "|" . $row['firstname'] . "|" . $row["lastname"] . "|" . $row["supervisorID"] . "|" . $row["admin_privileges"] . "|" . $row["manager_privileges"] . "|" . $row["street_address"] . "|" . $row["city"] . "|" . $row["res_state"] . "|" . $row["zipcode"] . "'>" . $row['lastname'] . ", " . $row["firstname"] . "</option>";   
+                echo "<option value = '" . $row['employeeID'] . "|" . $row['position_name'] . "|" . $row['payroll_status'] . "|" . $row['department_name'] . "|" . $row["convo_location"] . "|" . $row["employment_status"] . "|" . $row['firstname'] . "|" . $row["lastname"] . "|" . $row["supervisorID"] . "|" . $row["admin_privileges"] . "|" . $row["manager_privileges"] . "|" . $row["street_address"] . "|" . $row["city"] . "|" . $row["res_state"] . "|" . $row["zipcode"] . "'";
+                
+                if($row["employeeID"] == $_GET["employeeID"]){
+                    echo "selected='selected'";   
+                }
+                
+                echo ">" . $row['lastname'] . ", " . $row["firstname"] . "</option>";   
             }
             echo "</select>";?>
         <input type='text' name='employeeID' size='5' style='background:#E9E9E9;' readonly placeholder="Employee ID"> <?php echo $errorName; ?><br/><br/>

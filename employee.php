@@ -44,7 +44,16 @@
         if ($result && $num_rows > 0) { 
            echo "<thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th style='text-align:center;'>Position</th><th>Supervisor</th><th>Hire Date</th><th>Payroll Status</th><th>Status</th></tr></thead><tbody>";
             while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td><a href='edit.php?employeeID=" . $row["employeeID"] . "'>" . $row["employeeID"] . "</a></td><td>" . $row["firstname"] . "</td><td>" . $row["lastname"] .  "</td><td>" . $row["position_name"] . "</td><td>" . $row["supervisor"] . "</td><td>" . $row["hire_date"] . "</td><td>" . $row["payroll_status"]. "</td><td>" . $row["employment_status"] . "</td></tr>";  
+                $x ="<tr><td>";
+                if($user_data["admin_privileges"] == 1) {
+                    $x .= "<a href='edit.php?employeeID=" . $row["employeeID"] . "'>" . $row["employeeID"] . "</a>";   
+                }
+                else {
+                    $x .= $row["employeeID"];   
+                }
+                $x .= "</td><td>" . $row["firstname"] . "</td><td>" . $row["lastname"] .  "</td><td>" . $row["position_name"] . "</td><td>" . $row["supervisor"] . "</td><td>" . $row["hire_date"] . "</td><td>" . $row["payroll_status"]. "</td><td>" . $row["employment_status"] . "</td></tr>";
+                
+                echo $x;
             }
         }        
     echo "</tbody></table>";
