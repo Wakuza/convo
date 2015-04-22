@@ -1,25 +1,20 @@
 <?php 
+    error_reporting(0);
     $title = "Convo Portal | Changes";
     include("core/init.php");
     admin_protect();
     include("includes/overall/header.php");
     include("includes/includes_functions.php");
-
     $url_empID = $_GET["employeeID"];
-    echo $url_empID;
+    //echo $url_empID;
     //echo "['EmployeeID'] FROM URL: " . $_GET["employeeID"];
     //$url = $_SERVER['QUERY_STRING'];    // ?employeeID=3
     // echo "<br/>URL QUERY STRING: " . $url;
-
-    $url_query = mysql_query("SELECT * FROM employee WHERE employeeID = '$url_empID'");
-    echo $url_query;
-
+    //$url_query = mysql_query("SELECT * FROM employee WHERE employeeID = '$url_empID'");
+    //echo $url_query;
     $resultSupervisor = mysql_query("SELECT DISTINCT e.employeeID, CONCAT(s.lastname, ', ', s.firstname) AS supervisor FROM employee s INNER JOIN employee e ON e.employeeID = s.employeeID ORDER by s.lastname ASC");
-
     $errorName = $errorPosition = $errorDepartment = $errorEmpStatus = $errorPayroll = $errorLocation = $errorTerm = "";
-
     $resultemployee = mysql_query("SELECT * FROM employee ORDER by lastname");
-
     if(isset($_POST["submit"])) {
         $employeeID = sanitize($_POST["employeeID"]);
         $jobTitle = sanitize($_POST["change_position_name"]);
@@ -52,9 +47,7 @@
                 $manager_privileges = "0";
             }
         
-        if(empty($_POST["employeeName"])) {
-            $errorName = "Please enter the employee Name";  
-        }
+        
         /*
         if(empty($_POST["change_position_name"])){
             $errorPosition = "Please enter the position";
@@ -81,7 +74,6 @@
             $termination_checked = sanitize($_POST["termination"]);
             $termination_date = sanitize($_POST["termination_date"]);
             $termination_reason = sanitize($_POST["termination_reason"]);
-
             $terminationDateInput = explode("-", $termination_date);
             $terminationDate = $terminationDateInput[2] . "-" . $terminationDateInput[0] . "-" . $terminationDateInput[1];
             
@@ -92,10 +84,15 @@
                 die();
         }
         else {   
+            if(empty($_POST["employeeName"])) {
+                $errorName = "Please enter the employee Name";  
+            }
+            else{
             mysql_query("UPDATE employee SET position_name = '$jobTitle', department_name ='$department', convo_location = '$location', payroll_status = '$payrollStatus', employment_status = '$employmentStatus', supervisorID='$supervisor', updated_at = CURRENT_TIMESTAMP, admin_privileges='$admin_privileges', manager_privileges='$manager_privileges', firstname='$firstname', lastname='$lastname', street_address='$street_address', city ='$city', res_state='$res_state', zipcode='$zipcode' WHERE employeeID = '$employeeID'");
             
             echo "<h2 class='headerPages'>You updated an employee's information successfully!</h2>";
             die();
+            }
         }
     }
 ?>
@@ -106,7 +103,7 @@
 </div>
         <h2>Employee Information</h2>
 
-    <form id="changes" action="termination.php" method="POST">
+    <form id="changes" action="edit.php" method="POST">
         <span class="spanHeader">Employee: </span>
         <?php
             echo "<select id='employeeName' name='employeeName'><option value=''>Select an employee</option>";
