@@ -1,3 +1,4 @@
+<!-- Don't need this file -->
 <?php 
     $title = "Convo Portal | Changes";
     include("core/init.php");
