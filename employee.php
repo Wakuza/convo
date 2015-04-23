@@ -18,9 +18,9 @@
 ?>
 
 <div id="active_terminate_radio">
-    <input type="radio" class="active_terminate" name="active_terminate" value="active">Active &nbsp;&nbsp; 
-    <input type="radio" class="active_terminate" name="active_terminate" value="leave">Leave &nbsp;&nbsp;
-    <input type="radio" class="active_terminate" name="active_terminate" value="terminated">Terminated
+    <input type="radio" class="active_terminate" name="active_terminate" value="active">&nbsp;Active &nbsp;&nbsp;&nbsp;&nbsp; 
+    <input type="radio" class="active_terminate" name="active_terminate" value="leave">&nbsp;Leave &nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" class="active_terminate" name="active_terminate" value="terminated">&nbsp;Terminated
     </div><br/>
 
 <?php
