@@ -7,9 +7,9 @@
     include("includes/includes_functions.php");
     $url_empID = $_GET["employeeID"];
 
-    $resultSupervisor = mysql_query("SELECT DISTINCT e.employeeID, CONCAT(s.lastname, ', ', s.firstname) AS supervisor FROM employee s INNER JOIN employee e ON e.employeeID = s.employeeID ORDER by s.lastname ASC");
+    $resultSupervisor = mysql_query("SELECT DISTINCT e.employeeID, CONCAT(s.lastname, ', ', s.firstname) AS supervisor FROM employee s INNER JOIN employee e ON e.employeeID = s.employeeID");
     $errorName = $errorPosition = $errorDepartment = $errorEmpStatus = $errorPayroll = $errorLocation = $errorTerm = "";
-    $resultemployee = mysql_query("SELECT * FROM employee ORDER by lastname");
+    $resultemployee = mysql_query("SELECT * FROM employee ORDER by lastname, firstname ASC");
     if(isset($_POST["submit"])) {
         $employeeID = sanitize($_POST["employeeID"]);
         $jobTitle = sanitize($_POST["change_position_name"]);
@@ -92,7 +92,7 @@
     }
 ?>
     <h1 class="headerPages">Changes</h1>
-<h3>Select an employee from the list and the employee's information appears up. It doesn't affect the database until you change any information.  Changing the information will be updated in the database.</h3>
+<h3>To make any changes, select an employee from the list.</h3>
 <div id="hireOrTerm">
    <!-- <a class="hireOrTerm" href="hire.php">Add</a>-->
 </div>
@@ -130,8 +130,8 @@
         <select value="payroll_status" name="change_payroll_status">
             <option value="">Select a Payroll Status</option>
             <option value="GBS">GBS</option>
-            <option value="FT">FT</option>
             <option value="PT">PT</option>
+            <option value="FT">FT</option>
         </select>
         <input type='text' name='current_payroll_status' class="input-small"  style='background:#E9E9E9;' readonly>         <br/><br/>
 
@@ -181,15 +181,15 @@
 <span class="spanHeader">Admin Privilege:</span>
             <select value="admin_privileges" name="admin_privileges">
                 <option value="">Select a privillege</option>
-                <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Admin</option>
-                <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?>>Non-Admin</option>
+                <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Yes</option>
+                <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?>>No</option>
             </select> <input type='text' name='current_admin_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> admin privileges and <strong>0:</strong> no admin privileges</em><br/><em class="note">Admin Privilege means to add or terminate employees.</em><br/><br/>
                     
             <span class="spanHeader">Manager Privilege:</span>
             <select value="manager_privileges" name="manager_privileges">
                 <option value="">Select a privillege</option>
-                <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Manager</option>
-                <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?>>Non-Manager</option>
+                <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Yes</option>
+                <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?>>No</option>
             </select> <input type='text' name='current_manager_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> manager privileges and <strong>0:</strong> no manager privileges</em><br/><em class="note">Manager Privilege means to view the employee tables only.</em>
         
         <br/><br/>

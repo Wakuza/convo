@@ -151,7 +151,7 @@
         <!--<a class="hireOrTerm" href="termination.php">Edit</a>-->
     </div>
 
-    <h3>Please fill out the employee's information and they will be stored into the database.</h3>
+    <h3>Please fill out the new employee's information below.</h3>
 
     <form id="hire" method="POST">
 
@@ -291,17 +291,17 @@
         <span class="spanHeader">Admin Privilege:</span>
         <select value="admin_privileges" name="admin_privileges">
             <option value="">Select a privillege</option>
-            <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Admin</option>
-            <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?>>Non-Admin</option>
-        </select><?php echo $errorAdminPrivileges; ?><br/><em class="note">Admin Privilege means to add or terminate employees.</em><br/>
+            <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Yes</option>
+            <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?>>No</option>
+        </select><?php echo $errorAdminPrivileges; ?><br/><em class="note">Permission to add, edit, and terminate employees.</em><br/>
                
         <!-- Manager Privileges -->
         <span class="spanHeader">Manager Privilege:</span>
         <select value="manager_privileges" name="manager_privileges">
             <option value="">Select a privillege</option>
-            <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Manager</option>
-            <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?>>Non-Manager</option>
-        </select><?php echo $errorManagerPrivileges; ?><br/><em class="note">Manager Privilege means to view the employee tables only.</em><br/>
+            <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Yes</option>
+            <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?>>No</option>
+        </select><?php echo $errorManagerPrivileges; ?><br/><em class="note">Permission to view direct reports' information and materials that are restricted to managers.</em><br/>
         
         <input type="submit" id="addButton" name="submit" value="Add">
     </form>
