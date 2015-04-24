@@ -159,7 +159,7 @@
         <h2>Personal Information</h2>
         
         <!-- EmployeeID -->
-        <span class="spanHeader">EmployeeID: </span>
+        <span class="spanHeader">Employee ID: </span>
         <input type="text" id="employeeID" name="employeeID" maxlength="4" placeholder="Employee ID" value=<?php if(isset($_POST["submit"])){echo $_POST['employeeID'];} ?>><?php echo $errorId; ?><br/><br/>
 
        <!-- First Name -->
@@ -292,15 +292,15 @@
         <select value="admin_privileges" name="admin_privileges">
             <option value="">Select a privillege</option>
             <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Yes</option>
-            <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?>>No</option>
-        </select><?php echo $errorAdminPrivileges; ?><br/><em class="note">Permission to add, edit, and terminate employees.</em><br/>
+            <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?> selected>No</option>
+        </select><?php echo $errorAdminPrivileges; ?><br/><em class="note">Permission to add, edit, and terminate employees.</em><br/><br/>
                
         <!-- Manager Privileges -->
         <span class="spanHeader">Manager Privilege:</span>
         <select value="manager_privileges" name="manager_privileges">
             <option value="">Select a privillege</option>
             <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Yes</option>
-            <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?>>No</option>
+            <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?> selected>No</option>
         </select><?php echo $errorManagerPrivileges; ?><br/><em class="note">Permission to view direct reports' information and materials that are restricted to managers.</em><br/>
         
         <input type="submit" id="addButton" name="submit" value="Add">
