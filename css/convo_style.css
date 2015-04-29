@@ -68,7 +68,7 @@
   float: left;
 }
 
-#logIn, #linkToReg, #completeReg, #recoverButton, .policy, #changePassButton, #updateButton, .hireOrTerm, #addButton, #verify {
+#logIn, #linkToReg, #completeReg, #recoverButton, #changePassButton, #updateButton, .hireOrTerm, #addButton, #verify {
   display: inline-block;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -122,19 +122,6 @@
 #changePassButton{
     width: 180px;   
 }
-
-#payrollButton, #attendanceButton, #supportButton, #handbookButton{
-    width: 205px; 
-}
-
-#supportButton{
-    width: 260px;   
-}
-
-#FMLAButton{
-    width: 280px;
-}
-
 
 #linkToReg{
     margin-top: -37px;

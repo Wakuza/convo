@@ -7,7 +7,7 @@
     include("includes/includes_functions.php");
     $url_empID = $_GET["employeeID"];
 
-    $resultSupervisor = mysql_query("SELECT DISTINCT e.employeeID, CONCAT(s.lastname, ', ', s.firstname) AS supervisor FROM employee s INNER JOIN employee e ON e.employeeID = s.employeeID");
+    $resultSupervisor = mysql_query("SELECT DISTINCT e.employeeID, CONCAT(s.lastname, ', ', s.firstname) AS supervisor FROM employee s INNER JOIN employee e ON e.employeeID = s.employeeID ORDER by s.lastname, s.firstname ASC");
     $errorName = $errorPosition = $errorDepartment = $errorEmpStatus = $errorPayroll = $errorLocation = $errorTerm = "";
     $resultemployee = mysql_query("SELECT * FROM employee ORDER by lastname, firstname ASC");
     if(isset($_POST["submit"])) {
@@ -75,7 +75,7 @@
                 //echo "UPDATE employee SET termination_date = '$terminationDate', termination_reason = '$termination_reason', employment_status = 'Terminated' WHERE employeeID = '$employeeID'";
                 mysql_query("UPDATE employee SET termination_date = '$terminationDate', termination_reason = '$termination_reason', employment_status = 'Terminated', active='0' WHERE employeeID = '$employeeID'");
             
-                echo "<h2 class='headerPages'>You terminated an employee successfully!</h2>";
+                echo "<h2 class='headerPages'>The employee was being terminated successfully.</h2>";
                 die();
         }
         else {   
@@ -85,7 +85,7 @@
             else{
             mysql_query("UPDATE employee SET position_name = '$jobTitle', department_name ='$department', convo_location = '$location', payroll_status = '$payrollStatus', employment_status = '$employmentStatus', supervisorID='$supervisor', updated_at = CURRENT_TIMESTAMP, admin_privileges='$admin_privileges', manager_privileges='$manager_privileges', firstname='$firstname', lastname='$lastname', street_address='$street_address', city ='$city', res_state='$res_state', zipcode='$zipcode' WHERE employeeID = '$employeeID'");
             
-            echo "<h2 class='headerPages'>You updated an employee's information successfully!</h2>";
+            echo "<h2 class='headerPages'>The employee’s information was updated successfully.</h2>";
             die();
             }
         }
@@ -155,7 +155,7 @@
         <br/><br/>        
         
         <span class="spanHeader">Employment Status: </span>
-        <select value="emp_status" name="emp_status">
+        <select value="emp_status" class="input-medium" name="emp_status">
             <option value="">Select a status</option>
             <option value="Active">Active</option>
             <option value="Leave">Leave</option>
@@ -179,18 +179,18 @@
         <br/><br/>
         
 <span class="spanHeader">Admin Privilege:</span>
-            <select value="admin_privileges" name="admin_privileges">
+            <select value="admin_privileges" class="input-medium" name="admin_privileges">
                 <option value="">Select a privillege</option>
                 <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Yes</option>
                 <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?>>No</option>
-            </select> <input type='text' name='current_admin_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> admin privileges and <strong>0:</strong> no admin privileges</em><br/><em class="note">Admin Privilege means to add or terminate employees.</em><br/><br/>
+            </select> <input type='text' class="input-small" name='current_admin_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> admin privileges and <strong>0:</strong> no admin privileges</em><br/><em class="note">Admin Privilege means to add or terminate employees.</em><br/><br/>
                     
             <span class="spanHeader">Manager Privilege:</span>
-            <select value="manager_privileges" name="manager_privileges">
+            <select value="manager_privileges" class="input-medium" name="manager_privileges">
                 <option value="">Select a privillege</option>
                 <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Yes</option>
                 <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?>>No</option>
-            </select> <input type='text' name='current_manager_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> manager privileges and <strong>0:</strong> no manager privileges</em><br/><em class="note">Manager Privilege means to view the employee tables only.</em>
+            </select> <input type='text' class="input-small" name='current_manager_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> manager privileges and <strong>0:</strong> no manager privileges</em><br/><em class="note">Manager Privilege means to view the employee tables only.</em>
         
         <br/><br/>
         <!-- PERSONAL INFORMATION -->

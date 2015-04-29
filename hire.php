@@ -70,6 +70,9 @@
         if(empty($_POST["ssn"])){
             $errorSSN = "Please enter last 4 digits ssn";   
         }
+        else if(!(is_numeric($_POST["ssn"]))){
+            $errorSSN = "Please enter numbers only";   
+        }
         if($errorId == "" && $errorFirst == "" &&  $errorLast == "" && $errorPosition == "" && $errorLocation == "" && $errorState == "" && $errorDepartment == "" && $errorStreetAddress == "" && $errorCity == "" && $errorZipCode == "" && $errorPayroll == "" && $errorDate == "" && $errorAdminPrivileges == "" && $errorManagerPrivileges == "" && $errorDOB == "" && $errorGender == "" && $errorSSN == "") {
             $employeeID = sanitize($_POST["employeeID"]);
             $firstname = sanitize($_POST["firstname"]);
@@ -139,7 +142,7 @@
            
             mysql_query("INSERT INTO employee (employeeID, firstname, lastname, position_name, department_name, street_address, city, res_state, zipcode, convo_location, supervisorID, payroll_status, hire_date, updated_at, review_date, termination_date, employment_status, manager_privileges, admin_privileges, active, password_recover, date_of_birth, ssn, gender) VALUES ('$employeeID', '$firstname', '$lastname', '$jobTitle', '$department', '$street_address', '$city', '$state', '$zipcode', '$location', '$supervisor', '$payrollStatus', '$hireDate', CURRENT_TIMESTAMP, '1901-01-01', '1901-01-01', 'Active', '$manager_privileges', '$admin_privileges', '1', '0', '$date_of_birth', '$ssn', '$gender');");
             
-            echo "<h2 class='headerPages'>You added new employee to database successfully!</h2>";
+            echo "<h2 class='headerPages'>The employee was added to the database successfully.</h2>";
             die();      
         }
     }
@@ -160,15 +163,15 @@
         
         <!-- EmployeeID -->
         <span class="spanHeader">Employee ID: </span>
-        <input type="text" id="employeeID" name="employeeID" maxlength="4" placeholder="Employee ID" value=<?php if(isset($_POST["submit"])){echo $_POST['employeeID'];} ?>><?php echo $errorId; ?><br/><br/>
+        <input type="text" id="employeeID" name="employeeID" maxlength="4" placeholder="Employee ID" value=<?php if(isset($_POST["submit"])){echo $_POST['employeeID'];} ?>> <?php echo $errorId; ?><br/><br/>
 
        <!-- First Name -->
         <span class="spanHeader">First Name: </span>
-        <input type="text" id="firstname" name="firstname" size="10" placeholder="First Name" value=<?php if(isset($_POST["submit"])){echo $_POST['firstname'];} ?>><?php echo $errorFirst; ?><br/><br/>
+        <input type="text" id="firstname" name="firstname" size="10" placeholder="First Name" value=<?php if(isset($_POST["submit"])){echo $_POST['firstname'];} ?>> <?php echo $errorFirst; ?><br/><br/>
 
         <!-- Last Name -->
         <span class="spanHeader">Last Name: </span>
-        <input type="text" id="lastname" name="lastname" size="10" placeholder="Last Name" value=<?php if(isset($_POST["submit"])){echo $_POST['lastname'];} ?>><?php echo $errorLast; ?><br/><br/>
+        <input type="text" id="lastname" name="lastname" size="10" placeholder="Last Name" value=<?php if(isset($_POST["submit"])){echo $_POST['lastname'];} ?>> <?php echo $errorLast; ?><br/><br/>
 
         <!-- Gender -->
         <span class="spanHeader">Gender: </span>
@@ -185,26 +188,26 @@
 
         <!-- SSN -->
         <span class="spanHeader">SSN:</span>
-        <input type="password" name="ssn" maxlength="4" size="5" placeholder="Enter last four digits">
+        <input type="text" name="ssn" maxlength="4" placeholder="Enter last four digits" value=<?php if(isset($_POST["submit"])){echo $_POST['ssn'];} ?>>
         <?php echo $errorSSN; ?><br/><br/>
 
         <!-- Street Address-->
         <span class="spanHeader">Street Address: </span>
-        <input type="text" id="street_address" class="input-xlarge" name="street_address" placeholder="Street Address" value=<?php if(isset($_POST["submit"])){echo "'" . $_POST['street_address'] . "'";} ?>><?php echo $errorStreetAddress; ?><br/><br/>
+        <input type="text" id="street_address" class="input-xlarge" name="street_address" placeholder="Street Address" value=<?php if(isset($_POST["submit"])){echo "'" . $_POST['street_address'] . "'";} ?>> <?php echo $errorStreetAddress; ?><br/><br/>
 
         <!-- City -->
         <span class="spanHeader">City: </span>
-        <input type="text" id="city" name="city" placeholder="City" value=<?php if(isset($_POST["submit"])){echo "'" .  $_POST['city'] . "'"; } ?>><?php echo $errorCity; ?><br/><br/>
+        <input type="text" id="city" name="city" placeholder="City" value=<?php if(isset($_POST["submit"])){echo "'" .  $_POST['city'] . "'"; } ?>> <?php echo $errorCity; ?><br/><br/>
 
         <!-- Resident State -->
         <span class="spanHeader">Resident State: </span>
-        <select name="res_state">
+        <select class="input-medium" name="res_state">
             <?= create_option_list($states, "state") ?>
-        </select><?php echo $errorState; ?><br/><br/>
+        </select> <?php echo $errorState; ?><br/><br/>
 
         <!-- Zip Code -->
         <span class="spanHeader">Zip Code: </span>
-        <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" maxlength="5" value=<?php if(isset($_POST["submit"])){echo $_POST['zipcode'];} ?>><?php echo $errorZipCode; ?><br/><br/>
+        <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" maxlength="5" value=<?php if(isset($_POST["submit"])){echo $_POST['zipcode'];} ?>> <?php echo $errorZipCode; ?><br/><br/>
 
         
         <!-- EMPLOYEE INFORMATION -->
@@ -223,7 +226,7 @@
                     echo ">" . $row['position_name'] . "</option>";   
                 }
                 echo "</select>";
-                echo $errorPosition; 
+                echo " " . $errorPosition; 
             ?>
         <br/><br/>
 
@@ -239,7 +242,7 @@
                     echo ">" . $row['convo_location'] . "</option>";   
                 }
                 echo "</select>";
-                echo $errorLocation; 
+                echo " " . $errorLocation; 
             ?>
         <br/><br/>
 
@@ -255,7 +258,7 @@
                     echo ">" . $row['department_name'] . "</option>";   
                 }
                 echo "</select>";
-                echo $errorDepartment; 
+                echo " " . $errorDepartment; 
             ?>
         <br/><br/>
 
@@ -266,7 +269,7 @@
             <option value="GBS" <?php if(isset($_POST["submit"]) && $_POST["payroll_status"] == "GBS"){echo "selected='selected'";} ?>>GBS</option>
             <option value="FT" <?php if(isset($_POST["submit"]) && $_POST["payroll_status"] == "FT"){echo "selected='selected'";} ?>>FT</option>
             <option value="PT" <?php if(isset($_POST["submit"]) && $_POST["payroll_status"] == "PT"){echo "selected='selected'";} ?>>PT</option>
-        </select><?php echo $errorPayroll; ?><br/><br/>
+        </select> <?php echo $errorPayroll; ?><br/><br/>
 
         <!-- Supervisor -->
         <span class="spanHeader">Supervisor: </span>
@@ -285,7 +288,7 @@
 
         <!-- Hire Date -->
         <span class="spanHeader">Hire Date:</span>
-        <input type="text" class="datepicker" placeholder="MM-DD-YYYY" name="hire_date" value=<?php if(isset($_POST["submit"])){echo $_POST['hire_date'];} ?>><?php echo $errorDate; ?><br/><em class="note">MM-DD-YYYY</em><br/><br/>
+        <input type="text" class="datepicker" placeholder="MM-DD-YYYY" name="hire_date" value=<?php if(isset($_POST["submit"])){echo $_POST['hire_date'];} ?>> <?php echo $errorDate; ?><br/><em class="note">MM-DD-YYYY</em><br/><br/>
 
         <!-- Admin Privileges -->
         <span class="spanHeader">Admin Privilege:</span>
@@ -293,7 +296,7 @@
             <option value="">Select a privillege</option>
             <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Yes</option>
             <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?> selected>No</option>
-        </select><?php echo $errorAdminPrivileges; ?><br/><em class="note">Permission to add, edit, and terminate employees.</em><br/><br/>
+        </select> <?php echo $errorAdminPrivileges; ?><br/><em class="note">Permission to add, edit, and terminate employees.</em><br/><br/>
                
         <!-- Manager Privileges -->
         <span class="spanHeader">Manager Privilege:</span>
@@ -301,7 +304,7 @@
             <option value="">Select a privillege</option>
             <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Yes</option>
             <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?> selected>No</option>
-        </select><?php echo $errorManagerPrivileges; ?><br/><em class="note">Permission to view direct reports' information and materials that are restricted to managers.</em><br/>
+        </select> <?php echo $errorManagerPrivileges; ?><br/><em class="note">Permission to view direct reports' information and materials that are restricted to managers.</em><br/>
         
         <input type="submit" id="addButton" name="submit" value="Add">
     </form>

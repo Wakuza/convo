@@ -28,6 +28,9 @@ span {
     font-weight: bold;   
 }
 
+#example th {
+    text-align: center;
+}
 p {
     padding: 0;
     margin: 0 0 20px 0;
@@ -181,7 +184,7 @@ ul li input[type="text"], ul li input[type="password"] {
 	visibility: visible;
     background: white;
     width: 220px;
-    margin-left: 490px;
+    margin-left: 380px;
 }
 
 #menu ul li ul li {
@@ -261,6 +264,20 @@ aside {
 
 #loginBox a{
     float: right;
+}
+
+/* Resources */
+.resources {
+    font-size: 12pt;   
+}
+
+#resourcesLeft, #resourcesRight {
+    display: inline-block;
+    width: 500px;
+}
+
+#resourcesRight {
+    position: absolute;
 }
 
 /* Misc */

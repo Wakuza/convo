@@ -123,7 +123,22 @@ $(document).ready(function() {
             "info": "Showing page _PAGE_ of _PAGES_",
             "infoEmpty": "No records available",
             "infoFiltered": "(filtered from _MAX_ total records)"
-        }
+        },
+        "order": [
+            [2, "asc" ]
+        ],
+        "columns": [
+            { "width": "6%" },  // Employee ID
+            { "width": "14%" }, // First Name
+            { "width": "14%" }, // Last Name
+            { "width": "11%" }, // Position
+            { "width": "16%" }, // Supervisor
+            { "width": "14%" }, // Hire Date
+            { "width": "16%" }, // Review Date
+            { "width": "2%" },  // Payroll Status
+            { "width": "10%" }, // Hourly Rate
+            { "width": "15%" }  // Employment Status
+        ]
     });
     
    $("#termination").change(function() {

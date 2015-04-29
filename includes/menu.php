@@ -8,7 +8,7 @@
                     <?php
                             if(has_access_census($session_user_id) == true){
                     ?>
-                                <li><a href="census.php">Census</a></li>
+                                <!--<li><a href="census.php">Census</a></li>-->
                     <?php
                             }
                             if(has_access_manager($session_user_id) == true) {

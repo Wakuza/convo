@@ -29,12 +29,12 @@
     * See every employees
     */
     if($user_data["admin_privileges"] == 1) {
-        $query = "SELECT e.employeeID, e.firstname, e.lastname, e.position_name, CONCAT(s.firstname, ' ', s.lastname) AS supervisor, e.hire_date, e.payroll_status, e.employment_status FROM employee s RIGHT JOIN employee e ON e.supervisorID = s.employeeID";
+        $query = "SELECT e.employeeID, e.firstname, e.lastname, e.position_name, CONCAT(s.firstname, ' ', s.lastname) AS supervisor, CONCAT(MONTH(e.hire_date), '-', DAY(e.hire_date), '-', YEAR(e.hire_date)) AS hireDate, CONCAT(MONTH(e.review_date), '-', DAY(e.review_date), '-', YEAR(e.review_date)) AS reviewDate, e.payroll_status, e.hourly_rate, e.employment_status FROM employee s RIGHT JOIN employee e ON e.supervisorID = s.employeeID";
         $result = mysqli_query($link, $query);
     }
     // The managers only see the employees if they have their own supervisorID (name)
     else {
-        $query = "SELECT e.employeeID, e.firstname, e.lastname, e.position_name, CONCAT(s.firstname, ' ', s.lastname) AS supervisor, e.hire_date, e.payroll_status, e.employment_status FROM employee s RIGHT JOIN employee e ON e.supervisorID = s.employeeID where e.supervisorID = " . $user_data["employeeID"];
+        $query = "SELECT e.employeeID, e.firstname, e.lastname, e.position_name, CONCAT(s.firstname, ' ', s.lastname) AS supervisor, CONCAT(MONTH(e.hire_date), '-', DAY(e.hire_date), '-', YEAR(e.hire_date)) AS hireDate, CONCAT(MONTH(e.review_date), '-', DAY(e.review_date), '-', YEAR(e.review_date)) AS reviewDate, e.review_date, e.payroll_status, e.hourly_rate, e.employment_status FROM employee s RIGHT JOIN employee e ON e.supervisorID = s.employeeID where e.supervisorID = " . $user_data["employeeID"];
         $result = mysqli_query($link, $query);   
     }
 
@@ -42,7 +42,7 @@
 
     echo "<table id='example' class='display' cellspacing='0' width='1010px'>";
         if ($result && $num_rows > 0) { 
-           echo "<thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th style='text-align:center;'>Position</th><th>Supervisor</th><th>Hire Date</th><th>Payroll Status</th><th>Status</th></tr></thead><tbody>";
+           echo "<thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Position</th><th>Supervisor</th><th>Hire Date</th><th>Review Date</th><th>Payroll Status</th><th>Hourly Rate</th><th>Status</th></tr></thead><tbody>";
             while ($row = mysqli_fetch_assoc($result)) {
                 $x ="<tr><td>";
                 if($user_data["admin_privileges"] == 1) {
@@ -51,11 +51,19 @@
                 else {
                     $x .= $row["employeeID"];   
                 }
-                $x .= "</td><td>" . $row["firstname"] . "</td><td>" . $row["lastname"] .  "</td><td>" . $row["position_name"] . "</td><td>" . $row["supervisor"] . "</td><td>" . $row["hire_date"] . "</td><td>" . $row["payroll_status"]. "</td><td>" . $row["employment_status"] . "</td></tr>";
+                $x .= "</td><td>" . $row["firstname"] . "</td><td>" . $row["lastname"] .  "</td><td>" . $row["position_name"] . "</td><td>" . $row["supervisor"] . "</td><td>" . $row["hireDate"] . "</td>";
+                if($row["reviewDate"] == "1-1-1900"){
+                    $x .= "<td></td>";
+                }
+                else{
+                   $x .= "<td>" . $row["reviewDate"] . "</td>";
+                }
+                
+                $x .= "<td>" . $row["payroll_status"] . "</td><td>" . $row["hourly_rate"] . "</td><td>" . $row["employment_status"] . "</td></tr>";
                 
                 echo $x;
             }
-        }        
+        }   // end If Statement       
     echo "</tbody></table>";
 
     include("includes/overall/footer.php"); 

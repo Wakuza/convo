@@ -104,6 +104,18 @@
         return (mysql_result($query, 0) == 1) ? true : false;
     }
 
+    // Interpreting Access
+    function has_access_interpreting($user_id){
+        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$user_id' AND department_name = 'Interpreting'");
+        return (mysql_result($query, 0) == 1) ? true: false;
+    }
+
+    // Support Access
+    function has_access_support($user_id){
+        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$user_id' AND department_name = 'Support'");
+        return (mysql_result($query, 0) == 1) ? true: false;
+    }
+
     // Policy Access allows to see the links depending on the positions.
     function policy_access($user_id, $position) {
         $user_id = $user_id;
