@@ -26,6 +26,7 @@
         $city = sanitize($_POST["city"]);
         $res_state = sanitize($_POST["res_state"]);
         $zipcode = sanitize($_POST["zipCode"]);
+        $hourlyRate = sanitize($_POST["hourly_rate"]);
         
         if($admin_privileges == "Admin"){
                 $admin_privileges = "1";   
@@ -83,7 +84,7 @@
                 $errorName = "Please enter the employee Name";  
             }
             else{
-            mysql_query("UPDATE employee SET position_name = '$jobTitle', department_name ='$department', convo_location = '$location', payroll_status = '$payrollStatus', employment_status = '$employmentStatus', supervisorID='$supervisor', updated_at = CURRENT_TIMESTAMP, admin_privileges='$admin_privileges', manager_privileges='$manager_privileges', firstname='$firstname', lastname='$lastname', street_address='$street_address', city ='$city', res_state='$res_state', zipcode='$zipcode' WHERE employeeID = '$employeeID'");
+            mysql_query("UPDATE employee SET position_name = '$jobTitle', department_name ='$department', convo_location = '$location', payroll_status = '$payrollStatus', hourly_rate = '$hourlyRate', employment_status = '$employmentStatus', supervisorID='$supervisor', updated_at = CURRENT_TIMESTAMP, admin_privileges='$admin_privileges', manager_privileges='$manager_privileges', firstname='$firstname', lastname='$lastname', street_address='$street_address', city ='$city', res_state='$res_state', zipcode='$zipcode' WHERE employeeID = '$employeeID'");
             
             echo "<h2 class='headerPages'>The employee’s information was updated successfully.</h2>";
             die();
@@ -103,7 +104,7 @@
         <?php
             echo "<select id='employeeName' name='employeeName'><option value=''>Select an employee</option>";
             while($row = mysql_fetch_assoc($resultemployee)) {
-                echo "<option value = '" . $row['employeeID'] . "|" . $row['position_name'] . "|" . $row['payroll_status'] . "|" . $row['department_name'] . "|" . $row["convo_location"] . "|" . $row["employment_status"] . "|" . $row['firstname'] . "|" . $row["lastname"] . "|" . $row["supervisorID"] . "|" . $row["admin_privileges"] . "|" . $row["manager_privileges"] . "|" . $row["street_address"] . "|" . $row["city"] . "|" . $row["res_state"] . "|" . $row["zipcode"] . "'";
+                echo "<option value = '" . $row['employeeID'] . "|" . $row['position_name'] . "|" . $row['payroll_status'] . "|" . $row['department_name'] . "|" . $row["convo_location"] . "|" . $row["employment_status"] . "|" . $row['firstname'] . "|" . $row["lastname"] . "|" . $row["supervisorID"] . "|" . $row["admin_privileges"] . "|" . $row["manager_privileges"] . "|" . $row["street_address"] . "|" . $row["city"] . "|" . $row["res_state"] . "|" . $row["zipcode"] . "|" . $row["hourly_rate"] . "'";
                 
                 if($row["employeeID"] == $url_empID){
                     echo "selected='selected'";   
@@ -153,15 +154,7 @@
                 echo "</select>";?>
         <input type='text' name='current_convo_location' class="input-xlarge"  style='background:#E9E9E9;' readonly>
         <br/><br/>        
-        
-        <span class="spanHeader">Employment Status: </span>
-        <select value="emp_status" class="input-medium" name="emp_status">
-            <option value="">Select a status</option>
-            <option value="Active">Active</option>
-            <option value="Leave">Leave</option>
-        </select>
-        <input type='text' name='current_emp_status' class="input-small"  style='background:#E9E9E9;' readonly><br/<br/><br/>
-        
+    
         <span class="spanHeader">Supervisor: </span>
             <?php   
                 echo "<select id='supervisor' name='supervisor'>";
@@ -175,8 +168,21 @@
                 }
                 echo "</select> <input type='text' name='current_supervisor' style='background:#E9E9E9;' readonly><br/><em class='note'>blank means no supervisor</em>";
             ?>  
-        
         <br/><br/>
+        
+     <span class="spanHeader">Employment Status: </span>
+            <select value="emp_status" class="input-medium" name="emp_status">
+                <option value="">Select a status</option>
+                <option value="Active">Active</option>
+                <option value="Leave">Leave</option>
+            </select>
+            <input type='text' name='current_emp_status' class="input-small"  style='background:#E9E9E9;' readonly><br/<br/><br/>
+        
+    <span class="spanHeader">Hourly Rate: </span>
+        <input type="text" name="hourly_rate" class="input-small">
+        <input type="text" name="current_hourly_rate" class="input-small" style='background:#E9E9E9;' readonly>
+        
+<br/><br/>
         
 <span class="spanHeader">Admin Privilege:</span>
             <select value="admin_privileges" class="input-medium" name="admin_privileges">

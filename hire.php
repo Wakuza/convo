@@ -5,7 +5,7 @@
     include("includes/overall/header.php");
     include("includes/includes_functions.php");
 
-    $errorId = $errorFirst = $errorLast = $errorPosition = $errorLocation = $errorStreet = $errorCity = $errorZip = $errorState = $errorDepartment = $errorStreetAddress = $errorCity = $errorZipCode = $errorPayroll = $errorDate = $errorLocation = $errorAdminPrivileges = $errorManagerPrivileges = $errorDOB = $errorSSN = $errorGender = "";
+    $errorId = $errorFirst = $errorLast = $errorPosition = $errorLocation = $errorStreet = $errorCity = $errorZip = $errorState = $errorDepartment = $errorStreetAddress = $errorCity = $errorZipCode = $errorPayroll = $errorDate = $errorLocation = $errorAdminPrivileges = $errorManagerPrivileges = $errorDOB = $errorSSN = $errorGender = $errorHourlyRate = "";
 
     $resultSupervisor = mysql_query("SELECT DISTINCT e.employeeID, CONCAT(s.lastname, ', ', s.firstname) AS supervisor FROM employee s INNER JOIN employee e ON e.employeeID = s.employeeID ORDER by s.lastname ASC");
 
@@ -51,9 +51,12 @@
         }
         if(empty($_POST["payroll_status"])) {
             $errorPayroll = "Please pick Payroll Status";  
+        }
+        if(empty($_POST["hourly_rate"])) {
+            $errorPayroll = "Please enter hourly rate";  
         } 
         if(empty($_POST["hire_date"])) {
-            $errorDate = "Please enter Month, Day, and Year";     
+            $errorHourlyRate = "Please enter Month, Day, and Year";     
         }
         if(empty($_POST["admin_privileges"])){
             $errorAdminPrivileges = "Please select a privilege";   
@@ -93,6 +96,7 @@
             $dob = sanitize($_POST["dob"]);
             $ssn = sanitize($_POST["ssn"]);
             $gender = sanitize($_POST["gender"]);
+            $hourlyRate = sanitize($_POST["hourly_rate"]);
             
             if($admin_privileges == "Admin"){
                 $admin_privileges = "1";   
@@ -140,7 +144,7 @@
             die();
             */
            
-            mysql_query("INSERT INTO employee (employeeID, firstname, lastname, position_name, department_name, street_address, city, res_state, zipcode, convo_location, supervisorID, payroll_status, hire_date, updated_at, review_date, termination_date, employment_status, manager_privileges, admin_privileges, active, password_recover, date_of_birth, ssn, gender) VALUES ('$employeeID', '$firstname', '$lastname', '$jobTitle', '$department', '$street_address', '$city', '$state', '$zipcode', '$location', '$supervisor', '$payrollStatus', '$hireDate', CURRENT_TIMESTAMP, '1901-01-01', '1901-01-01', 'Active', '$manager_privileges', '$admin_privileges', '1', '0', '$date_of_birth', '$ssn', '$gender');");
+            mysql_query("INSERT INTO employee (employeeID, firstname, lastname, position_name, department_name, street_address, city, res_state, zipcode, convo_location, supervisorID, payroll_status, hourly_rate, hire_date, updated_at, review_date, termination_date, employment_status, manager_privileges, admin_privileges, active, password_recover, date_of_birth, ssn, gender) VALUES ('$employeeID', '$firstname', '$lastname', '$jobTitle', '$department', '$street_address', '$city', '$state', '$zipcode', '$location', '$supervisor', '$payrollStatus', '$hourlyRate', '$hireDate', CURRENT_TIMESTAMP, '1901-01-01', '1901-01-01', 'Active', '$manager_privileges', '$admin_privileges', '1', '0', '$date_of_birth', '$ssn', '$gender');");
             
             echo "<h2 class='headerPages'>The employee was added to the database successfully.</h2>";
             die();      
@@ -270,6 +274,11 @@
             <option value="FT" <?php if(isset($_POST["submit"]) && $_POST["payroll_status"] == "FT"){echo "selected='selected'";} ?>>FT</option>
             <option value="PT" <?php if(isset($_POST["submit"]) && $_POST["payroll_status"] == "PT"){echo "selected='selected'";} ?>>PT</option>
         </select> <?php echo $errorPayroll; ?><br/><br/>
+        
+        <!-- Hourly Rate -->
+        <span class="spanHeader">Hourly Rate: </span>
+        <input type="text" name="hourly_rate" value="0.00">
+        <br/><br/>
 
         <!-- Supervisor -->
         <span class="spanHeader">Supervisor: </span>

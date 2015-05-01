@@ -73,10 +73,10 @@
         <span class="spanHeader">Enter your last four SSN digits: </span>
         <input type="password" name="ssn_digits" maxlength='4'><br/><br/>
         <span class="spanHeader">Enter your Date of Birth:</span>
-        <input type="text" name="dob" class="datepicker" placeholder="YYYY-MM-DD"><br/><br/>
+        <input type="text" name="dob" class="datepicker" placeholder="MM-DD-YYYY"><br/><em class="note">MM-DD-YYYY</em><br/><br/>
         
         <span class="spanHeader">Username: </span>
-        <input type="text" name="username"><br/><br/>
+        <input type="text" name="username"><br/>
         
         <span class="spanHeader">Password: </span>
         <input type="password" name="password">&nbsp;&nbsp;<em>The password must be between 6 and 30 characters.</em
@@ -84,7 +84,7 @@
         
         <span class="spanHeader">Repeat Password: </span>
         <input type="password" name="password_again"><br/><br/>
-        <input type="submit" class="btn-success" name="submit" value="submit"><br/><br/>
+        <input type="submit" class="btn-success" name="submit" value="Register"><br/><br/>
         
         <?php echo $errorId; ?>
     </form>

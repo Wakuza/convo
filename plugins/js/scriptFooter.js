@@ -60,6 +60,8 @@ $('.active_terminate').change(function(){
         var city = $("#employeeName").val().split("|")[12];
         var res_state = $("#employeeName").val().split("|")[13];
         var zipCode = $("#employeeName").val().split("|")[14];
+        var hourlyRate = $("#employeeName").val().split("|")[15];
+
 
         // Employee Information
         //if("select[name='employeeName'] option:selected"){
@@ -74,6 +76,8 @@ $('.active_terminate').change(function(){
         $("select[name='convo_location']").val(convo_location);
         $("input[name='current_emp_status']").val(emp_status);
         $("select[name='emp_status']").val(emp_status);
+        $("input[name='hourly_rate']").val(hourlyRate);
+        $("input[name='current_hourly_rate']").val(hourlyRate); 
         $("input[name='current_supervisor']").val(supervisor);
         $("select[name='supervisor']").val(supervisor); 
         $("input[name='current_admin_privileges']").val(admin_privileges);

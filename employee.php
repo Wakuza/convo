@@ -59,7 +59,16 @@
                    $x .= "<td>" . $row["reviewDate"] . "</td>";
                 }
                 
-                $x .= "<td>" . $row["payroll_status"] . "</td><td>" . $row["hourly_rate"] . "</td><td>" . $row["employment_status"] . "</td></tr>";
+                $x .= "<td>" . $row["payroll_status"] . "</td>";
+                
+                if($row["hourly_rate"] == "0.00") {
+                    $x .= "<td></td>";   
+                }
+                else {
+                    $x .= "<td>" . $row["hourly_rate"] . "</td>";   
+                }
+                
+                $x .= "<td>" . $row["employment_status"] . "</td></tr>";
                 
                 echo $x;
             }
