@@ -151,7 +151,7 @@ ul li input[type="text"], ul li input[type="password"] {
 
 #container {
     background: #fff;
-    min-heigh: 500px;
+    min-height: 320px;
     border-radius: 5px 5px 0 0;
     border-style: solid;
     border-width: 1px;
@@ -184,7 +184,7 @@ ul li input[type="text"], ul li input[type="password"] {
 	visibility: visible;
     background: white;
     width: 220px;
-    margin-left: 380px;
+    margin-left: 460px;
 }
 
 #menu ul li ul li {
@@ -268,7 +268,8 @@ aside {
 
 /* Resources */
 .resources {
-    font-size: 12pt;   
+    font-size: 12pt;  
+    
 }
 
 #resourcesLeft, #resourcesRight {
@@ -278,6 +279,7 @@ aside {
 
 #resourcesRight {
     position: absolute;
+    
 }
 
 /* Misc */
