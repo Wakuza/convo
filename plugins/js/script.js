@@ -128,7 +128,8 @@ $(document).ready(function() {
             "infoFiltered": "(filtered from _MAX_ total records)"
         },
         "order": [
-            [2, "asc" ]
+            [2, "asc" ],
+            [1, "asc" ]
         ],
         "columns": [
             { "width": "6%" },  // Employee ID
