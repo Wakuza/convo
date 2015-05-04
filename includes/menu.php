@@ -4,7 +4,7 @@
                     <?php
                         if(logged_in()) {
                     ?>
-                            <li><a href="resources.php">Resources</a></li>
+                            <li><a href="resources.php">Forms &amp; Resources</a></li>
                     <?php
                             if(has_access_census($session_user_id) == true){
                     ?>
