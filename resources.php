@@ -42,7 +42,6 @@
         }   // end of logged_in()) 
     ?>
     </div>
-
     <div id="resourcesRight">
         <h2>Tax Forms</h2>
         <ul class="resources">
@@ -65,11 +64,25 @@
             }
             if($user_data["res_state"] == "NY" || has_access($session_user_id) == true) {
 ?>
-            <li><a href="http://www.tax.ny.gov/forms/" target="_blank">New York State Tax Forms</a></li>
+                <li><a href="http://www.tax.ny.gov/forms/" target="_blank">New York State Tax Forms</a></li>
 <?php
             }
 ?>
-        </ul><br/>
+        </ul>
+        <h2>401K</h2>
+        <ul class="resources">
+<?php
+            if(has_access_manager($session_user_id) == true || has_access($session_user_id) == true) {
+?>
+                <li><a href="links/Administrative%20FAQ.pdf" target="_blank">Administrative FAQ</a></li>
+<?php              
+            }
+?>
+            <li><a href="links/Participant%20FAQ.pdf" target="_blank">Participant FAQ</a></li>
+            <li><a href="links/Convo%20FAQ%20video.mp4" target="_blank">Convo FAQ about 401K</a></li>
+        </ul>
+<?php
+?>
     </div>
 </div>
 
