@@ -133,10 +133,10 @@ $(document).ready(function() {
         ],
         "columns": [
             { "width": "6%" },  // Employee ID
-            { "width": "14%" }, // First Name
-            { "width": "14%" }, // Last Name
-            { "width": "11%" }, // Position
-            { "width": "16%" }, // Supervisor
+            { "width": "10%" }, // First Name
+            { "width": "10%" }, // Last Name
+            { "width": "15%" }, // Position
+            { "width": "13%" }, // Supervisor
             { "width": "14%" }, // Hire Date
             { "width": "16%" }, // Review Date
             { "width": "2%" },  // Payroll Status
