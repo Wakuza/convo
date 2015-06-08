@@ -1,7 +1,7 @@
 <?php 
     $title = "Convo Portal | Census";
     include("core/init.php");
-    census_protect();
+    //census_protect();
     include("includes/overall/header.php");
     error_reporting(0);
 
