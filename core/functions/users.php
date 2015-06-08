@@ -104,13 +104,12 @@
         return (mysql_result($query, 0) == 1) ? true : false;
     }
 
-    // Interpreting Access
+    //Interpreting Department Access - everyone in this department have access.
     function has_access_interpreting($user_id){
         $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$user_id' AND department_name = 'Interpreting'");
         return (mysql_result($query, 0) == 1) ? true: false;
     }
 
-    // Support Access
     function has_access_support($user_id){
         $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$user_id' AND department_name = 'Support'");
         return (mysql_result($query, 0) == 1) ? true: false;
@@ -222,6 +221,42 @@
     function employee_id_exists($employeeID) {
         $employeeID = sanitize($employeeID);
         $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$employeeID'");
+        return(mysql_result($query, 0) == 1) ? true : false;
+    }
+
+    function position_name_exists($positionName) {
+        $positionName = sanitize($positionName);
+        $query = mysql_query("SELECT COUNT('position_name') FROM position_type WHERE position_name = '$positionName'");
+        return(mysql_result($query, 0) == 1) ? true : false;
+    }
+
+    function department_name_exists($departmentName) {
+        $departmentName = sanitize($departmentName);
+        $query = mysql_query("SELECT COUNT('department_name') FROM department WHERE department_name = '$departmentName'");
+        return(mysql_result($query, 0) == 1) ? true : false;
+    }
+
+    function convo_location_exists($convoLocation) {
+        $convoLocation = sanitize($convoLocation);
+        $query = mysql_query("SELECT COUNT('convo_location') FROM location WHERE convo_location = '$convoLocation'");
+        return(mysql_result($query, 0) == 1) ? true : false;
+    }
+    
+    function job_code_exists($jobCode) {
+        $jobCode = sanitize($jobCode);
+        $query = mysql_query("SELECT COUNT('job_code') FROM position_type WHERE job_code = '$jobCode'");
+        return(mysql_result($query, 0) == 1) ? true : false;
+    }
+
+    function department_code_exists($deptCode) {
+        $deptCode = sanitize($deptCode);
+        $query = mysql_query("SELECT COUNT('dept_code') FROM department WHERE dept_code = '$deptCode'");
+        return(mysql_result($query, 0) == 1) ? true : false;
+    }
+
+    function convo_location_code_exists($locationCode) {
+        $locationCode = sanitize($locationCode);
+        $query = mysql_query("SELECT COUNT('location_code') FROM location WHERE location_code = '$locationCode'");
         return(mysql_result($query, 0) == 1) ? true : false;
     }
 
