@@ -76,7 +76,7 @@
                 //echo "UPDATE employee SET termination_date = '$terminationDate', termination_reason = '$termination_reason', employment_status = 'Terminated' WHERE employeeID = '$employeeID'";
                 mysql_query("UPDATE employee SET termination_date = '$terminationDate', termination_reason = '$termination_reason', employment_status = 'Terminated', active='0' WHERE employeeID = '$employeeID'");
             
-                echo "<h2 class='headerPages'>The employee was being terminated successfully.</h2>";
+                echo "<h2 class='headerPages'>The employee was terminated successfully!</h2>";
                 die();
         }
         else {   
@@ -86,7 +86,7 @@
             else{
             mysql_query("UPDATE employee SET position_name = '$jobTitle', department_name ='$department', convo_location = '$location', payroll_status = '$payrollStatus', hourly_rate = '$hourlyRate', employment_status = '$employmentStatus', supervisorID='$supervisor', updated_at = CURRENT_TIMESTAMP, admin_privileges='$admin_privileges', manager_privileges='$manager_privileges', firstname='$firstname', lastname='$lastname', street_address='$street_address', city ='$city', res_state='$res_state', zipcode='$zipcode' WHERE employeeID = '$employeeID'");
             
-            echo "<h2 class='headerPages'>The employee’s information was updated successfully.</h2>";
+            echo "<h2 class='headerPages'>The employee's information was updated successfully!</h2>";
             die();
             }
         }
@@ -153,8 +153,8 @@
                 }
                 echo "</select>";?>
         <input type='text' name='current_convo_location' class="input-xlarge"  style='background:#E9E9E9;' readonly>
-        <br/><br/>        
-    
+        <br/><br/>  
+        
         <span class="spanHeader">Supervisor: </span>
             <?php   
                 echo "<select id='supervisor' name='supervisor'>";
@@ -168,35 +168,36 @@
                 }
                 echo "</select> <input type='text' name='current_supervisor' style='background:#E9E9E9;' readonly><br/><em class='note'>blank means no supervisor</em>";
             ?>  
+        
         <br/><br/>
         
-     <span class="spanHeader">Employment Status: </span>
-            <select value="emp_status" class="input-medium" name="emp_status">
-                <option value="">Select a status</option>
-                <option value="Active">Active</option>
-                <option value="Leave">Leave</option>
-            </select>
-            <input type='text' name='current_emp_status' class="input-small"  style='background:#E9E9E9;' readonly><br/<br/><br/>
+        <span class="spanHeader">Employment Status: </span>
+        <select value="emp_status" name="emp_status">
+            <option value="">Select a status</option>
+            <option value="Active">Active</option>
+            <option value="Leave">Leave</option>
+        </select>
+        <input type='text' name='current_emp_status' class="input-small"  style='background:#E9E9E9;' readonly><br/<br/><br/>
         
-    <span class="spanHeader">Hourly Rate: </span>
+        <span class="spanHeader">Hourly Rate: </span>
         <input type="text" name="hourly_rate" class="input-small">
-        <input type="text" name="current_hourly_rate" class="input-small" style='background:#E9E9E9;' readonly>
+        <input type='text' name='current_hourly_rate' class="input-small" style='background:#E9E9E9;' readonly><br/><br/>
         
-<br/><br/>
+        
         
 <span class="spanHeader">Admin Privilege:</span>
-            <select value="admin_privileges" class="input-medium" name="admin_privileges">
+            <select value="admin_privileges" name="admin_privileges" class="input-medium">
                 <option value="">Select a privillege</option>
                 <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Yes</option>
                 <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?>>No</option>
-            </select> <input type='text' class="input-small" name='current_admin_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> admin privileges and <strong>0:</strong> no admin privileges</em><br/><em class="note">Admin Privilege means to add or terminate employees.</em><br/><br/>
+            </select> <input type='text' class="input-small" name='current_admin_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> admin privileges and <strong>0:</strong> no admin privileges</em><br/><em class="note">Permission to add, edit, and terminate employees.</em><br/><br/>
                     
             <span class="spanHeader">Manager Privilege:</span>
-            <select value="manager_privileges" class="input-medium" name="manager_privileges">
+            <select value="manager_privileges" name="manager_privileges" class="input-medium">
                 <option value="">Select a privillege</option>
                 <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Yes</option>
                 <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?>>No</option>
-            </select> <input type='text' class="input-small" name='current_manager_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> manager privileges and <strong>0:</strong> no manager privileges</em><br/><em class="note">Manager Privilege means to view the employee tables only.</em>
+            </select> <input type='text' class="input-small" name='current_manager_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> manager privileges and <strong>0:</strong> no manager privileges</em><br/><em class="note">Permission to view direct reports' information and materials that are restricted to managers.</em>
         
         <br/><br/>
         <!-- PERSONAL INFORMATION -->
