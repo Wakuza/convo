@@ -1,6 +1,7 @@
 <?php 
     $title = "Convo Portal | Register";
     include("core/init.php");
+    //admin_protect();
     logged_in_redirect();
     include("includes/overall/header.php");
 
@@ -11,41 +12,39 @@
     if(isset($_POST["submit"])) {
         $ssn = sanitize($_POST["ssn_digits"]);
         $dob = sanitize($_POST["dob"]);
-        
         if(empty($_POST["ssn_digits"]) || empty($_POST["dob"])) {
-            $errorId = "Please enter your SSN and Date of Birth.";
+            $errorId = "<span class='registerErrors'>Please enter your SSN and Date of Birth.</span>";
         }
         else if(census_verify_exists($ssn, $dob) == false){
-            $errorId = "Wrong SSN or date of birth.  Please try again.";
+            $errorId = "<span class='registerErrors'>Wrong SSN or date of birth.  Please try again.</span>";
         }
         else if(empty($_POST["username"])){
-            $errorId = "Please enter username";
+            $errorId = "<span class='registerErrors'>Please enter username</span>";
         }
         else if(user_exists($_POST["username"]) === true) {
-            $errorId = "Sorry, the username \"" . $_POST["username"] . "\" is already taken.";   
+            $errorId = "<span class='registerErrors'>Sorry, the username \"" . $_POST["username"] . "\" is already taken.</span>";   
         }
         else if(preg_match("/\\s/", $_POST["username"]) == true) {
-            $errorId = "Your username must not contain any spaces.";   
+           // $regular_expression = preg_match("/\\s/", $_POST["username"]);
+           // var_dump($regular_expression);
+            $errorId = "<span class='registerErrors'>Your username must not contain any spaces.</span>";   
         }
 
         else if(strlen($_POST["password"]) < 6) {
-            $errorId = "Your password must be at least 6 characters";
-        }
-        
-         else if(strlen($_POST["password"]) > 30) {
-            $errorId = "Your password is too long.  Please make the password between 6 and 30 characters.";
+            $errorId = "<span class='registerErrors'>Your password must be at least 6 characters</span>";
         }
 
         else if($_POST["password"] !== $_POST["password_again"]) {
-             $errorId = "Your passwords do not match";   
+             $errorId = "<span class='registerErrors'>Your passwords do not match</span>";   
         }
     }
 ?>
+
     <h1 class="headerPages">Employee Registration</h1>
 
 <?php 
     if(isset($_GET["success"]) === true && empty($_GET["success"]) === false) {
-        echo "You have been registered successfully!";   
+        echo "You have been registered successfully! Please check your email to activate your account.";   
     }
     else {
         if(empty($_POST) === false && empty($errorId) === true) {
@@ -71,16 +70,18 @@
 
     <form id="search_employee" method="POST" action="register.php">
         <span class="spanHeader">Enter your last four SSN digits: </span>
-        <input type="password" name="ssn_digits" maxlength='4'><br/><br/>
+        <input type="password" name="ssn_digits" size='5' maxlength="4"><br/><br/>
         <span class="spanHeader">Enter your Date of Birth:</span>
-        <input type="text" name="dob" class="datepicker" placeholder="MM-DD-YYYY"><br/><em class="note">MM-DD-YYYY</em><br/><br/>
+        <input type="text" name="dob" class="datepicker" placeholder="MM-DD-YYYY"><br/>
+        <em class="note">MM-DD-YYYY</em><br/><br/>
+        
         
         <span class="spanHeader">Username: </span>
-        <input type="text" name="username"><br/>
+        <input type="text" name="username"><br/><br/>
         
         <span class="spanHeader">Password: </span>
-        <input type="password" name="password">&nbsp;&nbsp;<em>The password must be between 6 and 30 characters.</em
-        <br/><br/>
+        <input type="password" name="password">
+        &nbsp;&nbsp;<em>The password must be between 6 and 30 characters.</em><br/><br/>
         
         <span class="spanHeader">Repeat Password: </span>
         <input type="password" name="password_again"><br/><br/>
@@ -90,5 +91,6 @@
     </form>
 
 <?php
-    include("includes/overall/footer.php"); 
+include("includes/overall/footer.php"); 
+
 ?>
