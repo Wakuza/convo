@@ -10,7 +10,7 @@
     <div id="resourcesLeft">
         <h2>Employee Resources</h2>
         <ul class="resources">
-            <li><a href="links/2015%20payroll%20schedule.pdf" target="_blank">2015 Payroll Schedule</a></li>
+            <li><a href="HR/Resources/2015%20payroll%20schedule.pdf" target="_blank">2015 Payroll Schedule</a></li>
         </ul><br/>
     <?php
         if(logged_in()) {
@@ -18,8 +18,8 @@
     ?>
                 <h2>Manager Resources</h2>
                 <ul class="resources">
-                    <li><a href="links/Supervisor%20Handbook2013.pdf" target="_blank">Manager Guidelines</a></li>
-                    <li><a href="links/FMLA%20Terms%20and%20Request%20Form.pdf" target="_blank">FMLA Terms and Request Form</a></li>
+                    <li><a href="HR/Resources/Supervisor%20Handbook2013.pdf" target="_blank">Manager Guidelines</a></li>
+                    <li><a href="HR/Resources/FMLA%20Terms%20and%20Request%20Form.pdf" target="_blank">FMLA Terms and Request Form</a></li>
                 </ul><br/>
     <?php
             }   // end has_access_manager
@@ -27,7 +27,7 @@
     ?>
                 <h2>Interpreting Resources</h2>
                 <ul class="resources">
-                    <li><a href="links/Call%20Center%20Attendance%20Policy.pdf" target="_blank">Call Center Attendance Policy</a></li>
+                    <li><a href="HR/Resources/Call%20Center%20Attendance%20Policy.pdf" target="_blank">Call Center Attendance Policy</a></li>
                 </ul><br/>
     <?php
             }   // end has_access_Interpreting and has_access
@@ -35,7 +35,7 @@
     ?>
                 <h2>Convo Support</h2>
                 <ul class="resources">
-                    <li><a href="links/Support%20Employee%20Categories.pdf" target="_blank">Support Employee Categories</a></li>
+                    <li><a href="HR/Resources/Support%20Employee%20Categories.pdf" target="_blank">Support Employee Categories</a></li>
                 </ul><br/>
     <?php
             }
@@ -69,20 +69,6 @@
             }
 ?>
         </ul>
-        <h2>401K</h2>
-        <ul class="resources">
-<?php
-            if(has_access_manager($session_user_id) == true || has_access($session_user_id) == true) {
-?>
-                <li><a href="links/Administrative%20FAQ.pdf" target="_blank">Administrative FAQ</a></li>
-<?php              
-            }
-?>
-            <li><a href="links/Participant%20FAQ.pdf" target="_blank">Participant FAQ</a></li>
-            <li><a href="links/Convo%20FAQ%20video.mp4" target="_blank">Convo FAQ about 401K</a></li>
-        </ul>
-<?php
-?>
     </div>
 </div>
 
