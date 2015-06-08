@@ -28,9 +28,15 @@ span {
     font-weight: bold;   
 }
 
-#example th {
-    text-align: center;
+.hireErrors, .registerErrors, .changePassErrors, .databaseErrors{
+    color: red;   
 }
+
+
+#example th{
+    text-align: center;   
+}
+
 p {
     padding: 0;
     margin: 0 0 20px 0;
@@ -118,7 +124,8 @@ footer {
 
 /* Footer ends */
 
-/* Resets */
+/*
+
 ul {
     padding: 0;
     margin: 0 0 20px 0;
@@ -128,7 +135,7 @@ ul {
 ul li {
     padding: 5px 0;
 }
-/* Reset ends */
+fReset ends */
 
 /* LOGIN and REGISTER */
 ul li input[type="text"], ul li input[type="password"] {
@@ -143,7 +150,6 @@ ul li input[type="text"], ul li input[type="password"] {
 
 /* Containers */
 #container, footer {
-    
     width: 1000px;
     margin: 0 auto;
     padding: 20px;
@@ -151,10 +157,10 @@ ul li input[type="text"], ul li input[type="password"] {
 
 #container {
     background: #fff;
-    min-height: 320px;
     border-radius: 5px 5px 0 0;
     border-style: solid;
     border-width: 1px;
+    overflow: auto;
 }
 
 .widget {
@@ -178,24 +184,35 @@ ul li input[type="text"], ul li input[type="password"] {
 	opacity: 0;
 	transition: visibility 0s linear 0s, opacity 0s;
 }
+
 #menu li:hover > ul {
 	opacity: 1;
 	transition-delay: 0s;
 	visibility: visible;
     background: white;
     width: 220px;
-    margin-left: 460px;
+    margin-left: 320px;
+}
+
+#menu .HRmenu:hover > ul{
+    margin-left: 80px;  
+    width: 200px;
 }
 
 #menu ul li ul li {
 	display: list-item;
     width: 220px;
     line-height: 25px;
+    padding-bottom: 4px;
+    padding-top: 4px;
 }
 
 #menu ul li ul li:hover {
-    background: #71AB3A;
-    
+    background: #71AB3A; 
+}
+
+#menu .HRmenu ul li:hover{
+    width: 200px;   
 }
 
 #menu ul li ul li a:hover {
@@ -209,10 +226,19 @@ ul li input[type="text"], ul li input[type="password"] {
 	top: 70px;
 	left: -7px;
     margin-top: -40px;
+    list-style: none;
 }
 
 #menu{
     margin-top: 185px;
+}
+
+/* Employee page ---------------------------- */
+#termination_checkbox {
+    float: left;
+    display: inline-block;
+    margin-left: 145px;
+    margin-top: -21px;
 }
 
 nav {
@@ -266,21 +292,47 @@ aside {
     float: right;
 }
 
-/* Resources */
-.resources {
-    font-size: 12pt;  
-    
+/*Resources*/
+.resources{
+    font-size: 12pt;   
+    padding: 0;
+    margin: 0 0 20px 0;
+    list-style: none;
 }
 
-#resourcesLeft, #resourcesRight {
+.resources li {
+     padding: 5px 0;   
+}
+
+#resourcesLeft, #resourcesRight{
     display: inline-block;
     width: 500px;
+   
 }
 
-#resourcesRight {
-    position: absolute;
-    
+#resourcesRight{
+    position: absolute;   
+    padding: 0;
+    margin: 0 0 20px 0;
 }
+
+/*401K*/
+.underline {
+    text-decoration: underline;   
+}
+.fourOneK {
+    font-size: 13pt;
+}
+
+.fourOneK li {
+    padding: 5px 0;   
+}
+
+/* Enrollment Page */
+.questionnaire {
+    font-size: 14pt;   
+}
+
 
 /* Misc */
 .clear {
@@ -315,6 +367,16 @@ aside {
     width: 250px;
 }
 
+#status_logout {
+     padding: 0;
+    margin: 0 0 20px 0;
+    list-style: none;   
+}
+
+#status_logout li {
+    padding-top: 8px;
+    padding-bottom: 10px;   
+}
 #status_logout a{
     text-decoration: none;
 }
