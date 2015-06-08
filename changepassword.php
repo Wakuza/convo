@@ -17,16 +17,13 @@
         
         if(md5($_POST["current_password"]) === $user_data["password"]) {
             if(trim($_POST["password"]) !== trim($_POST["password_again"])) {
-                $errors = "Your new passwords do not match.";
+                $errors = "<span class='changePassErrors'>Your new passwords do not match.</span>";
             } else if(strlen($_POST["password"]) < 6) {
-                $errors = "Your password must be at least 6 characters.";  
+                $errors = "<span class='changePassErrors'>Your password must be at least 6 characters.</span>";  
             } 
-             else if(strlen($_POST["password"]) > 30) {
-                $errors = "Your password is too long.  Please make the password between 6 and 30 characters.";
-            }
         }
         else {
-            $errors = "Your current password is incorrect.";
+            $errors = "<span class='changePassErrors'>Your current password is incorrect.</span>";
          }
     }
     $displayNone = "";
@@ -36,9 +33,9 @@
     }
     else {
         //if(isset($_GET["force"]) === true && empty($_GET["force"]) === true) {
-?>
+        ?>
            <!-- <p>You must change your password now that you've requested.</p>-->
-<?php
+        <?php
         //}
         if(empty($_POST) === false && empty($errors) === true) {
             change_password($session_user_id, $_POST["password"]);
@@ -54,7 +51,7 @@
         }
     ?>
 
-    <h1 class="headerPages" <?php echo $displayNone; ?>>Change Password</h1>
+<h1 class="headerPages" <?php echo $displayNone; ?>>Change Password</h1>
 
     <form action="" method="post">
         <span class="spanHeader">Current Password: </span>
@@ -70,7 +67,7 @@
     </form>
 
 <?php 
-        echo $errors;
-    }
-    include("includes/overall/footer.php"); 
+echo $errors;
+}
+include("includes/overall/footer.php"); 
 ?>
