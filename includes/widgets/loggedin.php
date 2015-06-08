@@ -2,7 +2,7 @@
     <h2 id="hello">Hello <?php echo $user_data['firstname']; ?>!</h2>
     <div class="inner"> <!-- Div class of inner starts -->
         <div id ="statusBox" class="block"> <!-- Div class of statusBox starts -->
-            <p id="showHide" onclick="clicked()"><a href="#"></a></p>
+           <!-- <p id="showHide" onclick="clicked()"><a href="#"></a></p> -->
             
             <ul id = "status_logout">
                 <li><a href="logout.php">Log out</a></li>

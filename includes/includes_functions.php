@@ -1,7 +1,7 @@
 <?php
-    $resultPosition = mysql_query("SELECT * FROM position_type");
-    $resultDepartment = mysql_query("SELECT * FROM department");
-    $resultLocation = mysql_query("SELECT * FROM location");
+    $resultPosition = mysql_query("SELECT * FROM position_type ORDER by position_name ASC");
+    $resultDepartment = mysql_query("SELECT * FROM department ORDER by department_name ASC");
+    $resultLocation = mysql_query("SELECT * FROM location ORDER BY convo_location ASC");
 
     // State Creation
 	$states = array(
@@ -56,10 +56,9 @@
     	"Wisconsin" => "WI",
     	"Wyoming" => "WY",
 	);
-
     function create_option_list($data, $title) {
         $output = "<option value=''>Select a $title</option>";
-
+        
         foreach($data as $name) {
             $output .= "<option value='$name'";
             if(isset($_POST["submit"]) && $_POST["res_state"] == $name){
@@ -69,4 +68,5 @@
         }
         return $output;
     }	// End Create Option List Function
+
 ?>
