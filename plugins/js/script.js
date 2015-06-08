@@ -10,6 +10,8 @@
 */
 var flag = false;
 function onLoad(){
+    filterme();
+    
     document.getElementById("showHide").innerHTML = "Show";
     document.getElementById("showHide").style.cursor = "pointer";
     
@@ -29,23 +31,23 @@ function onLoad(){
         var city = $("#employeeName").val().split("|")[12];
         var res_state = $("#employeeName").val().split("|")[13];
         var zipCode = $("#employeeName").val().split("|")[14];
-        var hourlyRate = $("#employeeName").val().split("|")[15];
+        var hourlyRate = $('#employeeName').val().split("|")[15];
         
         // Employee Information
-        //if("select[name='employeeName'] option:selected"){
-        $("input[name='employeeID']").val(empID);
+       // Employee Information
+        $("input[name='employerID']").val(empID);
         $("select[name='change_position_name']").val(pos);
         $("input[name='current_position_name']").val(pos);
         $("input[name='current_payroll_status']").val(payrollStatus);
         $("select[name='change_payroll_status']").val(payrollStatus);
+        $("input[name='hourly_rate']").val(hourlyRate);
+        $("input[name='current_hourly_rate']").val(hourlyRate);
         $("input[name='current_department']").val(department);
         $("select[name='department']").val(department);
         $("input[name='current_convo_location']").val(convo_location);
         $("select[name='convo_location']").val(convo_location);
         $("input[name='current_emp_status']").val(emp_status);
         $("select[name='emp_status']").val(emp_status);
-        $("input[name='hourly_rate']").val(hourlyRate);
-        $("input[name='current_hourly_rate']").val(hourlyRate);    
         $("input[name='current_supervisor']").val(supervisor);
         $("select[name='supervisor']").val(supervisor); 
         $("input[name='current_admin_privileges']").val(admin_privileges);
@@ -81,13 +83,6 @@ function onLoad(){
         $("select[name='res_state']").val(res_state);
         $("input[name='current_zipCode']").val(zipCode);
         $("input[name='zipCode']").val(zipCode);
-    
-    
-    
-    
-    
-    
-    
 }
 
 function clicked(){  
@@ -119,6 +114,9 @@ function goBack() {
 */ 
 
 $(document).ready(function() {
+    $('#active_leave_checkbox input:checkbox').prop('checked', 'checked');
+
+    $("#example").dataTable().fnDestroy();
     $('#example').dataTable( {
         "language": {
             "lengthMenu": "Display _MENU_ records per page",
