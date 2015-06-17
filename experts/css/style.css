@@ -1,0 +1,413 @@
+/* General CSS */
+body {
+    font-family: Arial;
+    font-size: 0.8em;
+    background:#e5e5e5 url(https://s3.amazonaws.com/convoweb/images/bg-body.gif) repeat-x;
+    color:#000; 
+}
+
+.headerPages{
+    margin-top: 80px;
+}
+
+h1 {
+    font-size: 1.8em;
+}
+
+h2 {
+    font-size: 1.4em;
+}
+
+h1, h2 {
+    padding: 0;
+    margin: 0 0 20px 0;
+    font-weight: bold;
+}
+
+span {
+    font-weight: bold;   
+}
+
+.hireErrors, .registerErrors, .changePassErrors, .databaseErrors{
+    color: red;   
+}
+
+
+#example th{
+    text-align: center;   
+}
+
+p {
+    padding: 0;
+    margin: 0 0 20px 0;
+    font-size: 13pt;
+}
+
+a {
+    font-weight: bold;
+    color: #71AB3A;
+}
+
+a:hover {
+    color: black;   
+}
+
+aside{
+    margin-right: 85px; 
+}
+
+.table-sortable tbody tr {
+    cursor: move;
+}
+
+input {
+    width: 140px;   
+}
+/* GENERAL CSS ends */
+
+
+/* Header */
+header {
+    width: 940px;
+    padding: 10px;
+    margin: 0 auto 10px auto;
+}
+
+.logo {
+    font: 2em Arial;
+    margin: 0 0 10px 0;
+    padding: 0;
+    width: 200px;
+    color: #fff;
+}
+/* Header ends */
+
+/* Infini Logo */
+#infinilogo{
+    float: left;
+    margin-left: -57px;
+    margin-bottom:30px;
+    margin-top: 15px;
+}
+/* HEADER ends */
+
+
+/* Footer */
+footer {
+    color: #999;
+}
+
+.owned{
+    margin-left: 115px;
+    font-weight: normal;
+}
+
+.copyRight{
+    margin-left: -20px;  
+    font-weight: normal;
+}
+
+.emailContact{
+    margin-left: 220px;
+    font-weight: normal;
+}
+
+#copyright {
+    float: left;
+    font-weight: normal;
+}
+
+#policyFooter {
+    float: right;
+    margin-right: -20px;   
+}
+
+/* Footer ends */
+
+/* Resets */
+ul {
+    padding: 0;
+    margin: 0 0 20px 0;
+    list-style: none;
+}
+
+ul li {
+    padding: 5px 0;
+}
+/* Reset ends */
+
+/* LOGIN and REGISTER */
+ul li input[type="text"], ul li input[type="password"] {
+    width: 200px;
+}
+
+#account{
+    float: left; 
+    margin-left: 14px;
+}
+/* LOGIN ENDS */
+
+/* Containers */
+#container, footer {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#container {
+    background: #fff;
+    border-radius: 5px 5px 0 0;
+    border-style: solid;
+    border-width: 1px;
+    overflow: auto;
+}
+
+.widget {
+    margin-bottom: 20px;
+}
+
+.widget h2 {
+    margin: 0 0 10px 0;
+    padding: 0 5px;
+    font-weight: normal;
+    border-bottom 1px solid #ddd;
+}
+
+.widget .inner {
+    margin: 0 10px;
+}
+
+/* Navigation */
+#menu li > ul {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s linear 0s, opacity 0s;
+}
+
+#menu li:hover > ul {
+	opacity: 1;
+	transition-delay: 0s;
+	visibility: visible;
+    background: white;
+    width: 220px;
+    margin-left: 320px;
+}
+
+#menu .HRmenu:hover > ul{
+    margin-left: 80px;  
+    width: 200px;
+}
+
+#menu ul li ul li {
+	display: list-item;
+    width: 220px;
+    line-height: 25px;
+}
+
+#menu ul li ul li:hover {
+    background: #71AB3A; 
+}
+
+#menu .HRmenu ul li:hover{
+    width: 200px;   
+}
+
+#menu ul li ul li a:hover {
+    color: #fff;
+}
+
+
+#menu li ul {
+	padding: 0px;
+	position: absolute;
+	top: 70px;
+	left: -7px;
+    margin-top: -40px;
+}
+
+#menu{
+    margin-top: 185px;
+}
+
+/* Employee page ---------------------------- */
+#termination_checkbox {
+    float: left;
+    display: inline-block;
+    margin-left: 145px;
+    margin-top: -21px;
+}
+
+nav {
+    position: absolute;
+    margin-top: 160px;
+    
+}
+
+nav ul {
+    margin: 0; 
+    font: normal normal 20px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif; 
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;  
+    color: #0f5390;
+}
+
+nav ul li a {
+    color: #0f5390;
+    text-decoration: none;
+    padding: 8px 16px 8px 20px;
+    border-style: none;
+    margin: 0;
+    font-weight: normal !important;
+    font-style: normal; 
+}
+
+nav ul li.current {
+    font-weight: bold;
+}
+
+nav ul li a:last {
+    border-right: 0;
+}
+
+/* Aside */
+aside {
+    width: 260px;
+    float: right;
+    padding-left: 15px;
+}
+
+/* Login */
+#login li.link {
+    margin-top: 5px;
+}
+
+#loginBox a{
+    float: right;
+}
+
+/*Resources*/
+.resources{
+    font-size: 12pt;   
+}
+
+#resourcesLeft, #resourcesRight{
+    display: inline-block;
+    width: 500px;
+   
+}
+
+#resourcesRight{
+    position: absolute;   
+}
+
+/*401K*/
+
+
+/* Misc */
+.clear {
+    clear: both;
+}
+    
+.forgotten{
+    position: relative;
+    margin-left: 30px;
+    font-size: 10pt;
+}
+
+/* Hello name with Show/Hide, Change password, Change settings, Log out */
+#hello{
+    margin-left: 5px;   
+}
+
+#showHide{
+    color: #71AB3A; 
+}
+
+#statusBox{
+    font-size: 16px;
+}
+
+#statusList{
+    float: right;
+    display: none;
+    font-size: 16px;
+    margin-top: -150px;
+    margin-right: -180px;
+    width: 250px;
+}
+
+#status_logout a{
+    text-decoration: none;
+}
+/* ENDS */
+
+#rememberBox{
+    margin-top: 59px; 
+    margin-left: -67px;
+    float: left;
+}
+
+#termination_box {
+    display: none;   
+}
+
+/**
+    Census Page
+**/
+
+.censusInfo{
+    margin-left: 20px;   
+}
+
+.censusReview {
+    display: inline-block;
+    width: 130px;
+    font-weight: normal;
+}
+/* CENSUS ends */
+
+/* Hire, Register, Termination Form */
+.note {
+    margin-top: 0;
+    margin-left: 180px;   
+}
+
+/* The text gives the space */
+.spanHeader {
+    display: inline-block;
+    width: 160px;
+    font-weight: bold;
+}
+
+/* ENDS */
+
+/* FILE UPLOAD PAGE */
+.file_upload {
+    margin-left: 20px;
+}
+/* ENDS */
+
+/* CONTACT PAGE */
+.contact, .contact_info {
+    margin-left: 0px;
+    display: inline-block;
+}
+
+.contact_info {
+    position: absolute;
+    margin-left: -200px;
+    font-size: 13pt;    
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));  
+}
+/* ENDS */

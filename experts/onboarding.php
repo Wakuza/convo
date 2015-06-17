@@ -65,7 +65,7 @@
             
             
             
-            mysql_query("CALL insert_expert_employee('$firstname', '$lastname', '$street_address', '$city', '$state', '$zipcode', '$date_of_birth', '$ssn', '$email', '$emergencyName', '$emergencyNumber', CURRENT_TIMESTAMP);");
+            mysql_query("CALL insert_new_hire('$firstname', '$lastname', '$street_address', '$city', '$state', '$zipcode', '$date_of_birth', '$ssn', '$email', '$emergencyName', '$emergencyNumber', CURRENT_TIMESTAMP);");
             
             echo "CALL insert_expert_employee('$firstname', '$lastname', '$street_address', '$city', '$state', '$zipcode', '$date_of_birth', '$ssn', '$email', '$emergencyName', '$emergencyNumber', CURRENT_TIMESTAMP);";
             
