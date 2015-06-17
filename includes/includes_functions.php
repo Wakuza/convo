@@ -1,44 +1,46 @@
 <?php
-    $resultPosition = mysql_query("SELECT * FROM position_type ORDER by position_name ASC");
-    $resultDepartment = mysql_query("SELECT * FROM department ORDER by department_name ASC");
-    $resultLocation = mysql_query("SELECT * FROM location ORDER BY convo_location ASC");
+    $resultPosition = mysql_query("SELECT * FROM position_vw");
+    $resultDepartment = mysql_query("SELECT * FROM department_vw");
+    $resultLocation = mysql_query("SELECT * FROM location_vw");
+    $resultSupervisor = mysql_query("SELECT * FROM employee_supervisor_vw");
 
     // State Creation
-	$states = array(
+$states = array(
+        "Alaska" => "AK",
 		"Alabama" => "AL",
-    	"Alaska" => "AK",
+        "Arkansas" => "AR",
     	"Arizona" => "AZ",
-    	"Arkansas" => "AR",
     	"California" => "CA",
     	"Colorado" => "CO",
     	"Connecticut" => "CT",
+        "Washington DC" => "DC",
     	"Delaware" => "DE",
     	"Florida" => "FL",
     	"Georgia" => "GA",
     	"Hawaii" => "HI",
+        "Iowa" => "IA",
     	"Idaho" => "ID",
     	"Illinois" => "IL",
         "Indiana" => "IN",
-    	"Iowa" => "IA",
     	"Kansas" => "KS",
     	"Kentucky" => "KY",
     	"Louisana" => "LA",
+        "Massachusetts" => "MA",
+        "Maryland" => "MD",
     	"Maine" => "ME",
-    	"Maryland" => "MD",
-    	"Massachusetts" => "MA",
     	"Michigan" => "MI",
     	"Minnesota" => "MN",
+        "Missouri" => "MO",
     	"Mississippi" => "MS",
-    	"Missouri" => "MO",
     	"Montana" => "MT",
+        "North Carolina" => "NC",
+        "North Dakota" => "ND",
     	"Nebraska" => "NE",
+        "New Hampshire" => "NH",
+        "New Jersey" => "NJ",
+        "New Mexico" => "NM",
     	"Nevada" => "NV",
-    	"New Hampshire" => "NH",
-    	"New Jersey" => "NJ",
-    	"New Mexico" => "NM",
     	"New York" => "NY",
-    	"North Carolina" => "NC",
-    	"North Dakota" => "ND",
     	"Ohio" => "OH",
     	"Oklahoma" => "OK",
     	"Oregon" => "OR",
@@ -49,11 +51,11 @@
     	"Tennessee" => "TN",
     	"Texas" => "TX",
     	"Utah" => "UT",
+        "Virginia" => "VA",
     	"Vermont" => "VT",
-    	"Virginia" => "VA",
     	"Washington" => "WA",
+        "Wisconsin" => "WI",
     	"West Virginia" => "WV",
-    	"Wisconsin" => "WI",
     	"Wyoming" => "WY",
 	);
     function create_option_list($data, $title) {

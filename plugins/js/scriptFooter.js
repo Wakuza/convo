@@ -41,58 +41,35 @@ function filterme() {
     
     $("#employeeName").change(function() {
         var empID = $(this).val().split("|")[0];
-        var pos = $(this).val().split("|")[1];
-        var payrollStatus = $(this).val().split("|")[2];
-        var department = $(this).val().split("|")[3];
+        var jobCode = $(this).val().split("|")[1];
+        var pos = $(this).val().split("|")[2];
+        var payrollStatus = $(this).val().split("|")[3];
         var convo_location = $(this).val().split("|")[4];
         var emp_status = $(this).val().split("|")[5];
         var firstname = $(this).val().split("|")[6];
         var lastname = $(this).val().split("|")[7];
         var supervisor = $(this).val().split("|")[8];
-        var admin_privileges = $(this).val().split("|")[9];
-        var manager_privileges = $(this).val().split("|")[10];
-        var street_address = $(this).val().split("|")[11];
-        var city = $(this).val().split("|")[12];
-        var res_state = $(this).val().split("|")[13];
-        var zipCode = $(this).val().split("|")[14];
-        var hourlyRate = $(this).val().split("|")[15];
-        
+        var street_address = $(this).val().split("|")[9];
+        var city = $(this).val().split("|")[10];
+        var res_state = $(this).val().split("|")[11];
+        var zipCode = $(this).val().split("|")[12];
+        var hourlyRate = $(this).val().split("|")[13];
+        var location_code = $(this).val().split("|")[14];
         
         // Employee Information
-        $("input[name='employeeID']").val(empID);
-        $("select[name='change_position_name']").val(pos);
+        $("input[name='employee_id']").val(empID);
+        $("select[name='change_position_name']").val(jobCode);
         $("input[name='current_position_name']").val(pos);
         $("input[name='current_payroll_status']").val(payrollStatus);
         $("select[name='change_payroll_status']").val(payrollStatus);
         $("input[name='hourly_rate']").val(hourlyRate);
         $("input[name='current_hourly_rate']").val(hourlyRate);
-        $("input[name='current_department']").val(department);
-        $("select[name='department']").val(department);
         $("input[name='current_convo_location']").val(convo_location);
-        $("select[name='convo_location']").val(convo_location);
+        $("select[name='convo_location']").val(location_code);
         $("input[name='current_emp_status']").val(emp_status);
         $("select[name='emp_status']").val(emp_status);
         $("input[name='current_supervisor']").val(supervisor);
         $("select[name='supervisor']").val(supervisor); 
-        $("input[name='current_admin_privileges']").val(admin_privileges);
-        if($("input[name='current_admin_privileges']").val() == "1") {
-          $("select[name='admin_privileges']").val("Admin");  
-        }
-        else {
-            $("select[name='admin_privileges']").val("Non_admin"); 
-        }
-        
-        
-        $("input[name='current_manager_privileges']").val(manager_privileges);
-        //$("select[name='manager_privileges']").val(manager_privileges);
-        
-        if($("input[name='current_manager_privileges']").val() == "1") {
-          $("select[name='manager_privileges']").val("Manager");  
-        }
-        else {
-            $("select[name='manager_privileges']").val("Non_manager"); 
-        }
-        
         
         // Personal Information
         $("input[name='current_firstname']").val(firstname);
@@ -113,10 +90,36 @@ function filterme() {
 $("#positionName").change(function() {
     var positionName = $(this).val().split("|")[0];
     var jobCode = $(this).val().split("|")[1];
+    var dept_code = $(this).val().split("|")[2];
+    var manager_privileges = $(this).val().split("|")[3];
+    var admin_privileges = $(this).val().split("|")[4];
+    var dept_name = $(this).val().split("|")[5];
     
     $("input[name='change_positionName']").val(positionName);
     $("input[name='current_positionName']").val(positionName);
     $("input[name='job_code']").val(jobCode);
+    $("select[name='dept_name_for_position']").val(dept_code);
+    $("input[name='current_dept_name_for_position']").val(dept_name);
+    $("input[name='dept_code']").val(dept_code);
+    
+    $("input[name='current_admin_privileges']").val(admin_privileges);
+    if($("input[name='current_admin_privileges']").val() == "1") {
+      $("select[name='admin_privileges']").val("Admin");  
+    }
+    else {
+        $("select[name='admin_privileges']").val("Non_admin"); 
+    }
+
+
+    $("input[name='current_manager_privileges']").val(manager_privileges);
+    //$("select[name='manager_privileges']").val(manager_privileges);
+
+    if($("input[name='current_manager_privileges']").val() == "1") {
+      $("select[name='manager_privileges']").val("Manager");  
+    }
+    else {
+        $("select[name='manager_privileges']").val("Non_manager"); 
+    }
 });
 
 $("#departmentName").change(function() {

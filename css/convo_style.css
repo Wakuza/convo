@@ -102,7 +102,7 @@
   text-align: center;
 }
 
-.policy, #changePassButton, #updateButton, .hireOrTerm{
+#changePassButton, #updateButton, .hireOrTerm{
     text-decoration: none;
     background-color: green;
     background-image: -moz-linear-gradient(90deg, #71AB3A, #71AB3A);
@@ -122,6 +122,19 @@
 #changePassButton{
     width: 180px;   
 }
+
+#payrollButton, #attendanceButton, #supportButton, #handbookButton{
+    width: 205px; 
+}
+
+#supportButton{
+    width: 260px;   
+}
+
+#FMLAButton{
+    width: 280px;
+}
+
 
 #linkToReg{
     margin-top: -37px;

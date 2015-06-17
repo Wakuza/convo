@@ -1,29 +1,26 @@
 <?php 
-    error_reporting(0);
     $title = "Convo Portal | Hire";
     include("core/init.php");
     admin_protect();
     include("includes/overall/header.php");
     include("includes/includes_functions.php");
 
-    $errorId = $errorFirst = $errorLast = $errorPosition = $errorLocation = $errorStreet = $errorCity = $errorZip = $errorState = $errorDepartment = $errorStreetAddress = $errorCity = $errorZipCode = $errorPayroll = $errorDate = $errorLocation = $errorAdminPrivileges = $errorManagerPrivileges = $errorDOB = $errorSSN = $errorGender = "";
-
-    $resultSupervisor = mysql_query("SELECT DISTINCT e.employeeID, CONCAT(s.lastname, ', ', s.firstname) AS supervisor FROM employee s INNER JOIN employee e ON e.employeeID = s.employeeID ORDER by s.lastname ASC");
+    $errorId = $errorFirst = $errorLast = $errorPosition = $errorLocation = $errorStreet = $errorCity = $errorZip = $errorState = $errorStreetAddress = $errorCity = $errorZipCode = $errorPayroll = $errorDate = $errorLocation = $errorDOB = $errorSSN = $errorGender = "";
 
     if(isset($_POST["submit"])) {
-        if(empty($_POST["employeeID"])) {
-            $errorId = "<span class='hireErrors'> Please enter new employeeID</span>";   
+        if(empty($_POST["employee_id"])) {
+            $errorId = "<span class='hireErrors'> Please enter new employee ID</span>";   
         }
-        else if($_POST["employeeID"]{0} == "C"){
-            if(!(is_numeric($_POST["employeeID"]{1})) || !(is_numeric($_POST["employeeID"]{2})) || !(is_numeric($_POST["employeeID"]{3})) || strlen($_POST["employeeID"]) != 4){
+        else if($_POST["employee_id"]{0} == "C"){
+            if(!(is_numeric($_POST["employee_id"]{1})) || !(is_numeric($_POST["employee_id"]{2})) || !(is_numeric($_POST["employee_id"]{3})) || strlen($_POST["employee_id"]) != 4){
                 $errorId = "<span class='hireErrors'>If it is a contractor, please use \"C###\"</span>"; 
             }
         }
-        else if(!(is_numeric($_POST["employeeID"]))){
+        else if(!(is_numeric($_POST["employee_id"]))){
             $errorId = "<span class='hireErrors'>Please enter numbers or first character 'C' for contractor</span>";   
         }
-        if(employee_id_exists($_POST["employeeID"]) == true) {
-            $errorId = "<span class='hireErrors'>The employeeID exists in the database, please enter different employeeID.</span>";   
+        if(employee_id_exists($_POST["employee_id"]) == true) {
+            $errorId = "<span class='hireErrors'>The employee ID exists in the database, please enter different employee ID.</span>";   
         }
         if(empty($_POST["firstname"])) {
             $errorFirst = "<span class='hireErrors'>Please enter first name</span>";
@@ -39,9 +36,6 @@
         }
         if(empty($_POST["res_state"])) {
             $errorState = "<span class='hireErrors'>Please pick Resident State.</span>";  
-        }
-        if(empty($_POST["department_name"])) {
-            $errorDepartment = "<span class='hireErrors'>Please select a department.</span>";   
         }
         if(empty($_POST["street_address"])){
             $errorStreetAddress = "<span class='hireErrors'>Please enter street address.</span>";   
@@ -61,12 +55,6 @@
         if(empty($_POST["hire_date"])) {
             $errorDate = "<span class='hireErrors'>Please enter Month, Day, and Year</span>";     
         }
-        if(empty($_POST["admin_privileges"])){
-            $errorAdminPrivileges = "<span class='hireErrors'>Please select a privilege</span>";   
-        }
-        if(empty($_POST["manager_privileges"])){
-            $errorManagerPrivileges = "<span class='hireErrors'>Please select a privilege</span>";   
-        }
         if(empty($_POST["dob"])){
             $errorDOB = "<span class='hireErrors'>Please enter date of birth</span>";   
         }
@@ -79,14 +67,13 @@
         else if(!(is_numeric($_POST["ssn"]))){
             $errorSSN = "<span class='hireErrors'>Please enter number only.</span>";
         }
-        if($errorId == "" && $errorFirst == "" &&  $errorLast == "" && $errorPosition == "" && $errorLocation == "" && $errorState == "" && $errorDepartment == "" && $errorStreetAddress == "" && $errorCity == "" && $errorZipCode == "" && $errorPayroll == "" && $errorDate == "" && $errorAdminPrivileges == "" && $errorManagerPrivileges == "" && $errorDOB == "" && $errorGender == "" && $errorSSN == "") {
-            $employeeID = sanitize($_POST["employeeID"]);
+        if($errorId == "" && $errorFirst == "" &&  $errorLast == "" && $errorPosition == "" && $errorLocation == "" && $errorState == "" && $errorStreetAddress == "" && $errorCity == "" && $errorZipCode == "" && $errorPayroll == "" && $errorDate == "" && $errorDOB == "" && $errorGender == "" && $errorSSN == "") {
+            $employee_id = sanitize($_POST["employee_id"]);
             $firstname = sanitize($_POST["firstname"]);
             $lastname = sanitize($_POST["lastname"]);
             $jobTitle = sanitize($_POST["change_position_name"]);
             $location = sanitize($_POST["convo_location"]);
             $state = sanitize($_POST["res_state"]);
-            $department = sanitize($_POST["department_name"]);
             $street_address = sanitize($_POST["street_address"]);
             $city = sanitize($_POST["city"]);
             $zipcode = sanitize($_POST["zipcode"]);
@@ -94,39 +81,22 @@
             // $supervisor = explode(" ", sanitize($_POST["supervisor"]))[0];
             $supervisor = sanitize($_POST["supervisor"]);
             $hire_date = sanitize($_POST["hire_date"]);
-            $admin_privileges = sanitize($_POST["admin_privileges"]);
-            $manager_privileges = sanitize($_POST["manager_privileges"]);
             $dob = sanitize($_POST["dob"]);
             $ssn = sanitize($_POST["ssn"]);
             $gender = sanitize($_POST["gender"]);
             $hourlyRate = sanitize($_POST["hourly_rate"]);
             
-            if($admin_privileges == "Admin"){
-                $admin_privileges = "1";   
-            }
-            else{
-                $admin_privileges = "0";   
-            }
-            
-            if($manager_privileges == "Manager"){
-                $manager_privileges = "1";   
-            }
-            
-            else{
-                $manager_privileges = "0";
-            }
-            
             // Convert from MM-DD-YYYY to YYYY-MM-DD to follow the MySQL Date Format
-            $hireDateInput = explode("-", $hire_date);
+            $hireDateInput = multiexplode(array("-", "/"), $hire_date);
             $hireDate = $hireDateInput[2] . "-" . $hireDateInput[0] . "-" . $hireDateInput[1];
             
-            $dobInput = explode("-", $dob);
+            $dobInput = multiexplode(array("-", "/"), $dob);
             $date_of_birth = $dobInput[2] . "-" . $dobInput[0] . "-" . $dobInput[1];
             
             /*
             echo $hireDate;
             echo $date_of_birth;
-            echo "employeeID: " . $employeeID;
+            echo "employee_id: " . $employee_id;
             echo "FirstName: " . $firstname;
             echo "Last Name: " . $lastname;
             echo "Position: " . $jobTitle;
@@ -146,8 +116,14 @@
             echo "Gender: " . $gender;
             die();
             */
+            
+            /*
+            echo "INSERT INTO employee (employee_id, firstname, lastname, job_code, street_address, city, res_state, zipcode, convo_location, supervisor_id, payroll_status, hourly_rate, hire_date, updated_at, employment_status, active, password_recover, date_of_birth, ssn, gender) VALUES ('$employee_id', '$firstname', '$lastname', '$jobTitle', '$street_address', '$city', '$state', '$zipcode', '$location', '$supervisor', '$payrollStatus', '$hourlyRate', '$hireDate', CURRENT_TIMESTAMP, 'Active', '1', '0', '$date_of_birth', '$ssn', '$gender')";
+            die();
+            */
+        
            
-            mysql_query("INSERT INTO employee (employeeID, firstname, lastname, position_name, department_name, street_address, city, res_state, zipcode, convo_location, supervisorID, payroll_status, hourly_rate, hire_date, updated_at, review_date, termination_date, employment_status, manager_privileges, admin_privileges, active, password_recover, date_of_birth, ssn, gender) VALUES ('$employeeID', '$firstname', '$lastname', '$jobTitle', '$department', '$street_address', '$city', '$state', '$zipcode', '$location', '$supervisor', '$payrollStatus', '$hourlyRate', '$hireDate', CURRENT_TIMESTAMP, '1901-01-01', '1901-01-01', 'Active', '$manager_privileges', '$admin_privileges', '1', '0', '$date_of_birth', '$ssn', '$gender');");
+            mysql_query("CALL insert_employee_hire('$employee_id', '$firstname', '$lastname', '$jobTitle', '$street_address', '$city', '$state', '$zipcode', '$location', '$supervisor', '$payrollStatus', '$hourlyRate', '$hireDate', CURRENT_TIMESTAMP, 'Active', '1', '0', '$date_of_birth', '$ssn', '$gender');");
             
             echo "<h2 class='headerPages'>The employee's information was added to database successfully!</h2>";
             die();      
@@ -170,7 +146,7 @@
         
         <!-- EmployeeID -->
         <span class="spanHeader">Employee ID: </span>
-        <input type="text" id="employeeID" name="employeeID" placeholder="Employee ID" value=<?php if(isset($_POST["submit"])){echo $_POST['employeeID'];} ?>><?php echo $errorId; ?><br/><br/>
+        <input type="text" id="employee_id" name="employee_id" placeholder="Employee ID" maxlength="4" value=<?php if(isset($_POST["submit"])){echo $_POST['employee_id'];} ?>><?php echo $errorId; ?><br/><br/>
 
        <!-- First Name -->
         <span class="spanHeader">First Name: </span>
@@ -190,8 +166,8 @@
             
         <!-- Date of Birth -->
         <span class="spanHeader">Date of Birth:</span>
-        <input type="text" class="datepicker" placeholder="MM-DD-YYYY" name="dob" value=<?php if(isset($_POST["submit"])){echo $_POST['dob'];} ?>>
-        <?php echo $errorDOB; ?><br/><em class="note">MM-DD-YYYY</em><br/><br/>
+        <input type="text" placeholder="MM/DD/YYYY" name="dob" value=<?php if(isset($_POST["submit"])){echo $_POST['dob'];} ?>>
+        <?php echo $errorDOB; ?><br/><em class="note">MM/DD/YYYY</em><br/><br/>
 
         <!-- SSN -->
         <span class="spanHeader">SSN:</span>
@@ -223,14 +199,14 @@
         <!-- Position -->
         <span class="spanHeader">Position: </span>
             <?php
-                echo "<select id='position_name' name='change_position_name'><option value=''>Select a Position</option>";
+                echo "<select id='position_name' class='input-xlarge' name='change_position_name'><option value=''>Select a Position</option>";
                 while($row = mysql_fetch_assoc($resultPosition)) {
-                    echo "<option value = '" . $row['position_name'] . "'";
+                    echo "<option value = '" . $row['job_code'] . "'";
                         
                     if(isset($_POST["submit"]) && $_POST["change_position_name"] == $row['position_name']){
                         echo "selected='selected'";
                     }       
-                    echo ">" . $row['position_name'] . "</option>";   
+                    echo ">" . $row['job_code'] . " - " . $row['position_name'] . "</option>";   
                 }
                 echo "</select>";
                 echo $errorPosition; 
@@ -240,32 +216,16 @@
         <!-- Convo Location -->
         <span class="spanHeader">Convo Location: </span>
             <?php
-                echo "<select id='convo_location' name='convo_location'><option value=''>Select a Convo Location</option>";
+                echo "<select id='convo_location' class='input-xlarge' name='convo_location'><option value=''>Select a Convo Location</option>";
                 while($row = mysql_fetch_assoc($resultLocation)) {
-                    echo "<option value = '" . $row['convo_location'] . "'";
-                    if(isset($_POST["submit"]) && $_POST["convo_location"] == $row['convo_location']){
+                    echo "<option value = '" . $row['location_code'] . "'";
+                    if(isset($_POST["submit"]) && $_POST["convo_location"] == $row['location_code']){
                         echo "selected='selected'";
                     }
-                    echo ">" . $row['convo_location'] . "</option>";   
+                    echo ">" . $row["location_code"] . " - " . $row['convo_location'] . "</option>";   
                 }
                 echo "</select>";
                 echo $errorLocation; 
-            ?>
-        <br/><br/>
-
-        <!-- Department -->
-        <span class="spanHeader">Department: </span>
-            <?php
-                echo "<select id='department_name' name='department_name'><option value=''>Select a Department</option>";
-                while($row = mysql_fetch_assoc($resultDepartment)) {
-                    echo "<option value = '" . $row['department_name'] . "'";
-                    if(isset($_POST["submit"]) && $_POST["department_name"] == $row['department_name']){
-                        echo "selected='selected'";
-                    }
-                    echo ">" . $row['department_name'] . "</option>";   
-                }
-                echo "</select>";
-                echo $errorDepartment; 
             ?>
         <br/><br/>
 
@@ -278,8 +238,6 @@
             <option value="PT" <?php if(isset($_POST["submit"]) && $_POST["payroll_status"] == "PT"){echo "selected='selected'";} ?>>PT</option>
         </select><?php echo $errorPayroll; ?><br/><br/>
         
-        
-        
         <!-- Hourly Rate -->
         <span class="spanHeader">Hourly Rate: </span>
         <input type="text" name="hourly_rate" class="input-small" value='0.00'><br/><br/>
@@ -290,8 +248,8 @@
                 echo "<select id='supervisor' name='supervisor'>";
                 echo "<option value=''>Select a supervisor</option>";
                 while($row = mysql_fetch_assoc($resultSupervisor)) {
-                echo "<option value ='" . $row['employeeID'] . "'";
-                if(isset($_POST["submit"]) && $_POST["supervisor"] == $row['employeeID']){
+                echo "<option value ='" . $row['employee_id'] . "'";
+                if(isset($_POST["submit"]) && $_POST["supervisor"] == $row['employee_id']){
                     echo "selected='selected'";
                 }
                 echo ">" . $row['supervisor'] . "</option>";   
@@ -301,23 +259,7 @@
 
         <!-- Hire Date -->
         <span class="spanHeader">Hire Date:</span>
-        <input type="text" class="datepicker" placeholder="MM-DD-YYYY" name="hire_date" value=<?php if(isset($_POST["submit"])){echo $_POST['hire_date'];} ?>><?php echo $errorDate; ?><br/><em class="note">MM-DD-YYYY</em><br/><br/>
-
-        <!-- Admin Privileges -->
-        <span class="spanHeader">Admin Privilege:</span>
-        <select value="admin_privileges" name="admin_privileges">
-            <option value="">Select a privillege</option>
-            <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Yes</option>
-            <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?> selected>No</option>
-        </select><?php echo $errorAdminPrivileges; ?><br/><em class="note">Permission to add, edit, and terminate employees.</em><br/><br/>
-               
-        <!-- Manager Privileges -->
-        <span class="spanHeader">Manager Privilege:</span>
-        <select value="manager_privileges" name="manager_privileges">
-            <option value="">Select a privillege</option>
-            <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Yes</option>
-            <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?> selected>No</option>
-        </select><?php echo $errorManagerPrivileges; ?><br/><em class="note">Permission to view direct reports' information and materials that are restricted to managers.</em><br/>
+        <input type="text" placeholder="MM/DD/YYYY" class="datepicker" name="hire_date" value=<?php if(isset($_POST["submit"])){echo $_POST['hire_date'];} ?>><?php echo $errorDate; ?><br/><em class="note">MM/DD/YYYY</em><br/><br/>
         
         <input type="submit" id="addButton" name="submit" value="Add">
     </form>

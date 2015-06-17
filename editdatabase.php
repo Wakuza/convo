@@ -10,18 +10,40 @@
 $flagPosition = $flagLocation = $flagDepartment = 0;
 
     $errorName = $errorPosition = $errorDepartment = $errorEmpStatus = $errorPayroll = $errorLocation = $errorTerm = "";
-    $resultemployee = mysql_query("SELECT * FROM employee ORDER by lastname, firstname ASC");
+   $resultPositionDB = mysql_query("SELECT * FROM position_db_vw");
+    $resultDepartmentName = mysql_query("SELECT * FROM department_vw");
+
     if(isset($_POST["submit"])) {       
         if(!(empty($_POST["positionName"]))){
             $jobCode = sanitize($_POST["job_code"]);
             $jobTitle = sanitize($_POST["change_positionName"]);
-            mysql_query("UPDATE position_type SET position_name = '$jobTitle' WHERE job_code = '$jobCode'");  
+            $dept_code = sanitize($_POST["dept_name_for_position"]);
+            $manager_privileges = sanitize($_POST["manager_privileges"]);
+            $admin_privileges = sanitize($_POST["admin_privileges"]);
+            
+            if($admin_privileges == "Admin"){
+                $admin_privileges = "1";   
+            }
+            else{
+                $admin_privileges = "0";   
+            }
+            
+            if($manager_privileges == "Manager"){
+                $manager_privileges = "1";   
+            }
+            
+            else{
+                $manager_privileges = "0";
+            }
+
+            mysql_query("CALL update_position_type('$jobTitle', '$dept_code',  '$manager_privileges', '$admin_privileges', '$jobCode')");
+            
             $flagPosition = 1;
         }
         if(!(empty($_POST["departmentName"]))){
             $deptCode = sanitize($_POST["dept_code"]);
             $department = sanitize($_POST["change_department_name"]);
-            mysql_query("UPDATE department SET department_name = '$department' WHERE dept_code = '$deptCode'"); 
+            mysql_query("CALL update_department('$deptCode', '$department')"); 
             $flagDepartment = 1;
         }
         
@@ -33,7 +55,7 @@ $flagPosition = $flagLocation = $flagDepartment = 0;
             $state = sanitize($_POST["state"]);
             $zipcode = sanitize($_POST["zipCode"]);
             
-            mysql_query("UPDATE location SET convo_location = '$location', address = '$address', city = '$city', state = '$state', zip_code = '$zipcode' WHERE location_code = '$locationCode'"); 
+            mysql_query("CALL update_location('$locationCode', '$location', '$address','$city', '$state', '$zipcode')"); 
             
             $flagLocation = 1;
         }
@@ -72,16 +94,16 @@ $flagPosition = $flagLocation = $flagDepartment = 0;
         //echo "UPDATE department SET department = '$department' WHERE dept_code = '$deptCode'";
     }
 ?>
-    <h1 class="headerPages">Edit Database</h1>
+    <h1 class="headerPages">Edit DB Values</h1>
 
         <h2>Position</h2>
 
     <form id="changes" action="editdatabase.php" method="POST">
         <span class="spanHeader">Position Name: </span>
         <?php
-            echo "<select id='positionName' name='positionName'><option value=''>Select a position name</option>";
-            while($row = mysql_fetch_assoc($resultPosition)) {
-                echo "<option value = '" . $row["position_name"] . "|" . $row["job_code"] . "'>" . $row["position_name"] . "</option>";   
+            echo "<select id='positionName' class='input-xlarge' name='positionName'><option value=''>Select a position name</option>";
+            while($row = mysql_fetch_assoc($resultPositionDB)) {
+                echo "<option value = '" . $row["position_name"] . "|" . $row["job_code"] . "|" . $row["dept_code"] . "|" . $row["manager_privilege"] . "|" . $row["admin_privilege"] . "|" . $row["department_name"] . "'>" . $row["job_code"] . " - " . $row["position_name"] . "</option>";   
             }
             echo "</select>";?>
         <input type='hidden' name='job_code' class="input-xlarge" style='background:#E9E9E9;' readonly>
@@ -90,7 +112,33 @@ $flagPosition = $flagLocation = $flagDepartment = 0;
         <span class="spanHeader">Position Name Change: </span>
         <input type='text' name='change_positionName' class="input-xlarge">        
         <input type='text' name='current_positionName' class="input-xlarge" style='background:#E9E9E9;' readonly>
-        <br/><br/><br/>
+        <br/><br/>
+        
+        <span class="spanHeader">Department Change: </span>
+        <?php
+            echo "<select id='dept_name_for_position' class='input-xlarge' name='dept_name_for_position'><option value=''>Select a department name</option>";
+            while($row = mysql_fetch_assoc($resultDepartmentName)) {
+                echo "<option value = '" . $row["dept_code"] . "'>" . $row["dept_code"] . " - " . $row["department_name"] . "</option>";   
+            }
+            echo "</select>";?>
+        <input type='text' name='current_dept_name_for_position' class="input-xlarge" style='background:#E9E9E9;' readonly>
+        <input type='hidden' name='dept_code' class="input-xlarge" style='background:#E9E9E9;' readonly>
+        <br/><br/>
+        
+        <span class="spanHeader">Admin Privilege:</span>
+            <select value="admin_privileges" name="admin_privileges" class="input-medium">
+                <option value="">Select a privilege</option>
+                <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Yes</option>
+                <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?>>No</option>
+            </select> <input type='text' class="input-small" name='current_admin_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> admin privileges and <strong>0:</strong> no admin privileges</em><br/><em class="note">Permission to add, edit, and terminate employees.</em><br/><br/>
+        
+        
+        <span class="spanHeader">Manager Privilege:</span>
+            <select value="manager_privileges" name="manager_privileges" class="input-medium">
+                <option value="">Select a privilege</option>
+                <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Yes</option>
+                <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?>>No</option>
+            </select> <input type='text' class="input-small" name='current_manager_privileges' style='background:#E9E9E9;' readonly><em> <strong>1:</strong> manager privileges and <strong>0:</strong> no manager privileges</em><br/><em class="note">Permission to view direct reports' information and materials that are restricted to managers.</em><br/>
         
         <h2>Department</h2>
 
@@ -98,10 +146,10 @@ $flagPosition = $flagLocation = $flagDepartment = 0;
             <?php
                 echo "<select id='departmentName' name='departmentName'><option value=''>Select a Department</option>";
                 while($row = mysql_fetch_assoc($resultDepartment)) {
-                    echo "<option value = '" . $row['department_name'] . "|" . $row["dept_code"] . "'>" . $row['department_name'] . "</option>";   
+                    echo "<option value = '" . $row['department_name'] . "|" . $row["dept_code"] . "'>" . $row["dept_code"] . " - " . $row['department_name'] . "</option>";   
                 }
                 echo "</select>";?>
-        <input type='hidden' name='dept_code' class="input-xlarge" style='background:#E9E9E9;' readonly>
+        <input type='hidden' name='dept_code' style='background:#E9E9E9;' readonly>
         <br/><br/>
         
         <span class="spanHeader">Department Name Change: </span>
@@ -114,9 +162,9 @@ $flagPosition = $flagLocation = $flagDepartment = 0;
         <h2>Location</h2>
         <span class="spanHeader">Convo Location: </span>
             <?php
-                echo "<select id='convoLocation' name='convoLocation'><option value=''>Select a Convo Location</option>";
+                echo "<select id='convoLocation' class='input-xlarge' name='convoLocation'><option value=''>Select a Convo Location</option>";
                 while($row = mysql_fetch_assoc($resultLocation)) {
-                    echo "<option value = '" . $row['convo_location'] . "|" . $row['address'] . "|" . $row["city"] . "|" . $row["state"] . "|" . $row["zip_code"] . "|". $row["location_code"] . "'>" . $row['convo_location'] . "</option>";   
+                    echo "<option value = '" . $row['convo_location'] . "|" . $row['address'] . "|" . $row["city"] . "|" . $row["state"] . "|" . $row["zip_code"] . "|". $row["location_code"] . "'>" . $row["location_code"] . " - " . $row['convo_location'] . "</option>";   
                 }
                 echo "</select>";?>
         <input type='hidden' name='location_code' class="input-xlarge" style='background:#E9E9E9;' readonly>

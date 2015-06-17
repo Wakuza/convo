@@ -29,7 +29,25 @@
             if($errorPosition == "" && $errorJobCode == ""){
                 $positionName = sanitize($_POST["position_name"]);
                 $jobCode = sanitize($_POST["job_code"]);
-                mysql_query("INSERT INTO position_type (position_name, job_code) VALUES ('$positionName', '$jobCode')");
+                $dept_code = sanitize($_POST["dept_name_for_position"]);
+                $manager_privileges = sanitize($_POST["manager_privileges"]);
+                $admin_privileges = sanitize($_POST["admin_privileges"]);
+            
+                if($admin_privileges == "Admin"){
+                    $admin_privileges = "1";   
+                }
+                else{
+                    $admin_privileges = "0";   
+                }
+
+                if($manager_privileges == "Manager"){
+                    $manager_privileges = "1";   
+                }
+
+                else{
+                    $manager_privileges = "0";
+                }
+               mysql_query("CALL insert_position('$positionName', '$jobCode', '$dept_code', '$manager_privileges', '$admin_privileges')");
                 $flagPosition = 1; 
             }
         }
@@ -50,7 +68,7 @@
             if($errorDepartment == "" && $errorDeptCode == ""){
                 $departmentName = sanitize($_POST["department_name"]);
                 $deptCode = sanitize($_POST["dept_code"]);
-                mysql_query("INSERT INTO department (department_name, dept_code) VALUES ('$departmentName', '$deptCode')");  
+                mysql_query("CALL insert_department('$departmentName', '$deptCode')"); 
                 $flagDepartment = 1;
             }
         }
@@ -91,7 +109,7 @@
                 $zipCode = sanitize($_POST["zipCode"]);
                 $locationCode = sanitize($_POST["location_code"]);
                 
-                mysql_query("INSERT INTO location (convo_location, address, city, state, zip_code, location_code) VALUES ('$convoLocation', '$address', '$city', '$state', '$zipCode', '$locationCode')");
+                mysql_query("CALL insert_location('$locationCode', '$convoLocation', '$address', '$city', '$state', '$zipCode')");
                 $flagLocation = 1;                
             }
         }
@@ -126,7 +144,7 @@
         }
     }
 ?>
-    <h1 class="headerPages">Add Database</h1>
+    <h1 class="headerPages">Add DB Values</h1>
 
     <form id="addDatabase" method="POST">
         
@@ -138,6 +156,31 @@
         
         <span class="spanHeader">Position Name: </span>
         <input type="text" id="position_name" name="position_name" class="input-xlarge" placeholder="Employee Role" value=<?php if(isset($_POST["submit"])){echo "'" . $_POST['position_name'] . "'";} ?>><?php echo $errorPosition; ?><br/><br/>
+        
+        <span class="spanHeader">Department Change: </span>
+        <?php
+            echo "<select id='dept_name_for_position' name='dept_name_for_position'><option value=''>Select a department name</option>";
+            while($row = mysql_fetch_assoc($resultDepartment)) {
+                echo "<option value = '" . $row["dept_code"] . "'>" . $row["dept_code"] . " - " . $row["department_name"] . "</option>";   
+            }
+            echo "</select>";?>
+        <input type='hidden' name='dept_code' class="input-xlarge" style='background:#E9E9E9;' readonly>
+        <br/><br/>
+        
+        <span class="spanHeader">Admin Privilege:</span>
+            <select value="admin_privileges" name="admin_privileges" class="input-medium">
+                <option value="">Select a privillege</option>
+                <option value = "Admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Admin"){echo "selected='selected'";} ?>>Yes</option>
+                <option value = "Non_admin" <?php if(isset($_POST["submit"]) && $_POST["admin_privileges"] == "Non_admin"){echo "selected='selected'";} ?>>No</option>
+            </select><br/><em class="note">Permission to add, edit, and terminate employees.</em><br/><br/>
+        
+        
+        <span class="spanHeader">Manager Privilege:</span>
+            <select value="manager_privileges" name="manager_privileges" class="input-medium">
+                <option value="">Select a privillege</option>
+                <option value = "Manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Manager"){echo "selected='selected'";} ?>>Yes</option>
+                <option value = "Non_manager" <?php if(isset($_POST["submit"]) && $_POST["manager_privileges"] == "Non_manager"){echo "selected='selected'";} ?>>No</option>
+            </select> <br/><em class="note">Permission to view direct reports' information and materials that are restricted to managers.</em><br/>
 
         
         <!-- Department -->

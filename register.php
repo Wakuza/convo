@@ -7,15 +7,17 @@
 
     $errorId = "";
 
-    $result = mysql_query("SELECT * FROM employee");
-
     if(isset($_POST["submit"])) {
         $ssn = sanitize($_POST["ssn_digits"]);
         $dob = sanitize($_POST["dob"]);
+        
+        $dobInput = multiexplode(array("-", "/"), $dob);
+        $date_of_birth = $dobInput[0] . "-" . $dobInput[1] . "-" . $dobInput[2];
+        
         if(empty($_POST["ssn_digits"]) || empty($_POST["dob"])) {
             $errorId = "<span class='registerErrors'>Please enter your SSN and Date of Birth.</span>";
         }
-        else if(census_verify_exists($ssn, $dob) == false){
+        else if(register_verify_exists($ssn, $date_of_birth) == false){
             $errorId = "<span class='registerErrors'>Wrong SSN or date of birth.  Please try again.</span>";
         }
         else if(empty($_POST["username"])){
@@ -57,7 +59,7 @@
             $ssn = $_POST["ssn_digits"];
             $dob = $_POST["dob"];
 
-            register_user($register_data, $ssn, $dob);
+            register_user($register_data, $ssn, $date_of_birth);
             // Redirect
             //header("Location: verify.php?success");
             echo "<p class='headerPages'>You have been registered successfully! Please login using the form at upper-right corner of the screen.</p>";
@@ -68,12 +70,12 @@
 ?>
     <p>Please create your own username and password.</p>
 
-    <form id="search_employee" method="POST" action="register.php">
+    <form id="search_employer" method="POST" action="register.php">
         <span class="spanHeader">Enter your last four SSN digits: </span>
         <input type="password" name="ssn_digits" size='5' maxlength="4"><br/><br/>
         <span class="spanHeader">Enter your Date of Birth:</span>
-        <input type="text" name="dob" class="datepicker" placeholder="MM-DD-YYYY"><br/>
-        <em class="note">MM-DD-YYYY</em><br/><br/>
+        <input type="text" name="dob" placeholder="MM/DD/YYYY"><br/>
+        <em class="note">MM/DD/YYYY</em><br/><br/>
         
         
         <span class="spanHeader">Username: </span>

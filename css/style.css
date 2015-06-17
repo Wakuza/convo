@@ -108,7 +108,7 @@ footer {
 }
 
 .emailContact{
-    margin-left: 215px;
+    margin-left: 220px;
     font-weight: normal;
 }
 
@@ -124,8 +124,7 @@ footer {
 
 /* Footer ends */
 
-/*
-
+/* Resets */
 ul {
     padding: 0;
     margin: 0 0 20px 0;
@@ -135,7 +134,7 @@ ul {
 ul li {
     padding: 5px 0;
 }
-fReset ends */
+/* Reset ends */
 
 /* LOGIN and REGISTER */
 ul li input[type="text"], ul li input[type="password"] {
@@ -165,6 +164,8 @@ ul li input[type="text"], ul li input[type="password"] {
 
 .widget {
     margin-bottom: 20px;
+    z-index: 2;
+    position: relative;
 }
 
 .widget h2 {
@@ -176,104 +177,6 @@ ul li input[type="text"], ul li input[type="password"] {
 
 .widget .inner {
     margin: 0 10px;
-}
-
-/* Navigation */
-#menu li > ul {
-	visibility: hidden;
-	opacity: 0;
-	transition: visibility 0s linear 0s, opacity 0s;
-}
-
-#menu li:hover > ul {
-	opacity: 1;
-	transition-delay: 0s;
-	visibility: visible;
-    background: white;
-    width: 220px;
-    margin-left: 320px;
-}
-
-#menu .HRmenu:hover > ul{
-    margin-left: 80px;  
-    width: 200px;
-}
-
-#menu ul li ul li {
-	display: list-item;
-    width: 220px;
-    line-height: 25px;
-    padding-bottom: 4px;
-    padding-top: 4px;
-}
-
-#menu ul li ul li:hover {
-    background: #71AB3A; 
-}
-
-#menu .HRmenu ul li:hover{
-    width: 200px;   
-}
-
-#menu ul li ul li a:hover {
-    color: #fff;
-}
-
-
-#menu li ul {
-	padding: 0px;
-	position: absolute;
-	top: 70px;
-	left: -7px;
-    margin-top: -40px;
-    list-style: none;
-}
-
-#menu{
-    margin-top: 185px;
-}
-
-/* Employee page ---------------------------- */
-#termination_checkbox {
-    float: left;
-    display: inline-block;
-    margin-left: 145px;
-    margin-top: -21px;
-}
-
-nav {
-    position: absolute;
-    margin-top: 160px;
-    
-}
-
-nav ul {
-    margin: 0; 
-    font: normal normal 20px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif; 
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 10px;  
-    color: #0f5390;
-}
-
-nav ul li a {
-    color: #0f5390;
-    text-decoration: none;
-    padding: 8px 16px 8px 20px;
-    border-style: none;
-    margin: 0;
-    font-weight: normal !important;
-    font-style: normal; 
-}
-
-nav ul li.current {
-    font-weight: bold;
-}
-
-nav ul li a:last {
-    border-right: 0;
 }
 
 /* Aside */
@@ -295,13 +198,6 @@ aside {
 /*Resources*/
 .resources{
     font-size: 12pt;   
-    padding: 0;
-    margin: 0 0 20px 0;
-    list-style: none;
-}
-
-.resources li {
-     padding: 5px 0;   
 }
 
 #resourcesLeft, #resourcesRight{
@@ -312,26 +208,9 @@ aside {
 
 #resourcesRight{
     position: absolute;   
-    padding: 0;
-    margin: 0 0 20px 0;
 }
 
 /*401K*/
-.underline {
-    text-decoration: underline;   
-}
-.fourOneK {
-    font-size: 13pt;
-}
-
-.fourOneK li {
-    padding: 5px 0;   
-}
-
-/* Enrollment Page */
-.questionnaire {
-    font-size: 14pt;   
-}
 
 
 /* Misc */
@@ -367,16 +246,6 @@ aside {
     width: 250px;
 }
 
-#status_logout {
-     padding: 0;
-    margin: 0 0 20px 0;
-    list-style: none;   
-}
-
-#status_logout li {
-    padding-top: 8px;
-    padding-bottom: 10px;   
-}
 #status_logout a{
     text-decoration: none;
 }
@@ -390,6 +259,13 @@ aside {
 
 #termination_box {
     display: none;   
+}
+
+#termination_checkbox {
+    float: left;
+    display: inline-block;
+    margin-left: 145px;
+    margin-top: -21px;
 }
 
 /**
@@ -422,6 +298,12 @@ aside {
 
 /* ENDS */
 
+/* FILE UPLOAD PAGE */
+.file_upload {
+    margin-left: 20px;
+}
+/* ENDS */
+
 /* CONTACT PAGE */
 .contact, .contact_info {
     margin-left: 0px;
@@ -443,3 +325,119 @@ hr {
     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));  
 }
 /* ENDS */
+
+/* ------------------------ Navigation Bar---------------------------------*/
+nav ul li a {
+    font-weight: normal !important;
+    font-style: normal;    
+}
+
+nav ul li a:last {
+    border-right: 0;
+}
+
+/* primary navigation */
+#primaryNav {
+    z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: left;
+	display: block;
+    margin-left: 460px;
+}
+
+/* Move navigation to the right side */
+#primaryNav ul {
+	list-style: none;
+	position: relative;
+    display: inline-block;
+    margin-right: 450px;
+    margin-top: 198px;
+    font-weight: normal !important;
+
+}
+
+/* Appearance of the primary nav's a */
+#primaryNav ul a {
+	display: block;
+	text-decoration: none;
+	font-size: 16pt;
+	padding: 0 25px;
+    color: #0f5390;
+}
+
+/* Appearance - Main li of the primary nav */
+#primaryNav ul li {
+	position: relative;
+	float: left;
+	margin-top: 10px;
+	padding: 0;
+    color: #0f5390; 
+}
+
+/* Hover to change the background for primary nav and submenu */
+#primaryNav ul li:hover {
+    
+}
+
+#primaryNav ul li a:hover {
+    color: black;
+}
+
+/* Appearance of the submenu */
+#primaryNav ul ul {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+    padding: 0;
+    margin-left: -35px;     /* Move the submenu box  to the left or right*/
+    margin-top: 1px;
+    background-color: white;
+    
+    
+}
+
+/* Give the width of the submenu */
+#primaryNav ul ul li {
+	float: none;
+	width: 100%;
+    text-align: center; 
+}
+
+#primaryNav ul ul li:hover {
+    background: #71AB3A; 
+}
+
+#primaryNav ul ul li a:hover {
+    color: white;  
+}
+
+/* Give the space between the submenu */
+#primaryNav ul ul a {
+	padding: 4px 9px;
+    width: 170px;   /* Give the width of the white background */
+}
+
+/* It ACTUALLY shows the submenu.  Without display, the submenu doesn't appear */
+#primaryNav ul li:hover > ul {
+	display: inline-block;
+}
+
+/* ~~~~~~~~~~~ submenu ~~~~~~~~~ */
+.convo_university {
+    margin-left: 10px !important; 
+}
+
+.HR {
+    margin-left: -50px !important;   
+}
+
+/* ------------------------ Primary Navigation Ends ---------------------------------*/
+
+.infini-logo {
+    z-index: 2;
+    position: relative;
+}

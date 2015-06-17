@@ -9,7 +9,7 @@
 
 <?php
 /*
-    if(has_access($user_data["employeeID"]) === true){
+    if(has_access($user_data["employee_id"]) === true){
     echo "<div id='hireOrTerm'>";
     echo "<a class='hireOrTerm' href='hire.php'>Add</a><a class='hireOrTerm' href='termination.php'>Edit</a><br/><br/><br/>";
     echo "</div>";
@@ -25,20 +25,18 @@
     <input onchange="filterme()" type="checkbox" class="active_terminate" name="active_terminate" value="Terminated">&nbsp;Terminated</div><br/>
 
 <?php
-    /*
-    ***************** employees will log in and see the tables only if they are managers *****************
-    */
-    /*$query = "SELECT e.employeeID, e.firstname, e.lastname, e.position_name, CONCAT(s.firstname, ' ', s.lastname) AS supervisor, CONCAT(MONTH(e.hire_date), '-' DAY(e.hire_date), '-' YEAR(e.hiredate)) AS hire_date, e.payroll_status, e.employment_status FROM employee s RIGHT JOIN employee e ON e.supervisorID = s.employeeID where e.supervisorID = " . $user_data["employeeID"];
-    $result = mysqli_query($link, $query);*/
+/*
+SELECT e.employee_id, e.firstname, e.lastname, e.supervisor_id, p.position_name AS position, CONCAT(s.firstname, ' ', s.lastname) AS supervisor, CONCAT(MONTH(e.hire_date), '-', DAY(e.hire_date), '-', YEAR(e.hire_date)) AS hireDate, CONCAT(MONTH(e.review_date), '-', DAY(e.review_date), '-', YEAR(e.review_date)) AS reviewDate, e.payroll_status, e.hourly_rate, e.employment_status FROM employee s RIGHT JOIN employee e ON e.supervisor_id = s.employee_id LEFT JOIN position_type p ON e.job_code = p.job_code WHERE employee_id NOT IN("C001", "C002", "C003")
+*/
     /*
     * See every employees
     */
-    if($user_data["admin_privileges"] == 1) {
-        $query = "SELECT e.employeeID, e.firstname, e.lastname, e.position_name, CONCAT(s.firstname, ' ', s.lastname) AS supervisor, CONCAT(MONTH(e.hire_date), '-', DAY(e.hire_date), '-', YEAR(e.hire_date)) AS hireDate, CONCAT(MONTH(e.review_date), '-', DAY(e.review_date), '-', YEAR(e.review_date)) AS reviewDate, e.payroll_status, e.hourly_rate, e.employment_status FROM employee s RIGHT JOIN employee e ON e.supervisorID = s.employeeID";
+    if(has_access($user_data["job_code"]) == true) {
+        $query = "SELECT * FROM convo_employee_vw";
         $result = mysqli_query($link, $query);
     }
     else {
-        $query = "SELECT e.employeeID, e.firstname, e.lastname, e.position_name, CONCAT(s.firstname, ' ', s.lastname) AS supervisor, CONCAT(MONTH(e.hire_date), '-', DAY(e.hire_date), '-', YEAR(e.hire_date)) AS hireDate, CONCAT(MONTH(e.review_date), '-', DAY(e.review_date), '-', YEAR(e.review_date)) AS reviewDate, e.payroll_status, e.hourly_rate, e.employment_status FROM employee s RIGHT JOIN employee e ON e.supervisorID = s.employeeID where e.supervisorID = " . $user_data["employeeID"];
+        $query = "SELECT * FROM convo_employee_vw WHERE supervisor_id = " . $user_data["employee_id"];
         $result = mysqli_query($link, $query);   
     }
     $num_rows = mysqli_affected_rows($link);
@@ -47,13 +45,13 @@
            echo "<thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Position</th><th>Supervisor</th><th>Hire Date</th><th>Review Date</th><th>Payroll Status</th><th>Hourly Rate</th><th>Status</th></tr></thead><tbody>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr><td>";
-                if($user_data["admin_privileges"] == 1){
-                    echo "<a href='edit.php?employeeID=" . $row["employeeID"] . "'>" . $row["employeeID"] . "</a>";
+                if(has_access($user_data["job_code"]) == true){
+                    echo "<a href='edit.php?employee_id=" . $row["employee_id"] . "'>" . $row["employee_id"] . "</a>";
                 }
                 else{
-                    echo $row["employeeID"];
+                    echo $row["employee_id"];
                 }
-            echo "</td><td>" . $row["firstname"] . "</td><td>" . $row["lastname"] .  "</td><td>" . $row["position_name"] . "</td><td>" . $row["supervisor"] . "</td><td>" . $row["hireDate"] . "</td>";
+            echo "</td><td>" . $row["firstname"] . "</td><td>" . $row["lastname"] .  "</td><td>" . $row["position"] . "</td><td>" . $row["supervisor"] . "</td><td>" . $row["hireDate"] . "</td>";
                 if($row["reviewDate"] == "1-1-1900"){
                     echo "<td></td>";
                 }

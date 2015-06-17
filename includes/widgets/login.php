@@ -1,5 +1,5 @@
-<div class="widget">    <!-- Div class of Widget starts -->
-    <div class="inner"> <!-- Div class of inner starts -->
+<div class="widget">
+    <div class="inner">
         <form action="login.php" method="post" id="loginBox">
             <ul id="login">
                 <li>
@@ -9,7 +9,7 @@
                     <input type="password" name="password" placeholder="Password" <?php if(isset($_COOKIE['password'])){echo "value ='" . $_COOKIE['password'] . "'";} ?>>
                 </li>
                 <li>
-                    <input type="submit" value="Login" id="logIn">
+                    <input type="submit" value="Login" id="logIn" name="login">
                 </li>
                 <li id="rememberBox">
                     <input type="checkbox" value="RememberMe" id="remBox" name="remBox">Remember Me
@@ -22,6 +22,6 @@
             </ul>
             
         </form>
-    </div>  <!-- Div class of Inner ends -->
+    </div>
     <!--<p class="forgotten"> Forgotten your <a href="recover.php?mode=username">username</a> or <a href="recover.php?mode=password">password</a>?</p>-->
-</div>  <!-- Div class of Widget ends -->
+</div>
