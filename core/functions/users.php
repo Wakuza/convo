@@ -6,8 +6,8 @@
     // employee ID from the username will apply to the Login Function below
     function user_id_from_username($username) {
         $username = sanitize($username);
-        $query = mysql_query("SELECT employeeID FROM employee WHERE username = '$username'");
-        return mysql_result($query, 0, "employeeID");
+        $query = mysql_query("SELECT employee_id FROM employee WHERE username = '$username'");
+        return mysql_result($query, 0, "employee_id");
     }
 
     function login($username, $password) {
@@ -16,31 +16,37 @@
         $username = sanitize($username);
         $password = md5($password);
         
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE username = '$username' AND password = '$password'");
+        $query = mysql_query("SELECT COUNT('employee_id') FROM employee WHERE username = '$username' AND password = '$password'");
         
         return(mysql_result($query, 0) == 1) ? $user_id : false;
     }
 
     function logged_in() {
-        return(isset($_SESSION['employeeID'])) ? true : false;   
+        return(isset($_SESSION['employee_id'])) ? true : false;   
     }
 
     // The users are active when they register the usernames
     function user_active($username) {
         $username = sanitize($username);
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE username = '$username' AND active = 1");
+        $query = mysql_query("SELECT COUNT('employee_id') FROM employee WHERE username = '$username' AND active = 1");
         return(mysql_result($query, 0) == 1) ? true : false;      
     }
+
+    function test_employee_id($employeeID){
+        $query = mysql_query("SELECT * FROM employee WHERE employee_id = '$employeeID'");
+        return (mysql_result($query, 0) == 1) ? true : false;
+    }
+
 
     /*
     * REGISTRATION FUNCTIONS
     */
 
     // VERIFY SSN and DOB
-    function census_verify_exists($ssn, $dob) {
+    function register_verify_exists($ssn, $dob) {
         $ssn = sanitize($ssn);
         $dob = sanitize($dob);
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE ssn = '$ssn' AND date_of_birth = '$dob'");
+        $query = mysql_query("SELECT COUNT('employee_id') FROM employee WHERE ssn = '$ssn' AND DATE_FORMAT(date_of_birth,'%m-%d-%Y') = '$dob'");
         return(mysql_result($query, 0) == 1) ? true : false;
     }
 
@@ -56,7 +62,7 @@
         $fields = "" . implode(", ", array_keys($register_data)) . "";
         $data = "\"" . implode("\" , \"", $register_data) . "\"";
         
-        mysql_query("UPDATE employee SET username = '$username', password = '$password' WHERE ssn = '$ssn' AND date_of_birth = '$dob'");
+        mysql_query("UPDATE employee SET username = '$username', password = '$password' WHERE ssn = '$ssn' AND DATE_FORMAT(date_of_birth,'%m-%d-%Y') = '$dob'");
 
         /*email($register_data["email"], "Activate your account", "
             Hello " . $register_data["firstname"] . ",\n\nYou need to activiate your account, so use the link below:\n\nhttp://localhost/testing/activiate.php?email=" . $register_data["email"] . " &email_code=" . $register_data["email_code"] . "\n\n-Infini Consulting");*/
@@ -74,14 +80,14 @@
         foreach($update_data as $field => $data) {
             $update[] = "$field = \"$data\"";
         }
-        mysql_query("UPDATE employee SET " . implode(", ", $update) . " WHERE employeeID = '$user_id'") or die(mysql_error());
+        mysql_query("UPDATE employee SET " . implode(", ", $update) . " WHERE employee_id = '$user_id'") or die(mysql_error());
     }
 
     function change_password($user_id, $password) {
         $user_id = $user_id;
         //setcookie("password", $password, time() + 7200);
         $password = md5($password); 
-        mysql_query("UPDATE employee SET password = '$password', password_recover = 0 WHERE employeeID = '$user_id'");    
+        mysql_query("UPDATE employee SET password = '$password', password_recover = 0 WHERE employee_id = '$user_id'");    
     }
 
     /*
@@ -89,39 +95,39 @@
     */
 
     // Employee Page - Access for Hire and Changes(Terminations)
-    function has_access($user_id) {
-        $user_id = $user_id;
+    function has_access($job_code) {
+        $job_code = $job_code;
         //$type = (int)$type;
         
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$user_id' AND admin_privileges = '1'");
+        $query = mysql_query("SELECT COUNT('job_code') FROM position_type WHERE job_code = '$job_code' AND admin_privilege = '1'");
         return (mysql_result($query, 0) == 1) ? true : false;
     }
 
     // Manager Access - Links buttons visible and unvisible if they are not manager.
-    function has_access_manager($user_id) {
-        $user_id = $user_id;    
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$user_id' AND manager_privileges = '1'");
+    function has_access_manager($job_code) {
+        $job_code = $job_code;    
+        $query = mysql_query("SELECT COUNT('job_code') FROM position_type WHERE job_code = '$job_code' AND manager_privilege = '1'");
         return (mysql_result($query, 0) == 1) ? true : false;
     }
 
     //Interpreting Department Access - everyone in this department have access.
-    function has_access_interpreting($user_id){
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$user_id' AND department_name = 'Interpreting'");
+    function has_access_interpreting($job_code){
+        $query = mysql_query("SELECT COUNT('job_code') FROM position_type WHERE job_code = '$job_code' AND dept_code = 'INT'");
         return (mysql_result($query, 0) == 1) ? true: false;
     }
 
-    function has_access_support($user_id){
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$user_id' AND department_name = 'Support'");
+    function has_access_support($job_code){
+        $query = mysql_query("SELECT COUNT('job_code') FROM position_type WHERE job_code = '$job_code' AND dept_code = 'SUP'");
         return (mysql_result($query, 0) == 1) ? true: false;
     }
 
     // Policy Access allows to see the links depending on the positions.
-    function policy_access($user_id, $position) {
+    /*function policy_access($user_id, $position) {
         $user_id = $user_id;
         
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$user_id' AND position_name = '$position'");
+        $query = mysql_query("SELECT COUNT('employee_id') FROM employee WHERE employee_id = '$user_id' AND position_name = '$position'");
         return (mysql_result($query, 0) == 1) ? true : false;
-    }
+    }*/
 
     // Employee's information
     function user_data($user_id) {
@@ -135,7 +141,7 @@
             unset($func_get_args[0]);
             
             $fields = "" . implode(", ", $func_get_args) . "";
-            $query = mysql_query("SELECT $fields FROM employee WHERE employeeID = '$user_id'");
+            $query = mysql_query("SELECT $fields FROM employee WHERE employee_id = '$user_id'");
             //$result = mysql_result($link, $query);
             $data = mysql_fetch_assoc($query);
             
@@ -150,7 +156,7 @@
     // Census Access for the full-time employees only.
     function has_access_census($user_id) {
         $user_id = $user_id;    
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$user_id' AND payroll_status = 'FT'");
+        $query = mysql_query("SELECT COUNT('employee_id') FROM employee WHERE employee_id = '$user_id' AND payroll_status = 'FT'");
         return (mysql_result($query, 0) == 1) ? true : false;
     }
 
@@ -166,7 +172,7 @@
             unset($func_get_args[0]);
             
             $fields = "" . implode(", ", $func_get_args) . "";
-            $query = mysql_query("SELECT $fields FROM employee WHERE employeeID = '$user_id'");
+            $query = mysql_query("SELECT $fields FROM employee WHERE employee_id = '$user_id'");
             //$result = mysql_result($link, $query);
             $data = mysql_fetch_assoc($query);
             
@@ -182,7 +188,7 @@
     function supervisor_name($user_id, $supervisor_id) {
         $user_id = $user_id;
         
-        $query = mysql_query("SELECT COUNT('supervisorID') FROM employee WHERE employeeID = '$user_id' AND supervisorID = '$supervisor_id'");
+        $query = mysql_query("SELECT COUNT('supervisor_id') FROM employee WHERE employee_id = '$user_id' AND supervisor_id = '$supervisor_id'");
         return (mysql_result($query, 0) == 1) ? true : false;
     }
 
@@ -198,7 +204,26 @@
             unset($func_get_args[0]);
             
             $fields = "s." . implode(", s.", $func_get_args) . "";
-            $query = mysql_query("SELECT $fields FROM employee s INNER JOIN employee e ON s.employeeID = e.supervisorID WHERE e.employeeID = '$user_id'");
+            $query = mysql_query("SELECT $fields FROM employee s INNER JOIN employee e ON s.employee_id = e.supervisor_id WHERE e.employee_id = '$user_id'");
+            $data = mysql_fetch_assoc($query);
+            
+            return $data;
+        }
+    }
+
+ // Position Data
+    function position_data($user_id) {
+        $data = array();
+        $user_id = $user_id;
+        
+        $func_num_args = func_num_args();
+        $func_get_args = func_get_args();
+        
+        if($func_num_args > 1) {
+            unset($func_get_args[0]);
+            
+            $fields = "e." . implode(", e.", $func_get_args) . "";
+            $query = mysql_query("SELECT $fields, p.position_name FROM employee e INNER JOIN position_type p ON e.job_code = p.job_code WHERE e.employee_id = '$user_id'");
             $data = mysql_fetch_assoc($query);
             
             return $data;
@@ -213,47 +238,51 @@
     // User Exists - can't have twice same username and must be unique
     function user_exists($username) {
         $username = sanitize($username);
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE username = '$username'");
+        $query = mysql_query("SELECT COUNT('employee_id') FROM employee WHERE username = '$username'");
         return(mysql_result($query, 0) == 1) ? true : false;
     }
 
     // Employee ID Exists - must be unique and can't be same employeeID
-    function employee_id_exists($employeeID) {
-        $employeeID = sanitize($employeeID);
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE employeeID = '$employeeID'");
+    function employee_id_exists($employee_id) {
+        $employee_id = sanitize($employee_id);
+        $query = mysql_query("SELECT COUNT('employee_id') FROM employee WHERE employee_id = '$employee_id'");
         return(mysql_result($query, 0) == 1) ? true : false;
     }
 
+    //Position Name Exists - can't be same position name (Under Add DB Values)
     function position_name_exists($positionName) {
         $positionName = sanitize($positionName);
         $query = mysql_query("SELECT COUNT('position_name') FROM position_type WHERE position_name = '$positionName'");
         return(mysql_result($query, 0) == 1) ? true : false;
     }
-
+    //Department Name Exists - can't be same department name (Under Add DB Values)
     function department_name_exists($departmentName) {
         $departmentName = sanitize($departmentName);
         $query = mysql_query("SELECT COUNT('department_name') FROM department WHERE department_name = '$departmentName'");
         return(mysql_result($query, 0) == 1) ? true : false;
     }
 
+    //Convo Location Exists - can't be same convo location (Under Add DB Values)
     function convo_location_exists($convoLocation) {
         $convoLocation = sanitize($convoLocation);
-        $query = mysql_query("SELECT COUNT('convo_location') FROM location WHERE convo_location = '$convoLocation'");
+        $query = mysql_query("SELECT COUNT('location_code') FROM location WHERE convo_location = '$convoLocation'");
         return(mysql_result($query, 0) == 1) ? true : false;
     }
     
+    //Job Code Exists - can't be same job code (Under Add DB Values)
     function job_code_exists($jobCode) {
         $jobCode = sanitize($jobCode);
         $query = mysql_query("SELECT COUNT('job_code') FROM position_type WHERE job_code = '$jobCode'");
         return(mysql_result($query, 0) == 1) ? true : false;
     }
 
+    //Department Code Exists - can't be same department code (Under Add DB Values)
     function department_code_exists($deptCode) {
         $deptCode = sanitize($deptCode);
         $query = mysql_query("SELECT COUNT('dept_code') FROM department WHERE dept_code = '$deptCode'");
         return(mysql_result($query, 0) == 1) ? true : false;
     }
-
+    //Convo Location Code Exists - can't be same convo location code (Under Add DB Values)
     function convo_location_code_exists($locationCode) {
         $locationCode = sanitize($locationCode);
         $query = mysql_query("SELECT COUNT('location_code') FROM location WHERE location_code = '$locationCode'");
@@ -266,15 +295,15 @@
 /*
     function user_id_from_email($email) {
         $email= sanitize($email);
-        $query = mysql_query("SELECT employeeID FROM employee WHERE email = '$email'");
-        return mysql_result($query, 0, "employeeID");
+        $query = mysql_query("SELECT employee_id FROM employee WHERE email = '$email'");
+        return mysql_result($query, 0, "employee_id");
     }
     
     function recover($mode, $email) {
         $mode = sanitize($mode);
         $email = sanitize($email);
 
-        $user_data = user_data(user_id_from_email($email), "employeeID", "firstname", "username");
+        $user_data = user_data(user_id_from_email($email), "employee_id", "firstname", "username");
 
         if($mode == "username") {
             // Recover username
@@ -284,9 +313,9 @@
             // Recover password
             $generated_password = substr(md5(rand(999, 999999)), 0, 8);
             //die($generated_password);
-            change_password($user_data["employeeID"], $generated_password);
+            change_password($user_data["employee_id"], $generated_password);
 
-            update_user($user_data["employeeID"], array("password_recover" => "1"));
+            update_user($user_data["employee_id"], array("password_recover" => "1"));
 
             email($email, "Your password recovery", "Hello " . $user_data["firstname"] . "\n\nYour new password is: " . $generated_password . "\n\n -Infini Consulting");
 
@@ -295,14 +324,14 @@
     
     function email_exists($email) {
         $emil= sanitize($email);
-        $query = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE email = '$email'");
+        $query = mysql_query("SELECT COUNT('employee_id') FROM employee WHERE email = '$email'");
         return(mysql_result($query, 0) == 1) ? true : false;
     }
     
     function activate($email, $email_code) {
         $email      = mysql_real_escape_string($email);
         $email_code = mysql_real_escape_string($email_code);
-        $query  = mysql_query("SELECT COUNT('employeeID') FROM employee WHERE email = '$email' AND email_code = '$email_code' AND active = 0");
+        $query  = mysql_query("SELECT COUNT('employee_id') FROM employee WHERE email = '$email' AND email_code = '$email_code' AND active = 0");
         if(mysql_result($query, 0) == 1) {
             // query to update user active status
             mysql_query("UPDATE employee SET active = 1 WHERE email = '$email'");

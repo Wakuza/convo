@@ -1,4 +1,10 @@
 <?php
+
+
+
+
+
+
     session_start();
  
     require "database/connect.php";
@@ -9,12 +15,14 @@
     $current_file = end($current_file);
 
     if(logged_in() === true) {
-        $session_user_id = $_SESSION['employeeID'];
+        $session_user_id = $_SESSION['employee_id'];
         
-        $user_data = user_data($session_user_id, 'employeeID', "supervisorID", 'username', 'password', 'firstname', 'lastname', 'position_name', 'payroll_status', 'convo_location', 'res_state', 'password_recover', 'admin_privileges', 'date_of_birth', 'ssn', 'street_address', 'city', 'zipcode');
+        $user_data = user_data($session_user_id, 'employee_id', "email", "supervisor_id", 'username', 'password', 'firstname', 'lastname', 'job_code', 'payroll_status', 'location_code', 'res_state', 'password_recover', 'date_of_birth', 'ssn', 'street_address', 'city', 'zipcode', 'job_code', 'hire_date');
                 
-        $supervisor_data = supervisor_data($session_user_id, 'employeeID', "supervisorID", 'firstname', 'lastname');
+        // EMPLOYMENT DATA
+        $supervisor_data = supervisor_data($session_user_id, 'employee_id', "supervisor_id", 'firstname', 'lastname');
         
+        $position_data = position_data($session_user_id, "employee_id", "job_code");
         if(user_active($user_data["username"]) === false) {
             session_destroy();
             header("Location: index.php");
