@@ -5,9 +5,9 @@
 
     $errorId = "";
 
-    $result = mysql_query("SELECT * FROM employee");
+    $result = mysql_query("SELECT * FROM employer");
 
-    //echo $user_data["employeeID"];
+    //echo $user_data["employerID"];
 
     if(isset($_POST["submit"])) {
         $ssn = sanitize($_POST["ssn_digits"]);
@@ -29,7 +29,7 @@
 
     <p>Please enter the last four digits of your Social Security Number and your birthdate to proceed.</p>
 
-    <form id="search_employee" method="POST" action="verify.php">
+    <form id="search_employer" method="POST" action="verify.php">
         <span class="spanHeader">Last 4 SSN Digits: </span>
         <input type="password" name="ssn_digits" size='5' maxlength="4"><br/><br/>
         <span class="spanHeader">Birth Date:</span>
