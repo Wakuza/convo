@@ -28,7 +28,7 @@
 ?>
                         </ul>      
                     </li>
-                    <!--<li>
+                    <li>
                         <a href="#">Experts</a>
                         <ul>
                             <li><a href="#">Heart of Convo Expert</a></li>
@@ -52,16 +52,13 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li> -->
-                    <!--
+                    </li>
                     <li>
                         <a href="#">Convo University</a>
                         <ul class="convo_university">
                             <li><a href="log.php">Log</a></li>
                         </ul>
                     </li>
-                    -->
-
 <?php
         if(has_access_census($user_data["job_code"]) == true){
 ?>
