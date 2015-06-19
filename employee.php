@@ -2,27 +2,18 @@
     $title = "Convo Portal | Employees";
     include("core/init.php");
     manager_protect();
-    include("includes/overall/header.php");
+    include("assets/inc/header.inc.php");
 ?>
 
-<h1 class="headerPages">Employees</h1>
-
-<?php
-/*
-    if(has_access($user_data["employee_id"]) === true){
-    echo "<div id='hireOrTerm'>";
-    echo "<a class='hireOrTerm' href='hire.php'>Add</a><a class='hireOrTerm' href='termination.php'>Edit</a><br/><br/><br/>";
-    echo "</div>";
-    }
-    */
-?>
-
-<div id="active_leave_checkbox">
-    <input onchange="filterme()" type="checkbox" id="checkboxLoad" class="active_terminate" name="active_terminate" value="Active" >&nbsp;Active &nbsp;&nbsp;&nbsp;&nbsp; 
-    <input onchange="filterme()" type="checkbox" id="checkboxLoad" class="active_terminate" name="active_terminate" value="Leave" >&nbsp;Leave
-    </div>
-<div id="termination_checkbox">
-    <input onchange="filterme()" type="checkbox" class="active_terminate" name="active_terminate" value="Terminated">&nbsp;Terminated</div><br/>
+            <h1 class="headerPages">Employees</h1>
+            <div id="active_leave_checkbox">
+                <input onchange="filterme()" type="checkbox" id="checkboxLoad" class="active_terminate" name="active_terminate" value="Active" >&nbsp;Active &nbsp;&nbsp;&nbsp;&nbsp; 
+                <input onchange="filterme()" type="checkbox" id="checkboxLoad" class="active_terminate" name="active_terminate" value="Leave" >&nbsp;Leave
+            </div>
+            <div id="termination_checkbox">
+                <input onchange="filterme()" type="checkbox" class="active_terminate" name="active_terminate" value="Terminated">&nbsp;Terminated
+            </div>
+            <br/>
 
 <?php
 /*
@@ -70,5 +61,5 @@ SELECT e.employee_id, e.firstname, e.lastname, e.supervisor_id, p.position_name 
             }
         }        
     echo "</tbody></table>";
-    include("includes/overall/footer.php"); 
+    include("assets/inc/footer.inc.php");
 ?>

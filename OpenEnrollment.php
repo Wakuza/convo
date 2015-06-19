@@ -2,7 +2,7 @@
     $title = "Convo Portal | Open Enrollment";
     include("core/init.php");
     protect_page();
-    include("includes/overall/header.php");
+    include("assets/inc/header.inc.php");
 
 
     if(isset($_FILES["filePDF"])){
@@ -45,32 +45,17 @@
     }
 ?>
 
-<h1 class="headerPages">Open Enrollment</h1>
+            <h1 class="headerPages">Open Enrollment</h1>
 
-<p>We have a <a href="HR/Benefits/Introduction.pdf">new provider</a> this year.</p>
+            <p>We have a <a href="HR/Benefits/Introduction.pdf">new provider</a> this year.</p>
 
-<p>Download the <a href="HR/Benefits/Questionnaire.pdf">Medical Questionnaire</a> and fill out all relevant fields. You can either return this form to <a href="mailto:hr@convorelay.com">hr@convorelay.com</a> or upload your file at your earliest convenience.</p>
+            <p>Download the <a href="HR/Benefits/Questionnaire.pdf">Medical Questionnaire</a> and fill out all relevant fields. You can either return this form to <a href="mailto:hr@convorelay.com">hr@convorelay.com</a> or upload your file at your earliest convenience.</p>
 
-<form action="OpenEnrollment.php" method="post" enctype="multipart/form-data"> 
-
-  <p>Upload Medical Questionnaire:
-
-
-    <input type="file" id="filePDF" name="filePDF"/></p> 
-
-  <p> 
-
-    <input type="hidden" name="action" value="upload"/> 
-
-    <input type="submit" name="submit" value="Submit"/> 
-
-  </p> 
-    
-
-</form>
-
-<p>Please direct all benefits-related questions to <a href="mailto:hr@convorelay.com">hr@convorelay.com</a>.</p>
-
+            <form action="OpenEnrollment.php" method="post" enctype="multipart/form-data"> 
+                <p>Upload Medical Questionnaire: <input type="file" id="filePDF" name="filePDF"/> </p>
+                <p><input type="hidden" name="action" value="upload"/> <input type="submit" name="submit" value="Submit"/> </p> 
+            </form>
+            <p>Please direct all benefits-related questions to <a href="mailto:hr@convorelay.com">hr@convorelay.com</a>.</p>
 <?php
-    include("includes/overall/footer.php"); 
+    include("assets/inc/footer.inc.php"); 
 ?>

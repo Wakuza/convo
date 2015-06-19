@@ -75,6 +75,11 @@
     }
 ?>
 
+<script>
+    $("#primaryNav").hide();
+    $("aside").hide();
+</script>
+
 <br/><br/><br/><br/>
 
 <form method="post">
@@ -135,10 +140,6 @@
 
         <input type="submit" id="addButton" name="submit" value="Add" />
 </form>
-
-       
-
-
 <?php
     include("assets/inc/footer.inc.php"); 
 ?>

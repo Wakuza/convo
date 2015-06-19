@@ -1,6 +1,7 @@
 <?php
     include("core/init.php");
 
+
     if(empty($_POST) === false) {
         $username = $_POST["username"];
         $password = $_POST["password"];
@@ -57,8 +58,9 @@
         $errors[] = "No data received";
     
     }
+
     $title = "Convo Portal | Login";
-    include("includes/overall/header.php");
+    include("assets/inc/header.inc.php");
 
     if(empty($errors) === false) {
         ?>
@@ -66,5 +68,5 @@
         <?php echo output_errors($errors);
     }
 
-    include("includes/overall/footer.php");
+    include("assets/inc/footer.inc.php");
 ?>

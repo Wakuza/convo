@@ -1,10 +1,11 @@
 <?php
     include ("core/init.php");
-    include("includes/overall/header.php");
+    include("assets/inc/header.inc.php");
 ?>
 
 <h1>Sorry</h1>
 <p>You need to be logged in to access the page.</p>
 
 <?php
-include("includes/overall/footer.php"); ?>
+    include("assets/inc/footer.inc.php");
+?>

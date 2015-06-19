@@ -1,7 +1,7 @@
 <?php 
     $title = "Convo Portal | Change Password";
     include("core/init.php");
-    include("includes/overall/header.php");
+    include("assets/inc/header.inc.php");
     protect_page();
     $errors = "";
 
@@ -17,13 +17,13 @@
         
         if(md5($_POST["current_password"]) === $user_data["password"]) {
             if(trim($_POST["password"]) !== trim($_POST["password_again"])) {
-                $errors = "<span class='changePassErrors'>Your new passwords do not match.</span>";
+                $errors = "<span class='error'>Your new passwords do not match.</span>";
             } else if(strlen($_POST["password"]) < 6) {
-                $errors = "<span class='changePassErrors'>Your password must be at least 6 characters.</span>";  
+                $errors = "<span class='error'>Your password must be at least 6 characters.</span>";  
             } 
         }
         else {
-            $errors = "<span class='changePassErrors'>Your current password is incorrect.</span>";
+            $errors = "<span class='error'>Your current password is incorrect.</span>";
          }
     }
     $displayNone = "";
@@ -51,23 +51,21 @@
         }
     ?>
 
-<h1 class="headerPages" <?php echo $displayNone; ?>>Change Password</h1>
+            <h1 class="headerPages" <?php echo $displayNone; ?>>Change Password</h1>
+            <form action="" method="post">
+                <span class="spanHeader">Current Password: </span>
+                <input type="password" name="current_password"><br/>
 
-    <form action="" method="post">
-        <span class="spanHeader">Current Password: </span>
-        <input type="password" name="current_password"><br/>
+                <span class="spanHeader">New Password: </span>
+                <input type="password" name="password">&nbsp;&nbsp;<em>The password must be between 6 and 30 characters.</em><br/>
 
-        <span class="spanHeader">New Password: </span>
-        <input type="password" name="password">&nbsp;&nbsp;<em>The password must be between 6 and 30 characters.</em><br/>
-        
-        <span class="spanHeader">Confirm Password: </span>
-        <input type="password" name="password_again"><br/>
+                <span class="spanHeader">Confirm Password: </span>
+                <input type="password" name="password_again"><br/>
 
-        <input id="changePassButton" type="submit" value="Change Password">
-    </form>
-
+                <input id="changePassButton" type="submit" value="Change Password">
+            </form>
 <?php 
-echo $errors;
-}
-include("includes/overall/footer.php"); 
+        echo $errors;
+    }
+    include("assets/inc/footer.inc.php");
 ?>

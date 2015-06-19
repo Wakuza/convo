@@ -1,9 +1,5 @@
 <?php
-
-
-
-
-
+    $_ENV["HOSTNAME"] = "TESTING";
 
     session_start();
  

@@ -2,7 +2,7 @@
     $title = "Convo Portal | Log";
     include("core/init.php");
     protect_page();
-    include("includes/overall/header.php");
+    include("assets/inc/header.inc.php");
 
     $query_log = "CALL insert_log('$session_user_id', CURRENT_TIMESTAMP)";
     mysqli_query($link, $query_log);
@@ -28,5 +28,5 @@
     }
     echo"</tbody></table>";
 
-    include("includes/overall/footer.php"); 
+    include("assets/inc/footer.inc.php");
 ?>

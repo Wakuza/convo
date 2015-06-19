@@ -2,7 +2,7 @@
     $title = "Convo Portal | Announcements";
 
     include("core/init.php");
-    include("includes/overall/header.php");
+    include("assets/inc/header.inc.php");
     admin_protect();
 
     if(isset($_POST["submit"])) {
@@ -31,26 +31,25 @@ END
 ?>
 
 
+            <script type="text/javascript">
+                tinymce.init({
+                    selector: "textarea",
+                    theme: "modern",
+                    plugins: [
+                        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                        "searchreplace visualblocks visualchars code fullscreen",
+                        "insertdatetime nonbreaking save table contextmenu directionality",
+                        "template paste textcolor colorpicker textpattern"
+                    ],
+                    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                    toolbar2: "print preview media | forecolor backcolor",
+                    image_advtab: true,
+                    setContent: "TEST",
+                });
+            </script>
 
-<script type="text/javascript">
-tinymce.init({
-    selector: "textarea",
-    theme: "modern",
-    plugins: [
-        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-        "searchreplace visualblocks visualchars code fullscreen",
-        "insertdatetime nonbreaking save table contextmenu directionality",
-        "template paste textcolor colorpicker textpattern"
-    ],
-    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-    toolbar2: "print preview media | forecolor backcolor",
-    image_advtab: true,
-    setContent: "TEST",
-});
-</script>
-
-<h1 class="headerPages">Editing Announcements</h1>
-<h2 class="current_announcement">Current:</h2>
+            <h1 class="headerPages">Editing Announcements</h1>
+            <h2 class="current_announcement">Current:</h2>
 <?php
     $queryAnnouncements = "SELECT * FROM announcement_vw WHERE NOW() >= effective_date ORDER BY effective_date DESC";
     $result = mysqli_query($link, $queryAnnouncements);
@@ -75,7 +74,7 @@ tinymce.init({
             $future_announcement = $row["home_page"];
             $future_date = date('m/d/Y', strtotime($row["effective_date"]));
             $future_time = date('g:i a', strtotime($row["effective_date"]));
-            echo date('F d, Y g:i:s a', strtotime($row["effective_date"]));
+            echo date('F d, Y g:i:s a', strtotime($row["effective_date"])) . " (CST)";
             echo $row["home_page"];
             echo "<hr/>";
         }
@@ -83,18 +82,17 @@ tinymce.init({
 ?>
 
 
-<form method="post" action="announcements.php">
-    <textarea name="content" style="width:100%"><?php echo $future_announcement; ?></textarea><br/>
-    
-        <span>Effective Date:</span>
-        <input type="text" placeholder="MM/DD/YYYY" class="datepicker" name="effective_date" value="<?php echo $future_date;?>">
-    
-        <span>Time:</span>
-        <input type="text" class="input-small" name="announcement_time" value="<?php echo $future_time;?>"><br/>
-    
-    <input type="submit" name="submit" value="Submit">
-</form>
+            <form method="post" action="announcements.php">
+                <textarea name="content" style="width:100%"><?php echo $future_announcement; ?></textarea><br/>
 
+                    <span>Effective Date:</span>
+                    <input type="text" placeholder="MM/DD/YYYY" class="datepicker" name="effective_date" value="<?php echo $future_date;?>">
+
+                    <span>Time (CST):</span>
+                    <input type="text" class="input-small" name="announcement_time" value="<?php echo $future_time;?>"><br/>
+
+                <input type="submit" name="submit" value="Submit">
+            </form>
 <?php
-    include("includes/overall/footer.php"); 
+    include("assets/inc/footer.inc.php");
 ?>
