@@ -39,7 +39,7 @@ Copyright 2015
     
     </head> <!-- Head ends -->
     <body onload="onLoad()">    <!-- Body -->
-        <header>
+        <header>    <!-- Header -->
             <div class="infini-logo">
             <a href="https://www.theinfini.com" target="_blank"><img id="infinilogo" src="assets/images/infini.svg" alt="Infini" width="250"/></a></div>
             <aside>              
@@ -58,7 +58,7 @@ Copyright 2015
             
 <?php include("assets/inc/nav.inc.php"); ?>
             
-        </header>
+        </header>   <!-- Header // -->
         <div class="clear"></div>   <!-- Clear -->
         <div id="container">    <!-- Main Container -->
             <div id="convoLogo">    <!-- Convo Logo -->

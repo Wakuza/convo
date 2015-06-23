@@ -184,7 +184,7 @@ nav ul li a:last {
 #primaryNav ul a {
 	display: block;
 	text-decoration: none;
-	font-size: 14pt;
+	font-size: 13pt;
 	padding: 0 25px;
     color: #0f5390;
 }
@@ -216,7 +216,7 @@ nav ul li a:last {
 	top: 100%;
     padding: 0 6px 6px 6px;
     margin-left: 15px;     /* Move the submenu box  to the left or right*/
-    margin-top: -1px;
+    margin-top: 0px;
     background-color: white;
     box-shadow: .5px .5px .5px 2.5px #888888;
 }
@@ -239,7 +239,7 @@ nav ul li a:last {
 /* Give the space between the submenu */
 #primaryNav ul ul a {
 	padding: 4px 7px;
-    width: 170px;   /* Give the width of the white background */
+    width: 140px;   /* Give the width of the white background */
     font-size: 13pt;
 }
 
@@ -251,7 +251,7 @@ nav ul li a:last {
 /* Move sub-submenu to the left or right*/
 /* Appearance */
 #primaryNav ul ul ul {
-    margin-left: 186px;
+    margin-left: 150px;
     margin-top: -38px;
     box-shadow: .5px .5px .5px 2.5px #888888;
 }

@@ -1,7 +1,8 @@
-            <nav id="primaryNav">
+            <nav id="primaryNav">   <!-- Primary Navigation -->
                 <ul>    <!-- Main Navigation -->
                     <li><a href="index.php">Home</a></li>
 <?php
+    // Employee is able to show the menus wen they are logged in
     if(logged_in()) {
 ?>
                     <li>
@@ -31,7 +32,7 @@
                     <li>
                         <a href="#">Experts</a>
                         <ul>
-                            <li><a href="#">Heart of Convo Expert</a></li>
+                            <li><a href="heart_of_convo_expert.php">Heart of Convo Expert</a></li>
                             <li><a href="#">Milestones</a></li>
                             <li>
                                 <a href="#">Toolbox</a>
@@ -89,4 +90,4 @@
     }
 ?>
                 </ul> <!-- Main Navigation // -->
-            </nav>  <!-- Menu List Ends -->
+            </nav>  <!-- Primary Nav Ends -->

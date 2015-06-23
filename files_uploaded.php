@@ -1,5 +1,5 @@
 <?php
-    $title = "Convo Portal | Open Enrollment";
+    $title = "Convo Portal | File Uploaded";
     include("core/init.php");
     admin_protect();
     include("assets/inc/header.inc.php");
