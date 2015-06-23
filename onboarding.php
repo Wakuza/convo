@@ -69,74 +69,84 @@
     }
 ?>
 
-<script>
-    $("#primaryNav").hide();
-    $("aside").hide();
-    $("#convoLogo a").removeAttr("href");
-</script>
+            <script>
+                $("#primaryNav").hide();
+                $("aside").hide();
+                $("#convoLogo a").removeAttr("href");
+            </script>
 
-<h2 class="headerPages">Welcome to Convo! Please fill out all the fields below.  Upon completion, you will receive an email with further instructions regarding your background check.</h2>
+            <h2 class="headerPages">Welcome to Convo! Please fill out all the fields below.  Upon completion, you will receive an email with further instructions regarding your background check.</h2>
 
-<form method="post">
-    <h2>Personal Information</h2>
+            <form method="post">
+                <h2>Personal Information</h2>
+                <!-- First Name -->
+                <span class="spanHeader">First Name: </span>
+                <input type="text" id="firstname" name="firstname" size="10" placeholder="First Name" value=<?php if(isset($_POST["submit"])){echo $_POST['firstname'];} ?>>
+                <?php echo $errorFirst; ?><br/><br/>
 
-       <!-- First Name -->
-        <span class="spanHeader">First Name: </span>
-        <input type="text" id="firstname" name="firstname" size="10" placeholder="First Name" value=<?php if(isset($_POST["submit"])){echo $_POST['firstname'];} ?>>
-        <?php echo $errorFirst; ?><br/><br/>
+                <!-- Last Name -->
+                <span class="spanHeader">Last Name: </span>
+                <input type="text" id="lastname" name="lastname" size="10" placeholder="Last Name" value=<?php if(isset($_POST["submit"])){echo $_POST['lastname'];} ?>>
+                <?php echo $errorLast; ?><br/><br/>
 
-        <!-- Last Name -->
-        <span class="spanHeader">Last Name: </span>
-        <input type="text" id="lastname" name="lastname" size="10" placeholder="Last Name" value=<?php if(isset($_POST["submit"])){echo $_POST['lastname'];} ?>>
-        <?php echo $errorLast; ?><br/><br/>
+                <!-- Street Address-->
+                <span class="spanHeader">Street Address: </span>
+                <input type="text" id="street_address" class="input-xlarge" name="street_address" placeholder="Street Address" value=<?php if(isset($_POST["submit"])){echo "'" . $_POST['street_address'] . "'";} ?>>
+                <?php echo $errorStreetAddress; ?><br/><br/>
 
-        <!-- Street Address-->
-        <span class="spanHeader">Street Address: </span>
-        <input type="text" id="street_address" class="input-xlarge" name="street_address" placeholder="Street Address" value=<?php if(isset($_POST["submit"])){echo "'" . $_POST['street_address'] . "'";} ?>>
-        <?php echo $errorStreetAddress; ?><br/><br/>
+                <!-- City -->
+                <span class="spanHeader">City: </span>
+                <input type="text" id="city" name="city" placeholder="City" value=<?php if(isset($_POST["submit"])){echo "'" .  $_POST['city'] . "'"; } ?>>
+                <?php echo $errorCity; ?><br/><br/>
 
-        <!-- City -->
-        <span class="spanHeader">City: </span>
-        <input type="text" id="city" name="city" placeholder="City" value=<?php if(isset($_POST["submit"])){echo "'" .  $_POST['city'] . "'"; } ?>>
-        <?php echo $errorCity; ?><br/><br/>
+                <!-- Resident State -->
+                <span class="spanHeader">Resident State: </span>
+                <select name="res_state" class="input-medium">
+                    <?= create_option_list($states, "state") ?>
+                </select>
+                <?php echo $errorState; ?><br/><br/>
 
-        <!-- Resident State -->
-        <span class="spanHeader">Resident State: </span>
-        <select name="res_state" class="input-medium">
-            <?= create_option_list($states, "state") ?>
-        </select>
-        <?php echo $errorState; ?><br/><br/>
+                <!-- Zip Code -->
+                <span class="spanHeader">Zip Code: </span>
+                <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" maxlength="9" value=<?php if(isset($_POST["submit"])){echo $_POST['zipcode'];} ?>>
+                <?php echo $errorZipCode; ?><br/><br/>
 
-        <!-- Zip Code -->
-        <span class="spanHeader">Zip Code: </span>
-        <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" maxlength="9" value=<?php if(isset($_POST["submit"])){echo $_POST['zipcode'];} ?>>
-        <?php echo $errorZipCode; ?><br/><br/>
+                <!-- Date of Birth -->
+                <span class="spanHeader">Date of Birth:</span>
+                <input type="text" placeholder="MM/DD/YYYY" name="dob" value=<?php if(isset($_POST["submit"])){echo $_POST['dob'];} ?>>
+                <?php echo $errorDOB; ?><br/><em class="note">MM/DD/YYYY</em><br/><br/>
 
-        <!-- Date of Birth -->
-        <span class="spanHeader">Date of Birth:</span>
-        <input type="text" placeholder="MM/DD/YYYY" name="dob" value=<?php if(isset($_POST["submit"])){echo $_POST['dob'];} ?>>
-        <?php echo $errorDOB; ?><br/><em class="note">MM/DD/YYYY</em><br/><br/>
+                <!-- Email Address -->
+                <span class="spanHeader">E-mail address:</span>
+                <input type="text" name="email" value=<?php if(isset($_POST["submit"])){echo $_POST['email'];} ?>>
+                <?php echo $errorEmail; ?><br/><br/>
 
-        <!-- Email Address -->
-        <span class="spanHeader">E-mail address:</span>
-        <input type="text" name="email" value=<?php if(isset($_POST["submit"])){echo $_POST['email'];} ?>>
-        <?php echo $errorEmail; ?><br/><br/>
+                <h2>Emergency Contact Information</h2>
+                <!-- Emergency Name -->
+                <span class="spanHeader">Contact's Name:</span>
+                <input type="text" name="emergencyName" value=<?php if(isset($_POST["submit"])){echo "'" . $_POST['emergencyName'] . "'";} ?>>
+                <?php echo $errorEmergencyName; ?><br/><br/>
 
-        <h2>Emergency Contact Information</h2>
-        <!-- Emergency Name -->
-        <span class="spanHeader">Contact's Name:</span>
-        <input type="text" name="emergencyName" value=<?php if(isset($_POST["submit"])){echo "'" . $_POST['emergencyName'] . "'";} ?>>
-        <?php echo $errorEmergencyName; ?><br/><br/>
+                <!-- Emergency Phone number -->
+                <span class="spanHeader">Contact's Phone number:</span>
+                <input type="text" name="emergencyNumber" value=<?php if(isset($_POST["submit"])){echo "'" . $_POST['emergencyNumber'] . "'";} ?>>
+                <?php echo $errorEmergencyNumber; ?><br/><br/>
 
-        <!-- Emergency Phone number -->
-        <span class="spanHeader">Contact's Phone number:</span>
-        <input type="text" name="emergencyNumber" value=<?php if(isset($_POST["submit"])){echo "'" . $_POST['emergencyNumber'] . "'";} ?>>
-        <?php echo $errorEmergencyNumber; ?><br/><br/>
+                <!-- Background Check Consent -->
+                <h2>Background Check Consent</h2>
+                <p>I understand that Convo will engage a private company to verify the following information in connection with my application with Convo:</p>
+                <ul class="background_check_consent">
+                    <li>Accuracy of personal information - name and address</li>
+                    <li>Accuracy of work history</li>
+                    <li>Any prior criminal record history</li>
+                    <li>Legal permission to work in the United States</li>
+                    <li>License/certification still in good standing</li>
+                </ul>
+                <p>I certify that the information that I have provided or will provide on my resume and new hire paperwork are complete and accurate in every respect.  I understand that a false statement or omission of facts therein may result in my subsequent dismissal for cause.  I understand that my authorization below serves as my written consent to a background check.  A copy of the background check report may be requested.</p>
 
-
-
-        <input type="submit" id="addButton" name="submit" value="Submit" />
-</form>
+                <input type="checkbox" id="background_check_consent_cb" value="bg_check_consent_cb"><span class="background_span">I authorize Convo to run a background check prior to employment.  I understand I will need to provide Convo with copies of my Social Security card and driver's license or state-issued ID.</span><br/><br/>
+                <input type="submit" id="submit_button_disabled" name="submit" value="Submit" disabled/>
+            </form>
 <?php
     include("assets/inc/footer.inc.php"); 
 ?>

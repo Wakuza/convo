@@ -7,8 +7,6 @@
                 <p><a href="https://www.theinfini.com/PrivacyPolicy.pdf" target="_blank">Privacy Policy</a></p>
             </div>  <!-- Policy // -->
         </footer>   <!-- Footer // -->
-
         <script src="assets/js/scriptFooter.js"></script>
-
     </body> <!-- Body // -->
 </html>

@@ -1,9 +1,20 @@
 /*
-* EMPLOYEE PAGE
+* ON BOARDING PAGE 
 */
 
-
-
+$("#background_check_consent_cb").change(function() {
+    if($(this).prop("checked")) {
+        $("input[type='submit']").removeAttr("disabled");
+        $("input[type='submit']").attr("id", "submit_button_enabled");
+    }
+    else {
+         $("input[type='submit']").attr("disabled", true);
+        $("input[type='submit']").attr("id", "submit_button_disabled");
+    }
+});
+/*
+* EMPLOYEE PAGE
+*/
 function filterme() {
   //build a regex filter string with an or(|) condition
   var emp_status = $('input:checkbox[name="active_terminate"]:checked').map(function() {
