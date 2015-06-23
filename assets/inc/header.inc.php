@@ -56,7 +56,7 @@ Copyright 2015
 ?>       
             </aside>  
             
-<?php include("assets/inc/nav.inc.php"); ?>
+<?php include("assets/inc/nav.inc.php");?>
             
         </header>   <!-- Header // -->
         <div class="clear"></div>   <!-- Clear -->

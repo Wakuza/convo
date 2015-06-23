@@ -1,6 +1,6 @@
             <nav id="primaryNav">   <!-- Primary Navigation -->
                 <ul>    <!-- Main Navigation -->
-                    <li><a href="./../index.php">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
 <?php
     // Employee is able to show the menus wen they are logged in
     if(logged_in()) {
@@ -32,7 +32,7 @@
                     <li>
                         <a href="#">Experts</a>
                         <ul>
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="experts/index.php">Home</a></li>
                             <li><a href="experts/heart_of_convo_expert.php">Heart of Convo Expert</a></li>
                             <li><a href="#">Milestones</a></li>
                             <li>

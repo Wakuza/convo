@@ -1,14 +1,68 @@
+$(document).ready(function() {
+    $('input[name="announcement_time"]').timepicker();  // Announcement
+    $('#active_leave_checkbox input:checkbox').prop('checked', 'checked');
+
+    // Employee Table
+    $("#example").dataTable().fnDestroy();
+    $('#example').dataTable( {
+        "language": {
+            "lengthMenu": "Display _MENU_ records per page",
+            "zeroRecords": "Nothing found - sorry",
+            "info": "Showing page _PAGE_ of _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(filtered from _MAX_ total records)"
+        },
+        "order": [
+            [2, "asc" ],
+            [1, "asc" ]
+        ],
+        "columns": [
+            { "width": "6%" },  // Employee ID
+            { "width": "10%" }, // First Name
+            { "width": "10%" }, // Last Name
+            { "width": "15%" }, // Position
+            { "width": "13%" }, // Supervisor
+            { "width": "14%" }, // Hire Date
+            { "width": "16%" }, // Review Date
+            { "width": "2%" },  // Payroll Status
+            { "width": "10%" }, // Hourly Rate
+            { "width": "15%" }  // Employment Status
+        ]
+    });
+    
+    // Termination
+    $("#termination").change(function() {
+    if($(this).prop("checked")) {
+        document.getElementById("termination_box").style.display = "block";
+    }
+    else { 
+        document.getElementById("termination_box").style.display = "none";
+    }
+    });
+});
+
 /*
 * Datepicker    
 */
-  $(function() {
+$(function() {
     $( ".datepicker" ).datepicker({ dateFormat: 'mm-dd-yy', constrainInput: false });
-  });
+});
 
 /*
-* Logged in Widget
+* It counts how many characters in the textarea for the termination section.
+* When it reaches the maximum number of the characters, the function doesn't allow the user to type more.
 */
-var flag = false;
+function textCounter( field, countfield, maxlimit ) {
+    if ( field.value.length > maxlimit ) {
+        field.value = field.value.substring( 0, maxlimit );
+        field.blur();
+        field.focus();
+        return false;
+    } 
+    else {
+        countfield.value = maxlimit - field.value.length;
+    }
+}
 
 function onLoad(){
     filterme();
@@ -59,82 +113,9 @@ function onLoad(){
     $("input[name='zipCode']").val(zipCode);
 }
 
-function clicked(){  
-    if(!flag){
-        document.getElementById("statusList").style.display = "inline";
-        //document.getElementById("status").style.float = "right";
-        document.getElementById("showHide").innerHTML = "Hide";
-        //document.getElementById("status2").style.margin = "100px";
-
-        flag = true;
-    }
-    else{
-        document.getElementById("statusList").style.display = "none";
-        document.getElementById("showHide").innerHTML = "Show";
-        //document.getElementById("status2").style.margin = "-100px";
-        flag = false;
-    }
-}
-
 /*
 * CENSUS PAGE
 */
 function goBack() {
    window.history.back();
 }
-
-/*
-* TERMINATION PAGE
-*/ 
-
-$(document).ready(function() {
-    $('input[name="announcement_time"]').timepicker();
-    $('#active_leave_checkbox input:checkbox').prop('checked', 'checked');
-
-    $("#example").dataTable().fnDestroy();
-    $('#example').dataTable( {
-        "language": {
-            "lengthMenu": "Display _MENU_ records per page",
-            "zeroRecords": "Nothing found - sorry",
-            "info": "Showing page _PAGE_ of _PAGES_",
-            "infoEmpty": "No records available",
-            "infoFiltered": "(filtered from _MAX_ total records)"
-        },
-        "order": [
-            [2, "asc" ],
-            [1, "asc" ]
-        ],
-        "columns": [
-            { "width": "6%" },  // Employee ID
-            { "width": "10%" }, // First Name
-            { "width": "10%" }, // Last Name
-            { "width": "15%" }, // Position
-            { "width": "13%" }, // Supervisor
-            { "width": "14%" }, // Hire Date
-            { "width": "16%" }, // Review Date
-            { "width": "2%" },  // Payroll Status
-            { "width": "10%" }, // Hourly Rate
-            { "width": "15%" }  // Employment Status
-        ]
-    });
-    
-   $("#termination").change(function() {
-        if($(this).prop("checked")) {
-            document.getElementById("termination_box").style.display = "block";
-        }
-       else {  document.getElementById("termination_box").style.display = "none";
-       }
-   });
-});
-    
-    function textCounter( field, countfield, maxlimit ) {
-        if ( field.value.length > maxlimit ) {
-            field.value = field.value.substring( 0, maxlimit );
-            field.blur();
-            field.focus();
-            return false;
-        } 
-        else {
-            countfield.value = maxlimit - field.value.length;
-        }
-    }
