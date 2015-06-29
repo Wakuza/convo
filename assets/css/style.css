@@ -113,6 +113,16 @@ aside {
     width: 160px;
     font-weight: bold;
 }
+
+.eligible{
+    color: green;
+    font-weight: bold;
+}
+
+.not_eligible{
+    color: red;  
+    font-weight: bold;
+}
 /* ------------------------------- General CSS //------------------------------- */
 
 /*----------------------------------Dashboard.php------------------------------*/
@@ -160,6 +170,14 @@ nav ul li a:last {
     border-right: 0;
 }
 
+nav ul li.children:before {
+    content:  "\25b6";
+    float:right;
+    margin-top: 2px;
+    margin-right: 8px;
+    font-size: 16px;
+}
+
 /* primary navigation */
 #primaryNav {
     z-index: 1;
@@ -184,7 +202,7 @@ nav ul li a:last {
 #primaryNav ul a {
 	display: block;
 	text-decoration: none;
-	font-size: 13pt;
+	font-size: 11pt;
 	padding: 0 25px;
     color: #0f5390;
 }
@@ -240,7 +258,7 @@ nav ul li a:last {
 #primaryNav ul ul a {
 	padding: 4px 7px;
     width: 140px;   /* Give the width of the white background */
-    font-size: 13pt;
+    font-size: 11pt;
 }
 
 /* It ACTUALLY shows the submenu.  Without display, the submenu doesn't appear */
@@ -251,9 +269,17 @@ nav ul li a:last {
 /* Move sub-submenu to the left or right*/
 /* Appearance */
 #primaryNav ul ul ul {
-    margin-left: 150px;
+    margin-left: 175px;
     margin-top: -38px;
     box-shadow: .5px .5px .5px 2.5px #888888;
+}
+
+.subMenu li a{
+    width: 180px !important;   
+}
+
+.subMenu{
+    width: 180px;   
 }
 /* ~~~~~~~~~~~ submenu ~~~~~~~~~ */
 
@@ -521,3 +547,42 @@ ul li input[type="text"], ul li input[type="password"] {
     text-align: center;
 }
 /* ------------------------------- onboarding // -------------------------------- */
+
+/* ------------------------------- FMLA / Health Benefits------------------------------------------ */
+.fmla_header, .hb_header {
+    margin: 0;   
+}
+
+.fmla_list_order {
+    font-size: 13pt;
+    margin-left: 50px;
+    margin-top: -20px;
+}
+
+.fmla_list {
+    margin-top: -20px;
+    font-size: 13pt;
+    list-style-type: square;
+    margin-left: 50px;
+}
+
+/* The text gives the space for FMLA form */
+.fmlaHeader{
+    display: inline-block;
+    width: 250px;
+    font-weight: bold;
+}
+
+.fmlaInputRight{
+    margin-left: 254px;   
+}
+
+.hb_header {
+    margin-top: 10px;   
+}
+
+.hb_a_list {
+    font-size: 13pt;   
+}
+
+/* ----------------------- FMLA // -------------------------------------------- */

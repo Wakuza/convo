@@ -4,7 +4,7 @@
     include("assets/inc/header.inc.php");
 
 $emailStatus = $errorMessage = $errorEmail = $errorFN = $errorLN = $errorSubject = "";
-if(isset($_POST["submit"])){
+if(isset($_POST["submitContact"])){
     if(empty($_POST["firstname"])){
         $errorFN = "<span class='error'>Please enter your first name</span>";
         $counter = 1;
@@ -49,16 +49,16 @@ if(isset($_POST["submit"])){
                     <form class="well span8" method="POST">
                         <div class="row">   <!-- Row -->
                             <div class="span3"> <!-- Span3 -->
-                                <label>First Name</label><?php if(isset($_POST["submit"])){ echo $errorFN;} ?>
+                                <label>First Name</label><?php if(isset($_POST["submitContact"])){ echo $errorFN;} ?>
                                 <input class="span3" name="firstname" placeholder= "Your First Name" type="text" value='<?php if(logged_in() == true && $user_data["firstname"] != NULL){echo $user_data['firstname'];}?>'>
 
-                                <label>Last Name</label><?php if(isset($_POST["submit"])){ echo $errorLN;} ?>
+                                <label>Last Name</label><?php if(isset($_POST["submitContact"])){ echo $errorLN;} ?>
                                 <input class="span3" name="lastname" placeholder="Your Last Name" type="text" value='<?php if(logged_in() == true && $user_data["lastname"] != NULL){echo $user_data['lastname'];}?>'>
 
-                                <label>Email Address</label><?php if(isset($_POST["submit"])){ echo $errorEmail;} ?>
+                                <label>Email Address</label><?php if(isset($_POST["submitContact"])){ echo $errorEmail;} ?>
                                 <input class="span3" name="email" placeholder="Your email address" type="text" value='<?php if(logged_in() == true && $user_data["email"] != NULL){echo $user_data['email'];}?>'>
 
-                                <label>Subject</label><?php if(isset($_POST["submit"])){ echo $errorSubject;} ?>
+                                <label>Subject</label><?php if(isset($_POST["submitContact"])){ echo $errorSubject;} ?>
                                 <select class="span3" id="subject" name="subject">
                                     <option value="">Choose One:</option>
                                     <option value="login">Login</option>
@@ -68,11 +68,11 @@ if(isset($_POST["submit"])){
                                 </select>
                             </div>  <!-- Span3 //-->
                             <div class="span5"> <!-- Span5 -->
-                                <label>Message</label><?php if(isset($_POST["submit"])){ echo $errorMessage;} ?>
+                                <label>Message</label><?php if(isset($_POST["submitContact"])){ echo $errorMessage;} ?>
                                 <textarea class="input-xlarge span5" id="message" name="message" rows="10"></textarea>
                             </div>  <!-- Span5 // -->
 
-                            <input type="submit" name="submit" class="btn btn-primary pull-right" value="Send" />
+                            <input type="submit" name="submitContact" class="btn btn-primary pull-right" value="Send" />
                         </div>  <!-- Row // -->
                     </form>
                 </div>  <!-- class Container ends -->

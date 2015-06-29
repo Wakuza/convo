@@ -7,7 +7,7 @@
     include("includes/includes_functions.php");
     //$url_empID = $_GET["employerID"];
 
-$flagPosition = $flagLocation = $flagDepartment = 0;
+   $flagPosition = $flagLocation = $flagDepartment = 0;
 
     $errorName = $errorPosition = $errorDepartment = $errorEmpStatus = $errorPayroll = $errorLocation = $errorTerm = "";
    $resultPositionDB = mysql_query("SELECT * FROM position_db_vw");

@@ -1,15 +1,18 @@
 <?php
     require 'assets/php/class.phpmailer.php';
+    require 'assets/php/autoload.php';
+    require 'assets/php/class.smtp.php';
 
     $mail = new PHPMailer;
     $mail->isSMTP();
-    $mail->SMTPAuth = Login;
+    $mail->SMTPAuth = true;
     $mail->SMTPDebug = 2;
 
     $mail->Host = "localhost";
-    //$mail->Password = "";
+    $mail->Username = "smtpmailer";
+    $mail->Password = '$endEma1l';
     $mail->SMTPSecure = "ssl";
-    $mail->Port = 2;
+    $mail->Port = 25;
 
     $mail->From = "pxy9548@rit.edu";
     $mail->FromName = "Peter Yeung";
@@ -20,5 +23,5 @@
     $mail->Body = "HELLO WORLD.  This is the body of an email";
     $mail->AltBody = "HELLO WORLD";
 
-    var_dump($mail->send());
+    var_dump($mail->send()); 
 ?>

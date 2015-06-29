@@ -223,3 +223,7 @@ CREATE PROCEDURE insert_log
 BEGIN
     INSERT INTO log(employee_id, last_visit) VALUES(p_employee_id, p_timestamp);
 END
+
+CREATE VIEW log_vw AS
+CREATE VIEW log_vw AS
+SELECT l.log_id, CONCAT(e.lastname, ", ", e.firstname) AS name, l.convoU_page, l.last_visit FROM log l INNER JOIN employee e ON e.employee_id = l.employee_id ORDER BY last_visit DESC;

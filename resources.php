@@ -1,8 +1,8 @@
 <?php
     $title = "Convo Portal | Forms & Resources";
-    include("core/init.php");
+    include("../core/init.php");
     protect_page();
-    include("assets/inc/header.inc.php");
+    include("../assets/inc/header.inc.php");
 ?>
 
             <h1 class="headerPages">Forms &amp; Resources</h1>
@@ -11,7 +11,7 @@
                 <!-- Employee Resources -->
                 <h2>Employee Resources</h2>
                 <ul class="resources">
-                    <li><a id="payrollButton" href="HR/Resources/2015%20payroll%20schedule.pdf" target="_blank">2015 Payroll Schedule</a></li>
+                    <li><a id="payrollButton" href="Resources/2015%20payroll%20schedule.pdf" target="_blank">2015 Payroll Schedule</a></li>
                 </ul><br/>
 
 <?php
@@ -23,8 +23,8 @@
                 <!-- Manager Resources -->
                 <h2>Manager Resources</h2>
                 <ul class="resources">
-                    <li><a id = "handbookButton" href="HR/Resources/Supervisor%20Handbook2013.pdf" target="_blank">Manager Guidelines</a></li>
-                    <li><a id="FMLAButton" href="HR/Resources/FMLA%20Terms%20and%20Request%20Form.pdf" target="_blank">FMLA Terms and Request Form</a></li>
+                    <li><a id = "handbookButton" href="Resources/Supervisor%20Handbook2013.pdf" target="_blank">Manager Guidelines</a></li>
+                    <li><a id="FMLAButton" href="Resources/FMLA%20Terms%20and%20Request%20Form.pdf" target="_blank">FMLA Terms and Request Form</a></li>
                 </ul><br/>
 
 <?php
@@ -36,7 +36,7 @@
                 <!-- Interpreting Resources -->
                 <h2>Interpreting Resources</h2>
                 <ul class="resources">
-                    <li><a id="attendanceButton" href="HR/Resources/Call%20Center%20Attendance%20Policy.pdf" target="_blank">Call Center Attendance Policy</a></li>
+                    <li><a id="attendanceButton" href="Resources/Call%20Center%20Attendance%20Policy.pdf" target="_blank">Call Center Attendance Policy</a></li>
                 </ul><br/>
 <?php
         }
@@ -48,7 +48,7 @@
                 <h2>Convo Support</h2>
 
                 <ul class="resources">
-                    <li><a id="supportButton" href="HR/Resources/Support%20Employee%20Categories.pdf" target="_blank">Support Employee Categories</a></li>
+                    <li><a id="supportButton" href="Resources/Support%20Employee%20Categories.pdf" target="_blank">Support Employee Categories</a></li>
                 </ul>
 <?php
         }
@@ -85,5 +85,5 @@
                 </ul>
             </div>  <!-- column Right //-->
 <?php
-    include("assets/inc/footer.inc.php");
+    include("../assets/inc/footer.inc.php");
 ?>

@@ -9,7 +9,6 @@
 
             <br/><br/><br/><br/>
 
-
 <?php
     $queryView = "SELECT * FROM announcement_vw WHERE NOW() >= effective_date ORDER BY effective_date DESC";
     $resultView = mysqli_query($link, $queryView);

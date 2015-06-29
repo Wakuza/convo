@@ -1,4 +1,5 @@
 <?php 
+    //echo $linkToALL . "/edit.php";
     $title = "Convo Portal | Employees";
     include("core/init.php");
     manager_protect();
@@ -37,17 +38,17 @@ SELECT e.employee_id, e.firstname, e.lastname, e.supervisor_id, p.position_name 
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr><td>";
                 if(has_access($user_data["job_code"]) == true){
-                    echo "<a href='edit.php?employee_id=" . $row["employee_id"] . "'>" . $row["employee_id"] . "</a>";
+                    echo "<a href='$linkToALL/Admin/edit.php?employee_id=" . $row["employee_id"] . "'>" . $row["employee_id"] . "</a>";
                 }
                 else{
                     echo $row["employee_id"];
                 }
-            echo "</td><td>" . $row["firstname"] . "</td><td>" . $row["lastname"] .  "</td><td>" . $row["position"] . "</td><td>" . $row["supervisor"] . "</td><td>" . $row["hireDate"] . "</td>";
+            echo "</td><td>" . $row["firstname"] . "</td><td>" . $row["lastname"] .  "</td><td>" . $row["position"] . "</td><td>" . $row["supervisor"] . "</td><td>" . date("n/j/Y", strtotime($row["hireDate"])) . "</td>";
                 if($row["reviewDate"] == "1-1-1900"){
                     echo "<td></td>";
                 }
                 else{
-                   echo "<td>" . $row["reviewDate"] . "</td>";
+                   echo "<td>" . date("n/j/Y", strtotime($row["reviewDate"])) . "</td>";
                 }
                 
                 echo "<td>" .  $row["payroll_status"]. "</td>";

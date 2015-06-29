@@ -1,8 +1,8 @@
 <?php
     $title = "Convo Portal | Open Enrollment";
-    include("core/init.php");
+    include("../core/init.php");
     protect_page();
-    include("assets/inc/header.inc.php");
+    include("../assets/inc/header.inc.php");
 
 
     if(isset($_FILES["filePDF"])){
@@ -27,7 +27,7 @@
             if($file_error == 0){
                 if($file_size < 4200000){
                     $file_name_new = $user_data["lastname"] . ' ' . $user_data["firstname"]  . '.' . $file_ext;
-                    $file_destination = 'upload_oe/' . $file_name_new;
+                    $file_destination = $root . '/convo/Admin/upload_oe/' . $file_name_new;
                     if(move_uploaded_file($file_tmp, $file_destination)){
                         echo "<h2 class='headerPages'>Thank you for uploading your file. If you need to make a change, you can <a href='OpenEnrollment.php'> upload your file</a> again.</h2>"; 
                         die();
@@ -57,5 +57,5 @@
             </form>
             <p>Please direct all benefits-related questions to <a href="mailto:hr@convorelay.com">hr@convorelay.com</a>.</p>
 <?php
-    include("assets/inc/footer.inc.php"); 
+    include("../assets/inc/footer.inc.php"); 
 ?>

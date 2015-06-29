@@ -28,6 +28,7 @@ function filterme() {
 /*
 * TERMINATION PAGE
 */
+
 $(document).ready(function() {
    $("#termination").change(function() {
         if($(this).prop("checked")) {
@@ -37,7 +38,7 @@ $(document).ready(function() {
        }
    });
 });
-
+    
 $("#employeeName").change(function() {
     var empID = $(this).val().split("|")[0];
     var jobCode = $(this).val().split("|")[1];
@@ -109,6 +110,7 @@ $("#positionName").change(function() {
         $("select[name='admin_privileges']").val("Non_admin"); 
     }
 
+
     $("input[name='current_manager_privileges']").val(manager_privileges);
     //$("select[name='manager_privileges']").val(manager_privileges);
 
@@ -128,6 +130,7 @@ $("#departmentName").change(function() {
     $("input[name='current_department']").val(departmentName);
     $("input[name='dept_code']").val(deptCode);
 });
+
 
 $("#convoLocation").change(function() {
     var convoLocation = $(this).val().split("|")[0];

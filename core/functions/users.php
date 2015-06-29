@@ -294,38 +294,102 @@
     */
 
     function newEmail($email, $firstname, $lastname, $subjectHeader, $bodyMessage){
-        $to = $email;
-        $subject = "CONVO Portal - Automatic Response: " . $subjectHeader;
-        $message .= "Hello " . $firstname . ", \n\n";
-        $message .= "Thank you for e-mailing CONVO Human Resources.  We will try to do our best to respond to your e-mail as soon as possible.  You can expect a response within two business days.\n\n";
-        $message .= "Your message was sent to Human Resources:\n\n";
-        $message .= "\"" . $bodyMessage . "\"\n\n";
-        $message .= "If you have any questions, please contact CONVO Human Resources at HR@convorelay.com.\n\n";
-        $message .= "CONVO Human Resources\n";
-        $message .= "Email:  HR@convorelay.com";
-        $headers .= "From: CONVO Portal<pxy9548@rit.edu>\r\n";
-        
-        @mail($to, $subject, $message, $headers);
-        //$emailStatus = "Mail sent"; 
-        
-        
-        if($_ENV["HOSTNAME"] = "TESTING"){
-            $to2 = 'pxy9548@rit.edu';
-            $subject2 = 'Convo - ' . $subjectHeader . ' TESTING'; 
+        // CONTACT FORM
+        if(isset($_POST["submitContact"])){
+            $to = $email;
+            $subject = "CONVO Portal - Automatic Response: " . $subjectHeader;
+            $message .= "Hello " . $firstname . ", \n\n";
+            $message .= "Thank you for e-mailing CONVO Human Resources.  We will try to do our best to respond to your e-mail as soon as possible.  You can expect a response within two business days.\n\n";
+            $message .= "Your message was sent to Human Resources:\n\n";
+            $message .= "\"" . $bodyMessage . "\"\n\n";
+            $message .= "If you have any questions, please contact CONVO Human Resources at HR@convorelay.com.\n\n";
+            $message .= "CONVO Human Resources\n";
+            $message .= "Email:  HR@convorelay.com";
+            $headers .= "From: CONVO Portal<pxy9548@rit.edu>\r\n";
+
+            @mail($to, $subject, $message, $headers);
+            //$emailStatus = "Mail sent"; 
+
+
+            if($_ENV["HOSTNAME"] = "TESTING"){
+                $to2 = 'pxy9548@rit.edu';
+                $subject2 = 'Convo - ' . $subjectHeader . ' TESTING'; 
+            }
+            else if($_ENV["HOSTNAME"] = "DEVELOPING"){
+                $to2 = 'jja4740@rit.edu';
+                $subject2 = 'Convo - ' . $subjectHeader . ' DEVELOPING'; 
+            }
+
+
+            $message2 .= "Hello HR,\n\n";
+            $message2 .= $bodyMessage . "\n\n";
+            $message2 .= $firstname . " " . $lastname;
+            $headers2 .= "From: " . $firstname . " " . $lastname . "<" . $email . ">\r\n";
+            $headers2 .= "CC: jja4740@rit.edu, pxy9548@rit.edu\r\n"; 
+            @mail($to2, $subject2, $message2, $headers2);
         }
-        else if($_ENV["HOSTNAME"] = "DEVELOPING"){
-            $to2 = 'jja4740@rit.edu';
-            $subject2 = 'Convo - ' . $subjectHeader . ' DEVELOPING'; 
+        // ONBOARDING
+        else if(isset($_POST["submitNewHire"])){
+            
+            $to = $email;
+            $subject = $subjectHeader;  // Subject is New Hired Employee
+            $message .= "<p>Dear " . $firstname . ",</p>";
+            $message .= "<p>Thank you for submitting your New Employee Onboarding information!  We have the following information:</p>";
+            $message .= $bodyMessage . "\n\n";
+            $message .= "<h2>Information Needed for Background Check<strong></h2>";
+            $message .= "<p>First, please scan a copy of your Social Security Card and Driver's License (or state-issued ID card). You may email this to hr@convorelay.com. To expedite processing, please do this at your earliest convenience.</p>";
+            $message .= "<h2>New Hire Paperwork</h2>";
+            $message .= "<p>Please complete the new hire packet before your first day of work.  This packet can be found here: <a href='https://test.theinfini.com/convo/Convo%20New%20Hire%20Packet%20-%20FT.pdf'>Convo New Hire Packet</a>.  When completed, please scan and send this to hr@convorelay.com.</p>";
+            $message .= "<p>Questions?</p>";
+            $message .= "<p>Please contact your to-be supervisor or HR if you have any questions.</p>";
+            $message .= "<p>We look forward to working with you!</p>";
+            $message .= "<p>Sincerely,</p>";
+            $message .= "<p>The Convo HR Team</p>";
+            //$message .= "CONVO Human Resources\n";
+            //$message .= "Email:  HR@convorelay.com";
+            $headers .= "From: CONVO Portal<pxy9548@rit.edu>\r\n";
+            $headers .= "CC: jja4740@rit.edu, pxy9548@rit.edu, chris@theinfini.com\r\n"; 
+            
+            // Convert text into HTML
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html;\r\n";
+            
+            //$filename = "<a href='HR\401K\EmployeeFAQ.pdf'>Background Check Form</a>";
+            
+            if($_ENV["HOSTNAME"] = "TESTING"){
+                $to = 'pxy9548@rit.edu';
+                $subject = $subjectHeader . ' - TESTING'; 
+            }
+            else if($_ENV["HOSTNAME"] = "DEVELOPING"){
+                $to = 'jja4740@rit.edu';
+                $subject = $subjectHeader . ' - DEVELOPING'; 
+            }
+        
+            mail($to, $subject, $message, $headers); 
         }
-        
-        
-        $message2 .= "Hello HR,\n\n";
-        $message2 .= $bodyMessage . "\n\n";
-        $message2 .= $firstname . " " . $lastname;
-        $headers2 .= "From: " . $firstname . " " . $lastname . "<" . $email . ">\r\n";
-        $headers2 .= "CC: jja4740@rit.edu, pxy9548@rit.edu\r\n"; 
-        @mail($to2, $subject2, $message2, $headers2);
+        // FMLA REQUEST
+        else if(isset($_POST["submitRequest"])){
+            $to = $email;
+            $subject = $subjectHeader;
+            $message .= "<p>Dear " . $firstname . ",</p>";
+            $message .= "<p>Thank you for submitting your Family Medical Leave Request Form!  We have the following information: </p>";
+            $message .= $bodyMessage . "\n\n";
+            $message .= "<p>Test Test Test</p>";
+            $message .= "<p>Please contact your manager or HR if you have any questions.</p>";
+            $message .= "<p>Sincerely,</p>";
+            $message .= "<p>CONVO Team</p>";
+            $headers .= "From: CONVO Portal<pxy9548@rit.edu>\r\n";
+            $headers .= "CC: jja4740@rit.edu, pxy9548@rit.edu, chris@theinfini.com\r\n"; 
+            
+            // Convert text into HTML
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html;\r\n";
+            mail($to, $subject, $message, $headers); 
+        }
     }
+
+
+    
 
 
 /*

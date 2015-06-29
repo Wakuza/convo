@@ -1,8 +1,8 @@
 <?php
     $title = "Convo Portal | Employment Data";
-    include("core/init.php");
+    include("../core/init.php");
     protect_page();
-    include("assets/inc/header.inc.php");
+    include("../assets/inc/header.inc.php");
     $employee_id = $user_data["employee_id"];
 
     $errorEmail = "";
@@ -80,5 +80,5 @@
                 <input type="submit" class="btn-success" value ="Submit" name="submit">
             </form>
 <?php
-    include("assets/inc/footer.inc.php");
+    include("../assets/inc/footer.inc.php");
 ?>
