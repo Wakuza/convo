@@ -1,9 +1,8 @@
 <?php
     $_ENV["HOSTNAME"] = "DEVELOPING";
-    $linkToALL = "localhost/convo_portal/infini-convo/";  
-  //  $root = realpath($_SERVER["HTTP_HOST"]);
-        $root = $_SERVER["HTTP_HOST"] . "/convo_portal/infini-convo";
-
+    $linkToALL = "http://localhost/convo_portal/convo";  
+    $root = $_SERVER["DOCUMENT_ROOT"] . "/convo_portal";
+    echo $root;
 
     session_start();
  
