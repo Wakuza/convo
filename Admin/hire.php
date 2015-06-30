@@ -1,4 +1,5 @@
 <?php 
+    $page_title = "Add Employee";
     $title = "Convo Portal | Hire";
     include("../core/init.php");
     admin_protect();
