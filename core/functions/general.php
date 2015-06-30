@@ -15,7 +15,7 @@
     // Protect Page
     function protect_page() {
         if(logged_in() === false) {
-            header("Location: protected.php");
+            header("Location: $linkToALL/convo/protected.php");
             exit();
         }
     }
