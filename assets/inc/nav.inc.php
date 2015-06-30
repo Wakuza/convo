@@ -30,11 +30,10 @@
 ?>
                         </ul>      
                     </li>
-                    <!--
                     <li >
                         <a href="#">Experts</a>
                         <ul class="subMenu">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="<?php echo $linkToALL;?>/Experts/index.php">Home</a></li>
                             <li><a href="#">Heart of Convo Expert</a></li>
                             <li><a href="#">Milestones</a></li>
                             <li class="children">
@@ -46,7 +45,7 @@
                                 </ul>
                             </li>
                             <li class="children">
-                                <a href="#">Badge System</a>
+                                <a href="<?php echo $linkToALL;?>/Experts/badge_system.php">Badge System</a>
                                 <ul>
                                     <li><a href="#">Convo Expert</a></li>
                                     <li><a href="#">Local Expert</a></li>
@@ -65,7 +64,6 @@
                             <li><a href="<?php echo $linkToALL;?>/Convo University/log.php">Employee Log</a></li>
                         </ul>
                     </li>
-                    -->
                     
 
 <?php
