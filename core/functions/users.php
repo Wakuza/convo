@@ -468,7 +468,7 @@
                 $returnString .= "<span class='bc$i'><a href='$url'>"
                 .prettify($bread[$i])."</a>";
             }
-            if($_SERVER["PHP_SELF"] == "/convo/employee.php" ) {
+            if($_SERVER["PHP_SELF"] == "/convo/employee.php" || $_SERVER["PHP_SELF"] == "/convo/changepassword.php" || $_SERVER["PHP_SELF"] == "/convo/register.php" ) {
                 echo $returnString . "<strong>" . $page_title . "</strong></span>";
             } 
             else if($_SERVER["PHP_SELF"] !== "/convo/index.php" ) {
