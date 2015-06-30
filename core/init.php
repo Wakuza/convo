@@ -1,8 +1,7 @@
 <?php
     $_ENV["HOSTNAME"] = "DEVELOPING";
-    $linkToALL = "http://localhost/convo_portal/convo";  
-    $root = $_SERVER["DOCUMENT_ROOT"] . "/convo_portal";
-    echo $root;
+    $linkToALL = "/convo";  
+    $root = $_SERVER["DOCUMENT_ROOT"] . "/";
 
     session_start();
  
