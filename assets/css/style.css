@@ -649,3 +649,26 @@ ul li input[type="text"], ul li input[type="password"] {
     padding: 10px;
     line-height: 22px;
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.management_team_div {
+    margin-bottom: 270px;
+    margin-left: auto;
+    width: 95%;
+}
+.management_team_div figure {
+    float: left;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.management_team_div img {
+    width: 180px;
+}
+
+.management_team_div figcaption {
+    margin-top: 2px;
+    font-size: 12pt;
+    text-align: center;   
+}
