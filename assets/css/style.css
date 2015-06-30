@@ -586,3 +586,66 @@ ul li input[type="text"], ul li input[type="password"] {
 }
 
 /* ----------------------- FMLA // -------------------------------------------- */
+
+.center_flip {
+    padding-left: 150px;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000;
+    display: inline-block;
+    float: left;
+    margin-right: 13px;
+    margin-bottom: 15px;
+}
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 320px;
+	height: 190px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+    background-color: #8AE151;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+    text-align: center;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+.front h2 {
+    margin-top: 80px;
+    font-size: 18pt;
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+
+.back p {
+    padding: 10px;
+    line-height: 22px;
+}
