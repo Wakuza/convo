@@ -1,4 +1,5 @@
 <?php 
+    $page_title = "Change Password";
     $title = "Convo Portal | Change Password";
     include("core/init.php");
     include("assets/inc/header.inc.php");
