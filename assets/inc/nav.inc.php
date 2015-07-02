@@ -34,16 +34,18 @@
                         <a href="#">Experts</a>
                         <ul class="subMenu">
                             <li><a href="<?php echo $linkToALL;?>/Experts/index.php">Home</a></li>
-                            <li><a href="#">Heart of Convo Expert</a></li>
-                            <li><a href="#">Milestones</a></li>
+                            <li><a href="<?php echo $linkToALL;?>/Experts/experts_team.php">Meet Expert Team</a></li>
                             <li class="children">
                                 <a href="#">Toolbox</a>
                                 <ul class="subMenu">
                                     <li><a href="#">Expert Tools</a></li>
-                                    <li><a href="#">Color Your Home</a></li>
+                                    <li><a href="<?php echo $linkToALL;?>/Experts/color_your_home.php">Color Your Home 2.0</a></li>
                                     <li><a href="#">Procedures &amp; Features</a></li>
                                 </ul>
                             </li>
+                            <li><a href="<?php echo $linkToALL;?>/Experts/badges.php">Badges</a></li>
+                            <li><a href="<?php echo $linkToALL;?>/Experts/event_calendar.php">Events</a></li>
+                            <!--
                             <li class="children">
                                 <a href="<?php echo $linkToALL;?>/Experts/badge_system.php">Badge System</a>
                                 <ul>
@@ -54,6 +56,7 @@
                                     <li><a href="#">Top Expert</a></li>
                                 </ul>
                             </li>
+                            -->
                         </ul>
                     </li>
                     <li>
