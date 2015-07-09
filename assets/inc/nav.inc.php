@@ -27,7 +27,7 @@
                     </li>
                     <li>
                         <a href="#">Benefits</a>
-                        <ul class="subMenu">
+                        <ul class="benefits_menu">
                             <li><a href="<?php echo $linkToALL;?>/Benefits/401k.php">401(k)</a></li>
                             <li><a href="<?php echo $linkToALL;?>/Benefits/cigna.php">Cigna</a></li>
                             <li><a href="<?php echo $linkToALL;?>/Benefits/ng.php">NG</a></li>
@@ -36,7 +36,7 @@
                     </li>
                     <li>
                         <a href="#">Experts</a>
-                        <ul class="subMenu">
+                        <ul class="experts_menu">
                             <li><a href="<?php echo $linkToALL;?>/Experts/index.php">Home</a></li>
                             <li><a href="<?php echo $linkToALL;?>/Experts/experts_team.php">Meet Expert Team</a></li>
                             <li class="children">
@@ -53,7 +53,7 @@
                     </li>
                     <li>
                         <a href="#">Convo University</a>
-                        <ul class="convo_university">
+                        <ul class="convo_university_menu">
                             <li><a href="<?php echo $linkToALL;?>/Convo University/index.php">Home</a></li>
                             <li><a href="<?php echo $linkToALL;?>/Convo University/module.php">Module 1</a></li>
                             <li><a href="<?php echo $linkToALL;?>/Convo University/log.php">Employee Log</a></li>
@@ -76,7 +76,7 @@
 ?>
                     <li>
                         <a href="#">Admin</a>
-                        <ul>
+                        <ul class="admin_menu">
                             <li><a href="<?php echo $linkToALL;?>/Admin/hire.php">Add Employee</a></li>
                             <li><a href="<?php echo $linkToALL;?>/Admin/edit.php">Edit Employee</a></li>
                             <li><a href="<?php echo $linkToALL;?>/Admin/createdatabase.php">Add DB Values</a></li>
