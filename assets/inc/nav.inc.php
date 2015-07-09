@@ -8,15 +8,10 @@
                         <a href="#">HR</a>
                         <ul class="HR">
                             <li><a href="<?php echo $linkToALL;?>/HR/resources.php">Resources</a></li>
-                           <!-- <li><a href="<?php echo $linkToALL;?>/HR/fmla.php">FMLA</a></li> -->
+                            <li><a href="<?php echo $linkToALL;?>/HR/fmla.php">FMLA</a></li>
                             <li><a href="<?php echo $linkToALL;?>/HR/employment_data.php">Employment Data</a></li>
 <?php
-     if($user_data["payroll_status"] !== "GBS") {
-?>
-                            <li><a href="<?php echo $linkToALL;?>/HR/401k.php">401(k)</a></li> 
-                          <!--  <li><a href="<?php echo $linkToALL;?>/HR/HealthBenefits.php">Health Benefits</a></li> -->
-<?php
-    }
+    //}
     // Only full-time employees can see Open Enrollment
     // Exception is Monique Clark (emplid 229) who is considering full time and wants to check benefits before deciding
     // Tabitha Poplin (emplid 274)
@@ -24,13 +19,22 @@
     if($user_data["payroll_status"] == "FT" || $session_user_id == '229' ||  $session_user_id == '274' || $session_user_id == '327' ){
 
 ?>
-                             <li><a href="<?php echo $linkToALL;?>/HR/OpenEnrollment.php">Open Enrollment</a></li>  
+                             <!--<li><a href="<?php echo $linkToALL;?>/HR/OpenEnrollment.php">Open Enrollment</a></li>-->   
 <?php
     }
 ?>
                         </ul>      
                     </li>
-                    <li >
+                    <li>
+                        <a href="#">Benefits</a>
+                        <ul class="subMenu">
+                            <li><a href="<?php echo $linkToALL;?>/Benefits/401k.php">401(k)</a></li>
+                            <li><a href="<?php echo $linkToALL;?>/Benefits/cigna.php">Cigna</a></li>
+                            <li><a href="<?php echo $linkToALL;?>/Benefits/ng.php">NG</a></li>
+                            <li><a href="<?php echo $linkToALL;?>/Benefits/HealthBenefits.php">Health Benefits</a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="#">Experts</a>
                         <ul class="subMenu">
                             <li><a href="<?php echo $linkToALL;?>/Experts/index.php">Home</a></li>
@@ -45,18 +49,6 @@
                             </li>
                             <li><a href="<?php echo $linkToALL;?>/Experts/badges.php">Badges</a></li>
                             <li><a href="<?php echo $linkToALL;?>/Experts/event_calendar.php">Events</a></li>
-                            <!--
-                            <li class="children">
-                                <a href="<?php echo $linkToALL;?>/Experts/badge_system.php">Badge System</a>
-                                <ul>
-                                    <li><a href="#">Convo Expert</a></li>
-                                    <li><a href="#">Local Expert</a></li>
-                                    <li><a href="#">National Expert</a></li>
-                                    <li><a href="#">Support Expert</a></li>
-                                    <li><a href="#">Top Expert</a></li>
-                                </ul>
-                            </li>
-                            -->
                         </ul>
                     </li>
                     <li>
