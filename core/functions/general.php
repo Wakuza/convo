@@ -1,9 +1,4 @@
 <?php
-    // Email Function
-    function email($to, $subject, $body) {
-        mail($to, $subject, $body, "From: infini@gmail.com");
-    }
-
     // Redirect the Page
     function logged_in_redirect() {
         if(logged_in() === true) {
@@ -24,7 +19,7 @@
     function admin_protect() {
         global $user_data;
         if(has_access($user_data["job_code"]) === false) {
-            header("Location: index.php");
+            header("Location: $linkToALL/convo/index.php");
             exit();
         }
     }
@@ -33,7 +28,7 @@
     function manager_protect(){
         global $user_data;
         if(has_access_manager($user_data["job_code"]) === false){
-            header("Location: index.php");
+            header("Location: $linkToALL/convo/index.php");
             exit();
         }
     }
@@ -42,7 +37,7 @@
     function census_protect(){
         global $user_data;
         if(has_access_census($user_data["job_code"]) === false){
-            header("Location: index.php");
+            header("Location: $linkToALL/convo/index.php");
             exit();
         }
     }
