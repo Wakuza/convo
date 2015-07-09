@@ -339,7 +339,7 @@
             $message .= "<h2>Information Needed for Background Check<strong></h2>";
             $message .= "<p>First, please scan a copy of your Social Security Card and Driver's License (or state-issued ID card). You may email this to hr@convorelay.com. To expedite processing, please do this at your earliest convenience.</p>";
             $message .= "<h2>New Hire Paperwork</h2>";
-            $message .= "<p>Please complete the new hire packet before your first day of work.  This packet can be found here: <a href='https://test.theinfini.com/convo/Convo%20New%20Hire%20Packet%20-%20FT.pdf'>Convo New Hire Packet</a>.  When completed, please scan and send this to hr@convorelay.com.</p>";
+            $message .= "<p>Please complete the new hire packet before your first day of work.  This packet can be found here: <a href='https://test.theinfini.com/convo/New%20Hire%20Packet.pdf'>Convo New Hire Packet</a>.  When completed, please scan and send this to hr@convorelay.com.</p>";
             $message .= "<p>Questions?</p>";
             $message .= "<p>Please contact your to-be supervisor or HR if you have any questions.</p>";
             $message .= "<p>We look forward to working with you!</p>";
@@ -468,12 +468,12 @@
                 $returnString .= "<span class='bc$i'><a href='$url'>"
                 .prettify($bread[$i])."</a>";
             }
-            if($_SERVER["PHP_SELF"] == "/convo/employee.php" || $_SERVER["PHP_SELF"] == "/convo/changepassword.php" || $_SERVER["PHP_SELF"] == "/convo/register.php" ) {
+            if($_SERVER["PHP_SELF"] == "/convo/employee.php" || $_SERVER["PHP_SELF"] == "/convo/changepassword.php" || $_SERVER["PHP_SELF"] == "/convo/register.php" || $_SERVER["PHP_SELF"] == "/convo/contact.php") {
                 echo $returnString . "<strong>" . $page_title . "</strong></span>";
             } 
             else if($_SERVER["PHP_SELF"] !== "/convo/index.php" ) {
-                echo $returnString. " &raquo; " . $page_title . "</span>";
-            }           
+                echo $returnString . " &raquo; " . $page_title . "</span>";
+            }
         }
     }
 
