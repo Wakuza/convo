@@ -1,4 +1,5 @@
 <?php
+    $page_title = "Module";
     $title = "Convo Portal | Module";
     include("../core/init.php");
     protect_page();
