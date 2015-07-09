@@ -1,4 +1,5 @@
 <?php 
+    $page_title = "New Employee Onboarding";
     $title = "New Employee Onboarding";
     include("core/init.php");
     include("assets/inc/header.inc.php");
@@ -78,7 +79,7 @@
                 $("#convoLogo a").removeAttr("href");
             </script>
 <?php
-            echo "<h2 class='headerPages'>Thank you, please check your email for further instructions.</h2>";
+            echo "<h2 class='headerPages'><br/><br/><br/>Thank you, please check your email for further instructions.</h2>";
             die(); 
         }
     }
@@ -91,7 +92,7 @@
                 $("#convoLogo a").removeAttr("href");
             </script>
             <br/><br/><br/>
-            <h2 class="headerPages">Welcome to Convo! Please fill out all the fields below.  Upon completion, you will receive an email with further instructions regarding your background check.</h2>
+            <h2 class="headerPages">Welcome to Convo! Please fill out all the fields below.  Upon completion, you will receive an email with further instructions regarding your background check and new hire paperwork.</h2>
 
             <form method="post">
                 <h2>Personal Information</h2>
@@ -145,7 +146,7 @@
                 <?php echo $errorEmergencyName; ?><br/><br/>
 
                 <!-- Emergency Phone number -->
-                <span class="spanHeader">Contact's Phone number:</span>
+                <span class="spanHeader">Contact's Phone Number:</span>
                 <input type="text" name="emergencyNumber" value=<?php if(isset($_POST["submitNewHire"])){echo "'" . $_POST['emergencyNumber'] . "'";} ?>>
                 <?php echo $errorEmergencyNumber; ?><br/><br/>
 
