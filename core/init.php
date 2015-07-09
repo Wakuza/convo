@@ -1,7 +1,7 @@
 <?php
-    $_ENV["HOSTNAME"] = "DEVELOPING";
-    $linkToALL = "/convo";  
-    $root = $_SERVER["DOCUMENT_ROOT"] . "/";
+    $_ENV["HOSTNAME"] = "TESTING";
+    $linkToALL = "https://test.theinfini.com/convo";  
+    $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
     session_start();
  
