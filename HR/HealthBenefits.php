@@ -1,4 +1,5 @@
 <?php
+    $page_title = "Health Benefits";
     $title = "Convo Portal | Health Benefits";
     include("../core/init.php");
     protect_page();
