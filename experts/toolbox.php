@@ -6,7 +6,7 @@
     include("../assets/inc/header.inc.php");
 ?>
 
-            <h1 class="headerPages">Toolbox</h1>
+           <h1 class="headerPages">Toolbox</h1>
 
 <?php
     include("./../assets/inc/footer.inc.php");
