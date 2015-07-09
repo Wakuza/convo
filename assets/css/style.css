@@ -127,7 +127,6 @@ aside {
 .center_img {
     text-align: center;   
 }
-
 /* ------------------------------- General CSS //------------------------------- */
 
 /*----------------------------------Dashboard.php------------------------------*/
@@ -592,6 +591,7 @@ ul li input[type="text"], ul li input[type="password"] {
 
 /* ----------------------- FMLA // -------------------------------------------- */
 
+
 .center_flip {
     padding-left: 150px;
 }
@@ -680,18 +680,70 @@ ul li input[type="text"], ul li input[type="password"] {
 
 .badges {
    width: 900px; 
+} 
+
+/*--------------------------EVENTS-------------------------------------------*/
+.today{
+    background-color: gray;
+}
+.today a{
+    color: white;   
+}
+.event{
+    background-color: #00e500;
 }
 
+.event a{
+    color: black;
+}
 
+.event a:hover{
+    color: #7f7f7f;
+}
 
+.today a, .event a, .days a{
+    font-size: 15pt;
+    
+}
 
+.days, .event, .today{
+    vertical-align: top; 
+    width: 150px;
+}
 
+#eventTable{
+    width: 1000px;  
+    height: 800px;
+}
 
+.eventRow{
+    width: 10px;
+    height: 50px; 
+    text-align: center;
+}
 
+.eventRow input{
+    width: 150px;
+    height: 50px; 
+    
+}
 
+#monthYear{
+    font-size: 17pt;
+    
+}
 
+.eventDate{
+      margin-bottom: -90px; 
+}
 
+.eventData{
+    width: 1px; 
+}
 
+.eventHover{
+    display: none;   
+}
 
 .popbox {
     display: none;
@@ -705,14 +757,17 @@ ul li input[type="text"], ul li input[type="password"] {
     margin: 0px;
     -webkit-box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
     box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+    word-wrap: break-word;
 }
 .popbox h2
 {
-    background-color: #4D4F53;
+    background-color: #71AB3A;
     color:  #E3E5DD;
-    font-size: 14px;
+    font-size: 14pt;
     display: block;
     width: 100%;
     margin: -10px 0px 8px -10px;
     padding: 5px 10px;
 }
+
+/*---------------------------Events //------------------------------*/
