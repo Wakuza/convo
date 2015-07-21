@@ -32,7 +32,7 @@
                     exit();
 				}
 				else {
-					echo "<p>Oops, we couldn't find that email address!</p>";
+					echo "<p>We couldn't find that email address in our system. Please try again.</p>";
 				}
 			}
 ?>
