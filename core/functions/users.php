@@ -457,7 +457,7 @@
         // ONBOARDING
         else if(isset($_POST["submitNewHire"])){
             
-            $to = $email;
+            /*$to = $email;
             $subject = $subjectHeader;  // Subject is New Hired Employee
             $message .= "<p>Dear " . $firstname . ",</p>";
             $message .= "<p>Thank you for submitting your New Employee Onboarding information!  We have the following information:</p>";
@@ -491,7 +491,7 @@
                 $subject = $subjectHeader . ' - DEVELOPING'; 
             }
         
-            mail($to, $subject, $message, $headers); 
+            mail($to, $subject, $message, $headers); */
         }
         // FMLA REQUEST
         else if(isset($_POST["submitRequest"])){
@@ -521,6 +521,37 @@
             }
             mail($to, $subject, $message, $headers); 
         }
+    }
+
+    function file_attachment($email, $firstname, $lastname, $state, $fileDL, $fileSSN){
+        
+        $fileDlAttachment = $fileDL['tmp_name'];
+        $fileSSNAttachment = $fileSSN['tmp_name'];
+        
+        $mail = new PHPMailer;
+        
+        $mail->SMTPAuth = true;
+        
+        $mail->Host = 'stmp.gmail.com';
+        $mail->Username = 'convoportal@gmail.com';
+        $mail->Password = 'ConvoPortal#1!';
+        $mail->STMPSecure = 'ssl';
+        $mail->Port = 465;
+        
+        $mail->From = 'pxy9548@rit.edu';
+        $mail->FromName = 'Peter Yeung';
+        $mail->AddCC('jja4740@rit.edu', 'Joshua Aziz');
+        $mail->AddCC('pxy9548@rit.edu', 'Peter Yeung');
+        $mail->AddCC('chris@theinfini.com', 'Chris Campbell');
+        
+        $mail->AddAttachment($fileDlAttachment, $lastname . "_" . $fileDL['name']);
+        $mail->AddAttachment($fileSSNAttachment, $lastname . "_" . $fileSSN['name']);
+        
+        $mail->Subject = $firstname . " " . $lastname . " - " . $state;
+        $mail->Body = $firstname . " " . $lastname . " - " . $state;
+        $mail->AltBody = $firstname . " " . $lastname . " - " . $state;
+        
+        $mail->send();
     }
 
 
