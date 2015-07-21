@@ -348,9 +348,6 @@ ul li input[type="text"], ul li input[type="password"] {
     margin-top: 5px;
 }
 
-#loginBox a{
-    float: right;
-}
 /* ------------------------------- LOGIN and REGISTER // ------------------------------- */
 
 /* ------------------------------- Container ------------------------------- */
@@ -374,6 +371,7 @@ ul li input[type="text"], ul li input[type="password"] {
 .widget {
     z-index: 2;
     position: relative;
+    margin-bottom: 10px;
 }
 
 .widget h2 {
@@ -384,7 +382,7 @@ ul li input[type="text"], ul li input[type="password"] {
 }
 
 .widget .inner {
-    margin: 0 10px;
+    margin: 0 12px;
 }
 
 /* Hello name with Show/Hide, Change password, Change settings, Log out */
@@ -414,17 +412,24 @@ ul li input[type="text"], ul li input[type="password"] {
 }
 /* ENDS */
 
-.forgotten{
-    position: relative;
-    margin-left: 30px;
-    font-size: 10pt;
-}
 
 #rememberBox{
     margin-top: 59px; 
     margin-left: -67px;
     float: left;
 }
+
+.forget {
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: -13px;
+}
+
+#account {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 /* ------------------------------- Widget //------------------------------- */
 
 /* ------------------------------- HR ------------------------------- */
@@ -783,3 +788,7 @@ ul li input[type="text"], ul li input[type="password"] {
 }
 
 /*---------------------------Events //------------------------------*/
+
+#wowslider-container1 {
+     z-index: 0 !important;    
+}
