@@ -72,9 +72,6 @@
                     <li><a href="<?php echo $linkToALL;?>/employee.php">Employees</a></li>
 <?php
         }
-?>
-                    <li><a href="<?php echo $linkToALL;?>/Approval%20Center/index.php">Approval Center</a></li>
-<?php
         if(has_access($user_data["job_code"]) == true) {
 ?>
                     <li>

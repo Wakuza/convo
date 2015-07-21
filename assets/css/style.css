@@ -425,7 +425,7 @@ ul li input[type="text"], ul li input[type="password"] {
     margin-top: -13px;
 }
 
-#account {
+#account{
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -708,6 +708,7 @@ ul li input[type="text"], ul li input[type="password"] {
 }
 .event{
     background-color: #00e500;
+    font-size: 12pt;
 }
 
 .event a{
@@ -788,7 +789,3 @@ ul li input[type="text"], ul li input[type="password"] {
 }
 
 /*---------------------------Events //------------------------------*/
-
-#wowslider-container1 {
-     z-index: 0 !important;    
-}
