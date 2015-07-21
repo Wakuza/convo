@@ -84,7 +84,7 @@ END
 
 
             <form method="post" action="announcements.php">
-                <textarea name="content" style="width:100%"><?php echo $future_announcement; ?></textarea><br/>
+                <textarea name="content" style="width:100%"><?php if(isset($_POST["content"])){ echo $future_announcement;} ?></textarea><br/>
 
                     <span>Effective Date:</span>
                     <input type="text" placeholder="MM/DD/YYYY" class="datepicker" name="effective_date" value="<?php echo $future_date;?>">
