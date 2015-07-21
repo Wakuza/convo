@@ -33,18 +33,21 @@
         echo "Your password has changed!"; 
     }
     else {
-        //if(isset($_GET["force"]) === true && empty($_GET["force"]) === true) {
+        if(isset($_GET["force"]) === true && empty($_GET["force"]) === true) {
         ?>
-           <!-- <p>You must change your password now that you've requested.</p>-->
+           <br/><h3 class="force_password" style='color:red;'>You must change your password now that you've requested.</h3>
         <?php
-        //}
+        }
         if(empty($_POST) === false && empty($errors) === true) {
             change_password($session_user_id, $_POST["password"]);
             $displayNone = "style='display:none'";
             //header("Location: changepassword.php?success");
             
-            echo "<p class='headerPages'>Your password has been changed successfully!</p>";
-			exit(); 
+            echo "<h1 class='headerPages'>Your password has been changed successfully!</p>";
+?>
+            <script>$(".force_password").hide()</script>
+<?php
+			die(); 
         }
         else if(empty($errors) === false) {
          //   echo output_errors($errors);
