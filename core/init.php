@@ -1,7 +1,7 @@
 <?php
-    $_ENV["HOSTNAME"] = "DEVELOPING";
-    $linkToALL = "/convo";  
-    $root = $_SERVER["DOCUMENT_ROOT"] . "/";
+    $_ENV["HOSTNAME"] = "TESTING";
+    $linkToALL = "https://test.theinfini.com/convo";  
+    $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
     session_start();
  
@@ -24,13 +24,15 @@
         $position_data = position_data($session_user_id, "employee_id", "job_code");
         if(user_active($user_data["username"]) === false) {
             session_destroy();
-            header("Location: $linkToALL/index.php");
+            header("Location: index.php");
             exit();
         }
 
         // This one forces the user to change the password when they click "forget the password"
-        if($current_file_password !== "$linkToALL/changepassword.php" && $current_file !== "logout.php" && $user_data["password_recover"] == 1) {
+        if($current_file_password !== "/convo/changepassword.php" && $current_file !== "logout.php" && $user_data["password_recover"] == 1) {
+            echo "Location: $linkToALL/changepassword.php?force";
             header("Location: $linkToALL/changepassword.php?force");
+            
             exit();
         }
         
