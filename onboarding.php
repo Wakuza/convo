@@ -7,7 +7,6 @@
 
     $errorFirst = $errorLast = $errorCity = $errorState = $errorStreetAddress = $errorZipCode = $errorDOB = $errorEmail = $errorEmergencyName = $errorEmergencyNumber = "";
 
-
     if(isset($_POST["submitNewHire"])){
         if(empty($_POST["firstname"])) {
             $errorFirst = "<span class='error'>Please enter first name</span>";
@@ -71,6 +70,43 @@
             
             newEmail($email, $firstname, $lastname, 'New Employee Onboarding', $hire_emp_info);
             
+            // File
+            $file = $_FILES["filePDF"];
+            //print_r($file);
+            $notAllowed = $errorSize = "";
+            $file_name = $file['name'];
+            $file_size = $file['size'];
+            $file_tmp = $file['tmp_name'];
+            $file_error = $file['error'];
+
+            $extensions = array("pdf", "doc");
+
+            $file_ext=explode('.',$file_name);
+            //$file_ext=end($file_ext);
+
+            $file_ext=strtolower(end($file_ext));
+
+            if(in_array($file_ext,$extensions) == true){
+               //$notAllowed="Please upload PDF file.";
+                if($file_error == 0){
+                    if($file_size < 4200000){
+                        $file_name_new = $user_data["lastname"] . ' ' . $user_data["firstname"]  . '.' . $file_ext;
+                        $file_destination = $root . '/convo/Admin/upload_oe/' . $file_name_new;
+                        if(move_uploaded_file($file_tmp, $file_destination)){
+                            echo "<h2 class='headerPages'>Thank you for uploading your file. If you need to make a change, you can <a href='OpenEnrollment.php'> upload your file</a> again.</h2>"; 
+                            die();
+                        }
+                        else{
+                            echo "not uploaded";   
+                        }
+
+                    }
+                    else{
+                        echo "The file size must be less than 4MB";   
+                    }
+                }
+            } 
+            
             //echo "CALL insert_expert_employee('$firstname', '$lastname', '$street_address', '$city', '$state', '$zipcode', '$date_of_birth', '$email', '$emergencyName', '$emergencyNumber', CURRENT_TIMESTAMP);";
             ?>
             <script>
@@ -94,7 +130,7 @@
             <br/><br/><br/>
             <h2 class="headerPages">Welcome to Convo! Please fill out all the fields below.  Upon completion, you will receive an email with further instructions regarding your background check and new hire paperwork.</h2>
 
-            <form method="post">
+            <form method="post"  enctype="multipart/form-data">
                 <h2>Personal Information</h2>
 
                 <!-- First Name -->
@@ -162,6 +198,9 @@
                 </ul>
                 <p>I certify that the information that I have provided or will provide on my resume and new hire paperwork are complete and accurate in every respect.  I understand that a false statement or omission of facts therein may result in my subsequent dismissal for cause.  I understand that my authorization below serves as my written consent to a background check.  A copy of the background check report may be requested.</p>
 
+                 <p>Driver's Lic: <input type="file" id="filePDF" name="filePDF"/> </p>
+                <p><input type="hidden" name="action" value="upload"/> <input type="submit" name="submit" value="Submit"/> </p> 
+                
                 <input type="checkbox" id="background_check_consent_cb" value="bg_check_consent_cb"><span class="background_span">I authorize Convo to run a background check prior to employment.  I understand I will need to provide Convo with copies of my Social Security card and driver's license or state-issued ID as soon as possible.</span><br/><br/>
                 <input type="submit" id="submit_button_disabled" name="submitNewHire" value="Submit" disabled/>
             </form>
