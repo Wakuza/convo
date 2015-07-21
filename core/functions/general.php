@@ -1,4 +1,8 @@
 <?php
+    function email($to, $subject, $body) {
+        mail($to, $subject, $body, "From: pxy9548@rit.edu");
+    }
+
     // Redirect the Page
     function logged_in_redirect() {
         if(logged_in() === true) {
@@ -43,11 +47,12 @@
     }
 
     function array_sanitize(&$item) {
-        $item = strip_tags(mysql_real_escape_string($item));
+        $item = strip_tags(mysqli_real_escape_string($link, $item));
     }
 
     function sanitize($data) {
-        return htmlentities(strip_tags(mysql_real_escape_string($data)));    
+        global $link;
+        return htmlentities(strip_tags(mysqli_real_escape_string($link, $data)));    
     }
 
     function output_errors($errors) {
