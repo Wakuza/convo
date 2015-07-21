@@ -5,10 +5,7 @@
     protect_page();
     include("../assets/inc/header.inc.php");
 
-
-
     $errorType = $errorLeave = $errorReturn = $errorUnknownDate = $errorLeaveReason = "";
-
 
     if(isset($_POST["submitRequest"])){
         if(empty($_POST["requestType"])){
@@ -150,8 +147,6 @@
 
                 <input type="checkbox" id="background_check_consent_cb" value="bg_check_consent_cb"><span class="background_span">I understand that the submission of this Request does not constitute approval for requested leave of absense. I understand that a failure to return to work at the end of my approved leave period may be treated as resignation.</span><br/><br/>
                 <input type="submit" id="submit_button_disabled" name="submitRequest" value="Submit" disabled/>
-
-
             </form>
 
 <?php
