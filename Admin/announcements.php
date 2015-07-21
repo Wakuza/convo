@@ -7,7 +7,7 @@
     admin_protect();
 
     if(isset($_POST["submit"])) {
-        $content = mysql_real_escape_string($_POST["content"]); 
+        $content = mysqli_real_escape_string($link, $_POST["content"]); 
         $effectiveDate = sanitize($_POST["effective_date"]);
         $announcementTime = sanitize($_POST["announcement_time"]);
 
@@ -21,7 +21,7 @@
         //echo $effective_date;
         //echo "CALL update_announcement(1, '$content', '$effective_dateTime')";
         //echo "CALL update_announcement(2, '$content', '$effective_dateTime')";
-        mysql_query("CALL insert_announcement('$content', '$effective_dateTime')");
+        mysqli_query($link, "CALL insert_announcement('$content', '$effective_dateTime')");
     }
 
 /*
